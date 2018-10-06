@@ -2,22 +2,30 @@
   "name": "modern-frontend-architecture",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts-ts": "3.1.0"
-  },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "new-domain": "./scripts/new-domain.sh"
+  },
+  "dependencies": {
+    "antd": "^3.10.0",
+    "ramda": "^0.25.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.3",
     "@types/node": "^10.11.4",
+    "@types/ramda": "^0.25.39",
     "@types/react": "^16.4.15",
     "@types/react-dom": "^16.0.8",
+    "gh-pages": "^2.0.1",
+    "react-scripts-ts": "3.1.0",
     "typescript": "^3.1.1"
   }
 }
