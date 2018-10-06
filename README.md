@@ -11,4 +11,4 @@ A boilerplate client-side application with a modern and scalable structure that 
 - Redux Saga
 - React Router
 
-- Travis < CI / CD > Netlify
+- Travis < CI | CD > Netlify
