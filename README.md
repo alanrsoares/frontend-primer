@@ -31,6 +31,7 @@ A boilerplate client-side application with a modern and scalable structure that 
 
 - Travis CI 
 - Netlify CD
+- Auth0 
 
 ### License
 MIT
