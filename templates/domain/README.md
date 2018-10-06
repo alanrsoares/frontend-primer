@@ -1,11 +1,11 @@
-# DomainX template
+# Domain_Name template
 
-Add DomainX description here
+Add Domain_Name description here
 
 ## Folder structure:
 
 ```
-src/domain/genres/
+src/domain/[domain_name]/
 ├── api
 │   ├── index.ts
 │   └── __tests__
