@@ -7,7 +7,7 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "new-domain": "./scripts/new-domain.sh"
+    "add-new-domain": "./scripts/add-new-domain.sh"
   },
   "dependencies": {
     "antd": "^3.10.0",
