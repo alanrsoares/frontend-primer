@@ -1,22 +1,24 @@
-# DomainX template
+# Domain_Name template
 
-Add DomainX description here
+Add Domain_Name description here
 
 ## Folder structure:
 
 ```
-api/
-|_ __tests__
-  |__ api.spec.ts
-|_ index.ts
-reducers/
-|_ __tests__
-  |_ reducers.spec.ts
-|_ index.ts
-sagas/
-|_ __tests__
-  |__ sagas.spec.ts
-|_ index.ts
-
-index.ts
+src/domain/[domain_name]/
+├── api
+│   ├── index.ts
+│   └── __tests__
+│       └── api.spec.ts
+├── constants.ts
+├── index.ts
+├── README.md
+├── reducers
+│   ├── index.ts
+│   └── __tests__
+│       └── reducers.spec.ts
+└── sagas
+    ├── index.ts
+    └── __tests__
+        └── sagas.spec.ts
 ```
