@@ -5,18 +5,20 @@ Add DomainX description here
 ## Folder structure:
 
 ```
-|_ api/
-  |_ __tests__/
-    |_ api.spec.ts
-  |_ index.ts
-|_ reducers/
-  |_ __tests__/
-    |_ reducers.spec.ts
-  |_ index.ts
-|_ sagas/
-  |_ __tests__/
-    |_ sagas.spec.ts
-  |_ index.ts
-|_ constants.ts
-|_ index.ts
+src/domain/genres/
+├── api
+│   ├── index.ts
+│   └── __tests__
+│       └── api.spec.ts
+├── constants.ts
+├── index.ts
+├── README.md
+├── reducers
+│   ├── index.ts
+│   └── __tests__
+│       └── reducers.spec.ts
+└── sagas
+    ├── index.ts
+    └── __tests__
+        └── sagas.spec.ts
 ```
