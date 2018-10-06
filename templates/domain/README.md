@@ -5,18 +5,17 @@ Add DomainX description here
 ## Folder structure:
 
 ```
-api/
+| api/
 |_ __tests__
   |__ api.spec.ts
 |_ index.ts
-reducers/
+| reducers/
 |_ __tests__
   |_ reducers.spec.ts
 |_ index.ts
-sagas/
+| sagas/
 |_ __tests__
   |__ sagas.spec.ts
 |_ index.ts
-
-index.ts
+| index.ts
 ```
