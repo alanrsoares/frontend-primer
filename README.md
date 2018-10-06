@@ -12,26 +12,26 @@ A boilerplate client-side application with a modern and scalable structure that 
 
 ## Libraries
 
-- Jest
-- Babel 7
-- Typescript
-- React 16.x
-- Redux
-- Redux Saga
-- React Router
-- Reselect
+- [x] Jest
+- [x] Babel 7
+- [x] Typescript
+- [x] React 16.x
+- [x] Redux
+- [ ] Redux Saga
+- [ ] React Router
+- [ ] Reselect
 
 ## Tests
 
-- Jest
-- Enzyme
-- redux-saga-test-plan
+- [x] Jest
+- [ ] Enzyme
+- [ ] redux-saga-test-plan
 
 ## Infrastructure
 
-- Travis CI 
-- Netlify CD
-- Auth0 
+- [x] Travis CI 
+- [x] Netlify CD
+- [ ] Auth0 
 
 ### License
 MIT
