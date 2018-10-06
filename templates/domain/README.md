@@ -17,5 +17,6 @@ Add DomainX description here
 |_ __tests__
   |__ sagas.spec.ts
 |_ index.ts
+| constants.ts
 | index.ts
 ```
