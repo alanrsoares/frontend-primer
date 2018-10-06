@@ -6,7 +6,9 @@ A boilerplate client-side application with a modern and scalable structure that 
 ## Features
 
 - Jest
-- Babel7
+- Babel 7
 - Typescript
 - Redux Saga
 - React Router
+
+- Travis < CI / CD > Netlify
