@@ -1,4 +1,4 @@
-# modern-frontend-architecture
+# Frontend Primer
 React + Redux modern frontend architecture
 
 [![Travis](https://img.shields.io/travis/alanrsoares/modern-frontend-architecture/master.svg)](https://travis-ci.org/alanrsoares/modern-frontend-architecture)
