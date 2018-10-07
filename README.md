@@ -12,9 +12,6 @@ A boilerplate client-side application with a modern and scalable structure that 
 
 ## Libraries
 
-- [x] Jest
-- [x] Babel 7
-- [x] Typescript
 - [x] React 16.x
 - [x] Redux
 - [ ] Redux Saga
@@ -31,7 +28,13 @@ A boilerplate client-side application with a modern and scalable structure that 
 
 - [x] Travis CI 
 - [x] Netlify CD
-- [ ] Auth0 
+- [ ] Auth0
+
+## Code quality 
+
+- [x] TSlint
+- [x] Prettier
+
 
 ### License
 MIT
