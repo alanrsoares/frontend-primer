@@ -1,9 +1,9 @@
 import { all, fork } from "redux-saga/effects";
 import { SagaIterator } from "redux-saga";
 
-import { sagas as genres } from "@domain/genres";
-import { sagas as movies } from "@domain/movies";
-import { sagas as shows } from "@domain/shows";
+import genres from "@domain/genres/sagas";
+import movies from "@domain/movies/sagas";
+import shows from "@domain/shows/sagas";
 
 const sagaWatchers = [genres, movies, shows];
 
