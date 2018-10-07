@@ -1,4 +1,4 @@
-# Domain_Name template
+# [domain_name] template
 
 Add Domain_Name description here
 
