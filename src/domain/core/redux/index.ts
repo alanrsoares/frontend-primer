@@ -8,6 +8,8 @@ import genres from "@domain/genres/reducers";
 import movies from "@domain/movies/reducers";
 import shows from "@domain/genres/reducers";
 
+export * from "@domain/core/redux/types";
+
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({

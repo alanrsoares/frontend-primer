@@ -6,13 +6,15 @@ Add Domain_Name description here
 
 ```
 src/domain/[domain_name]/
+├── index.ts
+├── types.ts
+├── constants.ts
+├── selectors.ts
+├── README.md
 ├── api
 │   ├── index.ts
 │   └── __tests__
 │       └── api.spec.ts
-├── constants.ts
-├── index.ts
-├── README.md
 ├── reducers
 │   ├── index.ts
 │   └── __tests__

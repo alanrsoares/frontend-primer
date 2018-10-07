@@ -22,6 +22,7 @@
     "paths": {
       "@src/*": ["src/*"],
       "@domain/*": ["src/domain/*"],
+      "@domain": ["src/domain/index"],
       "@ui": ["src/ui/index"],
       "@ui/*": ["src/ui/*"]
     }
