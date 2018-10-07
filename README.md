@@ -1,7 +1,7 @@
 # Frontend Primer
 React + Redux modern frontend architecture
 
-[![Travis](https://img.shields.io/travis/alanrsoares/modern-frontend-architecture/master.svg)](https://travis-ci.org/alanrsoares/modern-frontend-architecture)
+[![Travis](https://img.shields.io/travis/alanrsoares/frontend-primer/master.svg)](https://travis-ci.org/alanrsoares/frontend-primer)
 
 
 A boilerplate client-side application with a modern and scalable structure that values reusability and testability
@@ -14,9 +14,9 @@ A boilerplate client-side application with a modern and scalable structure that 
 
 - [x] React 16.x
 - [x] Redux
-- [ ] Redux Saga
+- [x] Redux Saga
 - [ ] React Router
-- [ ] Reselect
+- [x] Reselect
 
 ## Tests
 
