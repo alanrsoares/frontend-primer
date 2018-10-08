@@ -2,11 +2,11 @@ import { merge, mergeAll, applyTo } from "ramda";
 
 import { Action, ActionHandlerMap, Reducer } from "@domain/core/redux";
 
-export type ReducerConfig<TActions, TState> = {
+export interface ReducerConfig<TActions, TState> {
   actions: TActions;
   idKey: string;
   initialState: TState;
-};
+}
 
 export type ReducerFunctorFn<TActions, TState> = (
   config: ReducerConfig<TActions, TState>
@@ -59,7 +59,7 @@ export const handleActions = <TState, TPayload>(
 };
 
 const combineFunctors = <TActions, TState>(
-  functors: ReducerFunctorFn<TActions, TState>[]
+  functors: Array<ReducerFunctorFn<TActions, TState>>
 ) => (
   config: ReducerConfig<any, any>,
   customHandlers = {}

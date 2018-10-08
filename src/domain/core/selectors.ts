@@ -1,5 +1,5 @@
-import { createSelector } from "reselect";
 import { State } from "@domain";
+import { createSelector } from "reselect";
 
 export const getFeatures = (state: State) => {
   const { features } = state.core;

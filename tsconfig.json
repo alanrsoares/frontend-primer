@@ -16,11 +16,11 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "importHelpers": true,
+    "strict": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "paths": {
-      "@src/*": ["src/*"],
       "@domain/*": ["src/domain/*"],
       "@domain": ["src/domain/index"],
       "@ui": ["src/ui/index"],

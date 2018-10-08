@@ -1,21 +1,17 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import createSagaMiddleware from "redux-saga";
 
 import saga from "@domain/core/redux/middleware/saga";
 
 import genres from "@domain/genres/reducers";
-import movies from "@domain/movies/reducers";
-import shows from "@domain/genres/reducers";
 
 export * from "@domain/core/redux/types";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-  genres,
-  movies,
-  shows
+  genres
 });
 
 export function configureStore() {
