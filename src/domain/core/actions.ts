@@ -3,6 +3,6 @@ import { Feature } from "@domain/core/types";
 
 export default {
   features: {
-    fetchList: createAsyncActions<never, Feature[]>("FETCH", "CORE/FEATRUES")
+    fetchList: createAsyncActions<void, Feature[]>("FETCH", "CORE/FEATRUES")
   }
 };
