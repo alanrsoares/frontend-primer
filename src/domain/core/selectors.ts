@@ -10,3 +10,5 @@ export const getFeatures = (state: State) => {
 export const getDisabledFeatures = createSelector(getFeatures, features =>
   features.filter(feature => feature.isEnabled)
 );
+
+export const getIsLoggedIn = (state: State) => state.core.auth.isLoggedIn;

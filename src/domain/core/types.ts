@@ -8,4 +8,7 @@ export interface State {
     byId: { [key: string]: Feature };
     idList: ReadonlyArray<string>;
   };
+  auth: {
+    isLoggedIn: boolean;
+  };
 }

@@ -1,0 +1,11 @@
+.Login {
+  max-width: 300px;
+}
+
+.Login--forgot {
+  float: right;
+}
+
+.Login--button {
+  width: 100%;
+}

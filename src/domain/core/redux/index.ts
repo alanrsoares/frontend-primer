@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 
 import saga from "@domain/core/redux/middleware/saga";
 
+import core from "@domain/core/reducers";
 import genres from "@domain/genres/reducers";
 
 export * from "@domain/core/redux/types";
@@ -11,6 +12,7 @@ export * from "@domain/core/redux/types";
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
+  core,
   genres
 });
 
