@@ -1,8 +1,8 @@
+import * as React from "react";
+
 import { Layout, Menu, Icon } from "antd";
 
 const { Header, Content, Footer, Sider } = Layout;
-
-import * as React from "react";
 
 import "./index.css";
 

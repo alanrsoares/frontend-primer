@@ -14,9 +14,11 @@ export interface ActionHandlerMap<TState> {
   [key: string]: ActionHandler<any, TState>;
 }
 
-export type ActionCreator<T = void> = { type: string } & ((
-  payload?: T
-) => Action<T>);
+export interface ActionCreator<T = void> {
+  (): Action;
+  (payload: T): Action<T>;
+  type: string;
+}
 
 export type ActionHandler<TPayload, TState> = (
   p: TPayload,
