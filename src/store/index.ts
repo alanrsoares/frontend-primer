@@ -1,18 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 
-import saga from "@domain/core/redux/middleware/saga";
-import logger from "@domain/core/redux/middleware/logger";
-
-import core from "@domain/core/reducers";
-import genres from "@domain/genres/reducers";
-
-// combines all of the domain reducers into a single reducer function
-const rootReducer = combineReducers({
-  core,
-  genres
-});
+import saga from "@store/middleware/saga";
+import logger from "@store/middleware/logger";
+import { rootReducer } from "@domain";
 
 // set-up redux middlewares
 

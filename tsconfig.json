@@ -24,6 +24,8 @@
       "@domain": ["src/domain/index"],
       "@ui": ["src/ui/index"],
       "@ui/*": ["src/ui/*"],
+      "@store": ["src/store/index"],
+      "@store/*": ["src/store/*"],
       "@helpers/*": ["src/helpers/*"]
     }
   },

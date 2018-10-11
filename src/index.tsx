@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
 
-import { configureStore } from "@domain/core/redux";
+import { configureStore } from "@store";
 
 import UI from "@ui";
 
