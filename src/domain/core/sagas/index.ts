@@ -8,7 +8,7 @@ import login from "./login";
 
 export default function* sagaWatcher(): SagaIterator {
   yield all([
-    takeLatest(actions.features.fetch.run.type, fetchFeatures),
-    takeLatest(actions.user.login.run.type, login)
+    takeLatest(actions.features.fetch.type, fetchFeatures),
+    takeLatest(actions.user.login.type, login)
   ]);
 }

@@ -3,8 +3,7 @@ export interface Action<T = void> {
   payload: T;
 }
 
-export interface AsyncActions<TRun, TSuccess> {
-  run: ActionCreator<TRun>;
+export interface AsyncActions<TRun, TSuccess> extends ActionCreator<TRun> {
   request: ActionCreator;
   success: ActionCreator<TSuccess>;
   failure: ActionCreator<Error>;
