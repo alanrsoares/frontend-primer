@@ -17,12 +17,13 @@ export type ReducerFunctor<TActions, TState> =
   | Array<ReducerFunctorFn<TActions, TState>>
   | ReducerFunctorFn<TActions, TState>;
 
-type ReducerFactory<TActions, TState> = ((
-  config: ReducerConfig<TActions, TState>,
-  customHandlers?: ActionHandlerMap<TState>
-) => Reducer<TState, AnyAction>) & {
+export interface ReducerFactory<TActions, TState> {
+  (
+    config: ReducerConfig<TActions, TState>,
+    customHandlers?: ActionHandlerMap<TState>
+  ): Reducer<TState, AnyAction>;
   functor: ReducerFunctor<TActions, TState>;
-};
+}
 
 export const reducerConfig = <TActions>(config: {
   actions: TActions;
