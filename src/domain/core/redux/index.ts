@@ -8,8 +8,6 @@ import logger from "@domain/core/redux/middleware/logger";
 import core from "@domain/core/reducers";
 import genres from "@domain/genres/reducers";
 
-export * from "@domain/core/redux/types";
-
 // combines all of the domain reducers into a single reducer function
 const rootReducer = combineReducers({
   core,

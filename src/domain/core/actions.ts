@@ -1,4 +1,5 @@
-import { createAsyncActions } from "@helpers/actions";
+import { createAsyncActions } from "re-reduce";
+
 import { Feature, LoginPayload, UserProfile } from "@domain/core/types";
 
 export default {

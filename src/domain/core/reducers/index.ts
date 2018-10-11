@@ -1,6 +1,6 @@
-import { State, actions } from "@domain/core";
-import { handleActions } from "@helpers/reducers";
-import { UserProfile } from "../types";
+import { handleActions } from "re-reduce";
+
+import { State, actions, UserProfile } from "@domain/core";
 
 const INITIAL_STATE: State = {
   features: {

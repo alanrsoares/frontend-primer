@@ -7998,6 +7998,13 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+re-reduce@alanrsoares/re-reduce:
+  version "0.1.0"
+  resolved "https://codeload.github.com/alanrsoares/re-reduce/tar.gz/9b0485e7f826f35a81aa1b8fd11bf82865eb2e0e"
+  dependencies:
+    ramda "^0.25.0"
+    redux "^4.0.0"
+
 react-dev-utils@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-5.0.2.tgz#7bb68d2c4f6ffe7ed1184c5b0124fcad692774d2"
