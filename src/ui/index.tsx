@@ -18,6 +18,6 @@ const App = ({ isAuthenticated }: Props) =>
 
 export default connect(
   applySpec({
-    isAuthenticated: selectors.getIsAuthenticated
+    isAuthenticated: selectors.getUserIsAuthenticated
   })
 )(App);

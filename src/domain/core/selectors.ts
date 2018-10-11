@@ -26,5 +26,5 @@ export const getDisabledFeatures = createSelector(
     features.filter(feature => feature.isEnabled)
 );
 
-export const getIsAuthenticated = (state: State) =>
+export const getUserIsAuthenticated = (state: State) =>
   state.core.user.isAuthenticated;
