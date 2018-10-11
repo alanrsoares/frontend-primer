@@ -2,13 +2,14 @@ import { Action } from "redux";
 
 import { State } from "@domain/core";
 
-const INITIAL_STATE = {
+const INITIAL_STATE: State = {
   features: {
     byId: {},
     idList: []
   },
-  auth: {
-    isLoggedIn: false
+  user: {
+    isAuthenticated: false,
+    profile: undefined
   }
 };
 
