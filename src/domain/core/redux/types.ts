@@ -1,4 +1,7 @@
-import { Action } from "redux";
+export interface Action<T = void> {
+  type: string;
+  payload: T;
+}
 
 export interface AsyncActions<TRun, TSuccess> {
   run: ActionCreator<TRun>;

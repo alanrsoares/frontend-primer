@@ -28,17 +28,3 @@ export const transformTree = <V, R>(query: TraverseQuery<V, R>) => {
 
   return mapObjectValues(mapper);
 };
-
-const TREE: Tree<string> = {
-  foo: {
-    bar: "bazz"
-  },
-  baz: "bar",
-  bar: {
-    baz: {
-      foo: {
-        bar: "baz"
-      }
-    }
-  }
-};

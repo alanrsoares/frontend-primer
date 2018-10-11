@@ -6,5 +6,5 @@ import actions from "@domain/core/actions";
 import fetchFeatures from "./fetchFeatures";
 
 export default function* sagaWatcher(): SagaIterator {
-  yield takeLatest(actions.features.fetchList.run.type, fetchFeatures);
+  yield takeLatest(actions.features.fetch.run.type, fetchFeatures);
 }

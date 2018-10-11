@@ -20,7 +20,7 @@ class App extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.props.actions.core.features.fetchList.run();
+    this.props.actions.core.features.fetch.run();
   }
 
   public render() {
