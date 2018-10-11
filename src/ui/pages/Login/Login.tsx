@@ -7,8 +7,9 @@ import "./Login.css";
 
 const FormItem = Form.Item;
 
-class NormalLoginForm extends React.Component<FormComponentProps> {
-  public handleSubmit = () => {
+class LoginForm extends React.Component<FormComponentProps> {
+  public handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     this.props.form.validateFields((err: Error, values: object) => {
       if (!err) {
         console.log("Received values of form: ", values);
@@ -60,4 +61,4 @@ class NormalLoginForm extends React.Component<FormComponentProps> {
   }
 }
 
-export default Form.create()(NormalLoginForm);
+export default Form.create()(LoginForm);
