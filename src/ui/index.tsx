@@ -1,23 +1,36 @@
 import * as React from "react";
 import { applySpec } from "ramda";
-import { connect } from "react-redux";
 
+import { Actions } from "@domain";
 import { selectors } from "@domain/core";
 
-import Public from "./layouts/Public";
-import Authenticated from "./layouts/Authenticated";
+import { connectWithActions } from "@helpers/redux";
+
+import Public from "@ui/layouts/Public";
+import Authenticated from "@ui/layouts/Authenticated";
 
 import "./index.css";
 
 interface Props {
   isAuthenticated: boolean;
+  actions: Actions;
 }
 
-const App = ({ isAuthenticated }: Props) =>
-  isAuthenticated ? <Authenticated /> : <Public />;
+class App extends React.PureComponent<Props> {
+  constructor(props: Props) {
+    super(props);
 
-export default connect(
-  applySpec({
+    this.props.actions.core.features.fetchList.run();
+  }
+
+  public render() {
+    return this.props.isAuthenticated ? <Authenticated /> : <Public />;
+  }
+}
+
+export default connectWithActions(
+  /* map State to Props  */
+  applySpec<Props>({
     isAuthenticated: selectors.getUserIsAuthenticated
   })
 )(App);
