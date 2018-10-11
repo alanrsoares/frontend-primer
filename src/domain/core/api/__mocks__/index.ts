@@ -5,7 +5,7 @@ export const fetchFeatures: Feature[] = [
 ];
 
 export const login: UserProfile = {
-  id: "user-id",
-  name: "name",
+  id: "user-id-123",
+  name: "John Doe",
   email: "email@example.com"
 };
