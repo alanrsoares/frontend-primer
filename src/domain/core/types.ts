@@ -3,12 +3,22 @@ export interface Feature {
   isEnabled: boolean;
 }
 
+export interface FeaturesState {
+  byId: { [key: string]: Feature };
+  idList: ReadonlyArray<string>;
+}
+
+export interface UserProfile {
+  name: string;
+  email: string;
+}
+
+export interface UserState {
+  isAuthenticated: boolean;
+  profile: UserProfile;
+}
+
 export interface State {
-  features: {
-    byId: { [key: string]: Feature };
-    idList: ReadonlyArray<string>;
-  };
-  auth: {
-    isLoggedIn: boolean;
-  };
+  features: FeaturesState;
+  user: UserState;
 }
