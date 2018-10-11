@@ -1,6 +1,7 @@
 import { merge, mergeAll, applyTo } from "ramda";
+import { AnyAction, Reducer } from "redux";
 
-import { Action, ActionHandlerMap, Reducer } from "@domain/core/redux";
+import { ActionHandlerMap } from "@domain/core/redux";
 
 export interface ReducerConfig<TActions, TState> {
   actions: TActions;
@@ -19,7 +20,9 @@ export type ReducerFunctor<TActions, TState> =
 type ReducerFactory<TActions, TState> = ((
   config: ReducerConfig<TActions, TState>,
   customHandlers?: ActionHandlerMap<TState>
-) => Reducer<TState, any>) & { functor: ReducerFunctor<TActions, TState> };
+) => Reducer<TState, AnyAction>) & {
+  functor: ReducerFunctor<TActions, TState>;
+};
 
 export const reducerConfig = <TActions>(config: {
   actions: TActions;
@@ -45,10 +48,10 @@ export const reducerConfigWithState = <TActions, TState>(config: {
   idKey: ""
 });
 
-export const handleActions = <TState, TPayload>(
+export const handleActions = <TState>(
   actionHandlers: ActionHandlerMap<TState>,
   initialState: TState
-): Reducer<TState, Action<TPayload>> => (state = initialState, action) => {
+): Reducer<TState, AnyAction> => (state = initialState, action) => {
   const actionHandler = actionHandlers[action.type];
 
   if (typeof actionHandler === "function") {
@@ -60,10 +63,7 @@ export const handleActions = <TState, TPayload>(
 
 const combineFunctors = <TActions, TState>(
   functors: Array<ReducerFunctorFn<TActions, TState>>
-) => (
-  config: ReducerConfig<any, any>,
-  customHandlers = {}
-): ReducerFunctorFn<any, any> => {
+) => (config: ReducerConfig<any, any>, customHandlers = {}) => {
   const handlers = mergeAll(functors.map(applyTo(config)));
   return merge(handlers, customHandlers) as ReducerFunctorFn<TActions, TState>;
 };
@@ -71,7 +71,7 @@ const combineFunctors = <TActions, TState>(
 export const createReducer = <TActions, TState>(
   functor: ReducerFunctor<TActions, TState>,
   defaultInitialState: TState
-): ReducerFactory<TActions, TState> => {
+) => {
   const finalFunctor = (Array.isArray(functor)
     ? combineFunctors<TActions, TState>(functor)
     : functor) as ReducerFunctorFn<TActions, TState>;
@@ -91,7 +91,7 @@ export const createReducer = <TActions, TState>(
       customHandlers
     );
 
-    return handleActions<TState, TActions>(actionHandlers, initialState);
+    return handleActions<TState>(actionHandlers, initialState);
   }) as ReducerFactory<TActions, TState>;
 
   reducerFactory.functor = finalFunctor;

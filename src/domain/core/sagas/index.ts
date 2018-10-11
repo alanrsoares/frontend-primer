@@ -1,10 +1,14 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest } from "redux-saga/effects";
+import { takeLatest, all } from "redux-saga/effects";
 
 import actions from "@domain/core/actions";
 
 import fetchFeatures from "./fetchFeatures";
+import login from "./login";
 
 export default function* sagaWatcher(): SagaIterator {
-  yield takeLatest(actions.features.fetch.run.type, fetchFeatures);
+  yield all([
+    takeLatest(actions.features.fetch.run.type, fetchFeatures),
+    takeLatest(actions.user.login.run.type, login)
+  ]);
 }

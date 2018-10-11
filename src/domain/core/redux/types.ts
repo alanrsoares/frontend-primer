@@ -24,8 +24,3 @@ export type ActionHandler<TPayload, TState> = (
   p: TPayload,
   s: TState
 ) => TState;
-
-export type Reducer<TState, TAction> = (
-  state: TState,
-  action: TAction
-) => TState;

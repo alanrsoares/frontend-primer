@@ -9,6 +9,7 @@ export interface FeaturesState {
 }
 
 export interface UserProfile {
+  id: string;
   name: string;
   email: string;
 }
@@ -16,6 +17,11 @@ export interface UserProfile {
 export interface UserState {
   isAuthenticated: boolean;
   profile?: UserProfile;
+}
+
+export interface LoginPayload {
+  email: string;
+  password: string;
 }
 
 export interface State {

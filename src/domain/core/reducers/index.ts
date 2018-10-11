@@ -1,6 +1,6 @@
-import { Action } from "redux";
-
-import { State } from "@domain/core";
+import { State, actions } from "@domain/core";
+import { handleActions } from "@helpers/reducers";
+import { UserProfile } from "../types";
 
 const INITIAL_STATE: State = {
   features: {
@@ -13,6 +13,18 @@ const INITIAL_STATE: State = {
   }
 };
 
-export default function reducer(state: State = INITIAL_STATE, action: Action) {
-  return state;
-}
+export default handleActions<State>(
+  {
+    [actions.user.login.success.type]: (
+      profile: UserProfile,
+      state: State
+    ) => ({
+      ...state,
+      user: {
+        profile,
+        isAuthenticated: true
+      }
+    })
+  },
+  INITIAL_STATE
+);

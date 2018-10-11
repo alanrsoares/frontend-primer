@@ -3,7 +3,7 @@ import { call, put } from "redux-saga/effects";
 
 import { actions, api, Feature } from "@domain/core";
 
-export default function* fetch(): SagaIterator {
+export default function* fetchFeatures(): SagaIterator {
   yield put(actions.features.fetch.request());
 
   try {

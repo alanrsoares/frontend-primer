@@ -2,8 +2,8 @@ import { SagaIterator } from "redux-saga";
 import { takeLatest } from "redux-saga/effects";
 
 import actions from "@domain/genres/actions";
-import fetchList from "@domain/genres/sagas/fetchList";
+import fetchGenres from "@domain/genres/sagas/fetchGenres";
 
 export default function* sagaWatcher(): SagaIterator {
-  yield takeLatest(actions.fetchList.run.type, fetchList);
+  yield takeLatest(actions.fetch.run.type, fetchGenres);
 }
