@@ -10,14 +10,14 @@ import Authenticated from "./layouts/Authenticated";
 import "./index.css";
 
 interface Props {
-  isLoggedIn: boolean;
+  isAuthenticated: boolean;
 }
 
-const App = ({ isLoggedIn }: Props) =>
-  isLoggedIn ? <Authenticated /> : <Public />;
+const App = ({ isAuthenticated }: Props) =>
+  isAuthenticated ? <Authenticated /> : <Public />;
 
 export default connect(
   applySpec({
-    isLoggedIn: selectors.getIsLoggedIn
+    isAuthenticated: selectors.getIsAuthenticated
   })
 )(App);
