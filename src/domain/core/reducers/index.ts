@@ -8,7 +8,7 @@ const INITIAL_STATE: State = {
     idList: []
   },
   user: {
-    isAuthenticated: false,
+    isAuthenticated: true,
     profile: undefined
   }
 };

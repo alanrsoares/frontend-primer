@@ -1,3 +1,9 @@
 import * as React from "react";
 
-export default () => <div>Authenticated</div>;
+import Genres from "@ui/pages/Genres";
+
+export default () => (
+  <div>
+    <Genres />
+  </div>
+);
