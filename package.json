@@ -6,8 +6,7 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
-    "add-domain": "node ./scripts/add-domain"
+    "eject": "react-scripts-ts eject"
   },
   "husky": {
     "hooks": {

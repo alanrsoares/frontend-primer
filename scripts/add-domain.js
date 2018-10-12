@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+/*
+command line usage:
+
+node ./scripts/add-domain --domain={ENTER_DOMAIN_NAME}
+*/
+
 const path = require("path");
 const { argv } = require("yargs");
 const { ncp } = require("ncp");
