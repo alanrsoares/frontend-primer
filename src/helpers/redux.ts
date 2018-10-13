@@ -1,25 +1,29 @@
+import { Dispatch, compose } from "redux";
 import { connect } from "react-redux";
 import { ActionCreator } from "re-reduce";
 
 import { actions } from "@domain";
 import { transformTree, Tree } from "@helpers/objects";
-import { Dispatch, AnyAction } from "redux";
 
 type Dispatcher<T = any> = (payload: T) => void;
 
-const toDispatcher = (dispatch: Dispatch<AnyAction>) => <T>(
-  action: ActionCreator<T>
-) => (payload: T) => dispatch(action(payload));
+const toDispatcher = (dispatch: Dispatch) => <T>(action: ActionCreator<T>) =>
+  compose<Dispatcher<T>>(
+    dispatch,
+    action
+  );
 
 export function connectWithActions<TState, TProps>(
   mapStateToProps: (state: TState) => TProps
 ) {
+  const mapDisptachToProps = (dispatch: Dispatch) => ({
+    actions: transformTree<ActionCreator, Dispatcher>({
+      transformValue: toDispatcher(dispatch)
+    })(actions as Tree<ActionCreator>)
+  });
+
   return connect(
     mapStateToProps,
-    dispatch => ({
-      actions: transformTree<ActionCreator, Dispatcher>({
-        transformValue: toDispatcher(dispatch)
-      })(actions as Tree<ActionCreator>)
-    })
+    mapDisptachToProps
   );
 }
