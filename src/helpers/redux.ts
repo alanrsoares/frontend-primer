@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { ActionCreator } from "re-reduce";
 
 import { actions } from "@domain";
-import { transformTree, Tree } from "@helpers/objects";
+import { transformTree } from "@helpers/objects";
 
 type Dispatcher<T = any> = (payload: T) => void;
 
@@ -19,7 +19,7 @@ export function connectWithActions<TState, TProps>(
   const mapDisptachToProps = (dispatch: Dispatch) => ({
     actions: transformTree<ActionCreator, Dispatcher>({
       transformValue: toDispatcher(dispatch)
-    })(actions as Tree<ActionCreator>)
+    })(actions) as typeof actions
   });
 
   return connect(
