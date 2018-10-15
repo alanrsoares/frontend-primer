@@ -52,4 +52,5 @@ const enhance = connectWithActions(actions)(
     genres: selectors.getGenres
   })
 );
+
 export default enhance(Genres);

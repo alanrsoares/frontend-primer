@@ -1,16 +1,10 @@
-import { SagaIterator } from "redux-saga";
-import { call, put } from "redux-saga/effects";
+import { apiWorkerFactory } from "re-reduced";
 
-import { actions, api, Feature } from "@domain/core";
+import { actions, api } from "@domain/core";
 
-export default function* fetchFeatures(): SagaIterator {
-  yield put(actions.features.fetch.request());
+const fetchFeaturesWorker = apiWorkerFactory(
+  actions.features.fetch,
+  api.fetchFeatures
+);
 
-  try {
-    const result: Feature[] = yield call(api.fetchFeatures);
-
-    yield put(actions.features.fetch.success(result));
-  } catch (exception) {
-    yield put(actions.features.fetch.failure(exception));
-  }
-}
+export default fetchFeaturesWorker;
