@@ -1,6 +1,6 @@
 import { Genre } from "@domain/genres";
 
-export const fetchList: ReadonlyArray<Genre> = [
+export const fetchGenres: Genre[] = [
   { id: "id-0", name: "horror" },
   { id: "id-1", name: "thriller" },
   { id: "id-2", name: "adventure" },
