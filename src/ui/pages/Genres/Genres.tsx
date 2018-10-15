@@ -1,9 +1,9 @@
 import * as React from "react";
 import { applySpec } from "ramda";
+import { connectWithActions } from "re-reduced";
 
-import { Actions } from "@domain";
+import { Actions, actions } from "@domain";
 import { selectors, Genre } from "@domain/genres";
-import { connectWithActions } from "@helpers/redux";
 
 interface Props {
   genres: Genre[];
@@ -47,8 +47,9 @@ export class Genres extends React.Component<Props> {
   }
 }
 
-export default connectWithActions(
+const enhance = connectWithActions(actions)(
   applySpec<Props>({
     genres: selectors.getGenres
   })
-)(Genres);
+);
+export default enhance(Genres);

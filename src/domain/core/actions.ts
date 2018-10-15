@@ -1,4 +1,4 @@
-import { createAsyncActions } from "re-reduce";
+import { createAsyncActions } from "re-reduced";
 
 import { Feature, LoginPayload, UserProfile } from "@domain/core/types";
 

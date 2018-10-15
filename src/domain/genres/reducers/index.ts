@@ -1,4 +1,4 @@
-import { handleActions } from "re-reduce";
+import { handleActions } from "re-reduced";
 
 import { State as GenresState, actions, Genre } from "@domain/genres";
 

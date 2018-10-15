@@ -1,6 +1,6 @@
 import { SagaIterator } from "redux-saga";
 import { call, put } from "redux-saga/effects";
-import { Action } from "re-reduce";
+import { Action } from "re-reduced";
 
 import { actions, api, UserProfile } from "@domain/core";
 

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { applySpec } from "ramda";
 
-import { Actions } from "@domain";
+import { Actions, actions } from "@domain";
 import { selectors } from "@domain/core";
 
-import { connectWithActions } from "@helpers/redux";
+import { connectWithActions } from "re-reduced";
 
 import Public from "@ui/layouts/Public";
 import Authenticated from "@ui/layouts/Authenticated";
@@ -28,9 +28,11 @@ class App extends React.PureComponent<Props> {
   }
 }
 
-export default connectWithActions(
+const enhance = connectWithActions(actions)(
   /* map State to Props  */
   applySpec<Props>({
     isAuthenticated: selectors.getUserIsAuthenticated
   })
-)(App);
+);
+
+export default enhance(App);

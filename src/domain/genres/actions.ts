@@ -1,4 +1,4 @@
-import { createAsyncActions } from "re-reduce";
+import { createAsyncActions } from "re-reduced";
 
 import { Genre } from "@domain/genres";
 
