@@ -90,7 +90,7 @@ class LoginForm extends React.Component<Props> {
             className="Login--button"
             disabled={this.props.isLoggingIn || this.hasErrors}
           >
-            Log in
+            {this.props.isLoggingIn ? "Loging in..." : "Log in"}
           </Button>
           Or <a href="">register now!</a>
         </FormItem>
