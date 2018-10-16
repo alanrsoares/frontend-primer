@@ -21,6 +21,28 @@ interface Fields extends LoginPayload {
 }
 
 class LoginForm extends React.Component<Props> {
+  private decorators = {
+    remember: this.props.form.getFieldDecorator<Fields>("remember", {
+      valuePropName: "checked",
+      initialValue: true
+    }),
+    password: this.props.form.getFieldDecorator<Fields>("password", {
+      rules: [{ required: true, message: "Please input your Password!" }]
+    }),
+    email: this.props.form.getFieldDecorator<Fields>("email", {
+      rules: [
+        {
+          required: true,
+          message: "Please input your email!"
+        },
+        {
+          type: "email",
+          message: "Must be a valid email!"
+        }
+      ]
+    })
+  };
+
   public handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     this.props.form.validateFields((err: Error, values: Fields) => {
@@ -40,23 +62,10 @@ class LoginForm extends React.Component<Props> {
   }
 
   public render() {
-    const { getFieldDecorator } = this.props.form;
-
     return (
       <Form onSubmit={this.handleSubmit} className="Login">
         <FormItem>
-          {getFieldDecorator<Fields>("email", {
-            rules: [
-              {
-                required: true,
-                message: "Please input your email!"
-              },
-              {
-                type: "email",
-                message: "Must be a valid email!"
-              }
-            ]
-          })(
+          {this.decorators.email(
             <Input
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
               placeholder="Email"
@@ -65,9 +74,7 @@ class LoginForm extends React.Component<Props> {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator<Fields>("password", {
-            rules: [{ required: true, message: "Please input your Password!" }]
-          })(
+          {this.decorators.password(
             <Input
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
               type="password"
@@ -77,10 +84,7 @@ class LoginForm extends React.Component<Props> {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator<Fields>("remember", {
-            valuePropName: "checked",
-            initialValue: true
-          })(<Checkbox>Remember me</Checkbox>)}
+          {this.decorators.remember(<Checkbox>Remember me</Checkbox>)}
           <a className="Login--forgot" href="">
             Forgot password
           </a>
