@@ -1,26 +1,29 @@
-# [domain_name] template
+# {DOMAIN_NAME} template
 
 Add Domain_Name description here
 
 ## Folder structure:
 
 ```
-src/domain/[domain_name]/
-├── index.ts
-├── types.ts
-├── constants.ts
-├── selectors.ts
+src/domain/{DOMAIN_NAME}/
 ├── README.md
+├── actions.ts
 ├── api
-│   ├── index.ts
-│   └── __tests__
-│       └── api.spec.ts
+│   ├── __tests__
+│   │   └── api.spec.ts
+│   └── index.ts
+├── constants.ts
+├── index.ts
 ├── reducers
-│   ├── index.ts
-│   └── __tests__
-│       └── reducers.spec.ts
-└── sagas
-    ├── index.ts
-    └── __tests__
-        └── sagas.spec.ts
+│   ├── __tests__
+│   │   └── reducers.spec.ts
+│   └── index.ts
+├── sagas
+│   ├── __tests__
+│   │   └── sagas.spec.ts
+│   └── index.ts
+├── selectors.ts
+└── types.ts
+
+6 directories, 12 files
 ```
