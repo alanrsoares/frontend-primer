@@ -1,6 +1,16 @@
+import { combineReducers } from "redux";
 import { handleActions } from "re-reduced";
 
-import { State, actions, UserProfile } from "@domain/core";
+import { indexBy } from "@helpers/list";
+
+import {
+  actions,
+  State,
+  UserProfile,
+  UserState,
+  FeaturesState,
+  Feature
+} from "@domain/core";
 
 const INITIAL_STATE: State = {
   features: {
@@ -8,23 +18,43 @@ const INITIAL_STATE: State = {
     idList: []
   },
   user: {
-    isAuthenticated: true,
-    profile: undefined
+    isAuthenticated: false,
+    profile: undefined,
+    isLoggingIn: false
   }
 };
 
-export default handleActions<State>(
+const features = handleActions<FeaturesState>(
   {
-    [actions.user.login.success.type]: (
-      profile: UserProfile,
-      state: State
+    [actions.features.fetch.success.type]: (
+      payload: Feature[],
+      state: FeaturesState
     ) => ({
       ...state,
-      user: {
-        profile,
-        isAuthenticated: true
-      }
+      byId: indexBy("id", payload),
+      idList: payload.map(feature => feature.id)
     })
   },
-  INITIAL_STATE
+  INITIAL_STATE.features
 );
+
+const user = handleActions<UserState>(
+  {
+    [actions.user.login.request.type]: (_, state) => ({
+      ...state,
+      isLoggingIn: true
+    }),
+    [actions.user.login.success.type]: (profile: UserProfile, state) => ({
+      ...state,
+      profile,
+      isAuthenticated: true,
+      isLoggingIn: false
+    })
+  },
+  INITIAL_STATE.user
+);
+
+export default combineReducers<State>({
+  user,
+  features
+});

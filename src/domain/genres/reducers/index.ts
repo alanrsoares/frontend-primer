@@ -1,19 +1,12 @@
 import { handleActions } from "re-reduced";
 
+import { indexBy } from "@helpers/list";
 import { State as GenresState, actions, Genre } from "@domain/genres";
 
 const INITIAL_STATE: GenresState = {
   byId: {},
   idList: []
 };
-
-const indexBy = <T>(idKey: string, list: T[]) =>
-  list.reduce((acc, item) => {
-    return {
-      ...acc,
-      [item[idKey]]: item
-    };
-  }, {});
 
 export default handleActions(
   {

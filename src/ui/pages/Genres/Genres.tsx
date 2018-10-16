@@ -39,11 +39,7 @@ export class Genres extends React.Component<Props> {
   }
 
   private renderItem(item: Genre) {
-    return (
-      <li>
-        id: {item.id} - name: {item.name}
-      </li>
-    );
+    return <li key={item.id}>{item.name}</li>;
   }
 }
 

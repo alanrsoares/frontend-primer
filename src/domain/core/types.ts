@@ -16,6 +16,7 @@ export interface UserProfile {
 
 export interface UserState {
   isAuthenticated: boolean;
+  isLoggingIn: boolean;
   profile?: UserProfile;
 }
 
