@@ -1,11 +1,10 @@
 import * as React from "react";
-import { applySpec } from "ramda";
+import { applySpec, mapObjIndexed } from "ramda";
 import { connectWithActions } from "re-reduced";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 
-import { Actions, actions, selectors } from "@domain";
-import { LoginPayload } from "@domain/core";
+import { LoginPayload, actions, selectors } from "@domain/core";
 
 import "./Login.css";
 
@@ -13,7 +12,7 @@ const FormItem = Form.Item;
 
 interface Props extends FormComponentProps {
   isLoggingIn: boolean;
-  actions: Actions;
+  actions: typeof actions;
 }
 
 interface Fields extends LoginPayload {
@@ -21,15 +20,15 @@ interface Fields extends LoginPayload {
 }
 
 class LoginForm extends React.Component<Props> {
-  private decorators = {
-    remember: this.props.form.getFieldDecorator<Fields>("remember", {
+  public decoratorOptions = {
+    remember: {
       valuePropName: "checked",
       initialValue: true
-    }),
-    password: this.props.form.getFieldDecorator<Fields>("password", {
+    },
+    password: {
       rules: [{ required: true, message: "Please input your Password!" }]
-    }),
-    email: this.props.form.getFieldDecorator<Fields>("email", {
+    },
+    email: {
       rules: [
         {
           required: true,
@@ -40,7 +39,7 @@ class LoginForm extends React.Component<Props> {
           message: "Must be a valid email!"
         }
       ]
-    })
+    }
   };
 
   public handleSubmit = (e: React.FormEvent) => {
@@ -48,7 +47,7 @@ class LoginForm extends React.Component<Props> {
     this.props.form.validateFields((err: Error, values: Fields) => {
       if (!err) {
         console.log("Received values of form: ", values);
-        this.props.actions.core.user.login({
+        this.props.actions.user.login({
           email: values.email,
           password: values.password
         });
@@ -61,28 +60,18 @@ class LoginForm extends React.Component<Props> {
     return !!errors.email || !!errors.password;
   }
 
+  get decorators() {
+    return mapObjIndexed(
+      (v, k) => this.props.form.getFieldDecorator(k, v),
+      this.decoratorOptions
+    );
+  }
+
   public render() {
     return (
       <Form onSubmit={this.handleSubmit} className="Login">
-        <FormItem>
-          {this.decorators.email(
-            <Input
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-              placeholder="Email"
-              disabled={this.props.isLoggingIn}
-            />
-          )}
-        </FormItem>
-        <FormItem>
-          {this.decorators.password(
-            <Input
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-              type="password"
-              placeholder="Password"
-              disabled={this.props.isLoggingIn}
-            />
-          )}
-        </FormItem>
+        <FormItem>{this.renderEmailField()}</FormItem>
+        <FormItem>{this.renderPasswordField()}</FormItem>
         <FormItem>
           {this.decorators.remember(<Checkbox>Remember me</Checkbox>)}
           <a className="Login--forgot" href="">
@@ -99,6 +88,27 @@ class LoginForm extends React.Component<Props> {
           Or <a href="">register now!</a>
         </FormItem>
       </Form>
+    );
+  }
+
+  public renderEmailField() {
+    return this.decorators.email(
+      <Input
+        prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+        placeholder="Email"
+        disabled={this.props.isLoggingIn}
+      />
+    );
+  }
+
+  public renderPasswordField() {
+    return this.decorators.password(
+      <Input
+        prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+        type="password"
+        placeholder="Password"
+        disabled={this.props.isLoggingIn}
+      />
     );
   }
 }

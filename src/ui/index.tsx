@@ -1,10 +1,8 @@
 import * as React from "react";
 import { applySpec } from "ramda";
-
-import { selectors, actions } from "@domain/core";
-
 import { connectWithActions } from "re-reduced";
 
+import { selectors, actions } from "@domain/core";
 import Public from "@ui/layouts/Public";
 import Authenticated from "@ui/layouts/Authenticated";
 

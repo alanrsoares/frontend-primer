@@ -10,7 +10,10 @@ const INITIAL_STATE: GenresState = {
 
 export default handleActions(
   {
-    [actions.fetch.success.type]: (payload: Genre[], state: GenresState) => ({
+    [actions.fetchGenres.success.type]: (
+      payload: Genre[],
+      state: GenresState
+    ) => ({
       ...state,
       byId: indexBy("id", payload),
       idList: payload.map(genre => genre.id)
