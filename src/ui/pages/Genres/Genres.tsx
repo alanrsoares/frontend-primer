@@ -2,19 +2,18 @@ import * as React from "react";
 import { applySpec } from "ramda";
 import { connectWithActions } from "re-reduced";
 
-import { Actions, actions } from "@domain";
-import { selectors, Genre } from "@domain/genres";
+import { selectors, actions, Genre } from "@domain/genres";
 
 interface Props {
   genres: Genre[];
-  actions: Actions;
+  actions: typeof actions;
 }
 
 export class Genres extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    props.actions.genres.fetch();
+    props.actions.fetchGenres();
   }
 
   public render() {

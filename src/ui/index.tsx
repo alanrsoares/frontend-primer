@@ -1,8 +1,7 @@
 import * as React from "react";
 import { applySpec } from "ramda";
 
-import { Actions, actions } from "@domain";
-import { selectors } from "@domain/core";
+import { selectors, actions } from "@domain/core";
 
 import { connectWithActions } from "re-reduced";
 
@@ -13,14 +12,14 @@ import "./index.css";
 
 interface Props {
   isAuthenticated: boolean;
-  actions: Actions;
+  actions: typeof actions;
 }
 
 class App extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.props.actions.core.features.fetch();
+    this.props.actions.features.fetch();
   }
 
   public render() {
