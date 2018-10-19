@@ -25,7 +25,7 @@
     "antd": "^3.10.0",
     "ky": "^0.4.0",
     "ramda": "^0.25.0",
-    "re-reduced": "^0.2.0",
+    "re-reduced": "^0.2.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",

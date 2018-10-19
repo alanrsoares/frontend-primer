@@ -7033,9 +7033,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-reduced@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-0.2.0.tgz#1adff0adb2a290308bf64ea22627fcffd1d4e599"
+re-reduced@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-0.2.1.tgz#468ba21371377125ef971be99222ce0288abc96e"
   dependencies:
     ramda "^0.25.0"
     react-redux "^5.0.7"
