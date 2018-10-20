@@ -46,6 +46,7 @@
     "@types/react-redux": "^6.0.9",
     "@types/react-router": "^4.0.31",
     "@types/react-router-redux": "^5.0.16",
+    "docz": "^0.12.5",
     "enzyme": "^3.7.0",
     "gh-pages": "^2.0.1",
     "husky": "^1.1.1",
