@@ -1,3 +1,5 @@
-import { Button } from "antd";
+import React, { ReactNode } from "react";
 
-export default Button;
+export const Button = (props: { children: ReactNode }) => (
+  <button>{props.children}</button>
+);

@@ -4,7 +4,9 @@
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-console": [false, "warning"]
+    "no-console": [false, "warning"],
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": false
   },
   "linterOptions": {
     "exclude": [
