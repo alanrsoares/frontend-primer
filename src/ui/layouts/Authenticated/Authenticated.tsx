@@ -46,6 +46,7 @@ class Authenticated extends React.Component<RouteComponentProps> {
         mode="horizontal"
         style={{ lineHeight: "64px" }}
         selectedKeys={[this.props.location.pathname]}
+        onSelect={item => this.props.history.push(item.key)}
       >
         <Menu.Item key="/" isSelected={this.props.location.pathname === "/"}>
           <Link to="/">Home</Link>
@@ -61,24 +62,12 @@ class Authenticated extends React.Component<RouteComponentProps> {
   }
 
   public renderBreadcrumbs() {
-    return (
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <Breadcrumb.Item>Home</Breadcrumb.Item>}
-        />
-        <Route
-          path="/genres"
-          render={() => (
-            <React.Fragment>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>Genres</Breadcrumb.Item>
-            </React.Fragment>
-          )}
-        />
-      </Switch>
-    );
+    switch (this.props.location.pathname) {
+      case "/genres":
+        return <Breadcrumb.Item>Genres</Breadcrumb.Item>;
+      default:
+        return <Breadcrumb.Item>Home</Breadcrumb.Item>;
+    }
   }
 
   public renderContent() {
