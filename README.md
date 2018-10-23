@@ -15,7 +15,7 @@ A boilerplate client-side application with a modern and scalable structure that 
 - [x] React 16.x
 - [x] Redux
 - [x] Redux Saga
-- [ ] React Router
+- [x] React Router
 - [x] Reselect
 
 ## Tests
