@@ -43,15 +43,11 @@ class Authenticated extends React.Component<RouteComponentProps> {
         mode="horizontal"
         style={{ lineHeight: "64px" }}
         selectedKeys={[this.props.location.pathname]}
-        onSelect={item => this.props.history.push(item.key)}
       >
-        <Menu.Item key="/" isSelected={this.props.location.pathname === "/"}>
+        <Menu.Item key="/">
           <Link to="/">Home</Link>
         </Menu.Item>
-        <Menu.Item
-          key="/genres"
-          isSelected={this.props.location.pathname === "/genres"}
-        >
+        <Menu.Item key="/genres">
           <Link to="/genres">Genres</Link>
         </Menu.Item>
       </Menu>
