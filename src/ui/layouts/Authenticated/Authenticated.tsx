@@ -28,7 +28,6 @@ class Authenticated extends React.Component<RouteComponentProps> {
             {this.renderBreadcrumbs()}
           </Breadcrumb>
           <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-            <div>{JSON.stringify(this.props)}</div>
             {this.renderContent()}
           </div>
         </Content>
@@ -62,11 +61,15 @@ class Authenticated extends React.Component<RouteComponentProps> {
   }
 
   public renderBreadcrumbs() {
+    const toItem = (name: string) => (
+      <Breadcrumb.Item key={name}>{name}</Breadcrumb.Item>
+    );
+
     switch (this.props.location.pathname) {
       case "/genres":
-        return <Breadcrumb.Item>Genres</Breadcrumb.Item>;
+        return ["Home", "Genres"].map(toItem);
       default:
-        return <Breadcrumb.Item>Home</Breadcrumb.Item>;
+        return toItem("Home");
     }
   }
 
