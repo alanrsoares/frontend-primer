@@ -18,7 +18,7 @@ const INITIAL_STATE: State = {
 };
 
 const features = handleActions<FeaturesState>(
-  actions.features.fetch.success.reduce<FeaturesState>((payload, state) => ({
+  actions.features.fetch.success.reduce((payload, _) => ({
     byId: indexBy("id", payload),
     idList: payload.map(feature => feature.id)
   })),
@@ -27,12 +27,11 @@ const features = handleActions<FeaturesState>(
 
 const user = handleActions<UserState>(
   [
-    actions.user.login.request.reduce<UserState>((_, state) => ({
+    actions.user.login.request.reduce((_, state) => ({
       ...state,
       isLoggingIn: true
     })),
-    actions.user.login.success.reduce<UserState>((profile, state) => ({
-      ...state,
+    actions.user.login.success.reduce((profile, _) => ({
       profile,
       isAuthenticated: true,
       isLoggingIn: false

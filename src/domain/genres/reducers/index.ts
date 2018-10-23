@@ -8,9 +8,8 @@ const INITIAL_STATE: GenresState = {
   idList: []
 };
 
-export default handleActions(
-  actions.fetchGenres.success.reduce<GenresState>((payload, state) => ({
-    ...state,
+export default handleActions<GenresState>(
+  actions.fetchGenres.success.reduce((payload, _) => ({
     byId: indexBy("id", payload),
     idList: payload.map(genre => genre.id)
   })),
