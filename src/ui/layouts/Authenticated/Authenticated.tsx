@@ -31,9 +31,7 @@ class Authenticated extends React.Component<RouteComponentProps> {
             {this.renderContent()}
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>Frontend Primer ©2018</Footer>
       </Layout>
     );
   }
