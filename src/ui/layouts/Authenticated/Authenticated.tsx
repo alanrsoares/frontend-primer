@@ -9,8 +9,10 @@ import {
 } from "react-router-dom";
 
 import { ROUTES } from "@domain/core";
-import Genres from "@ui/pages/Genres";
+
 import Dashboard from "@ui/pages/Dashboard";
+import Genres from "@ui/pages/Genres";
+import Movies from "@ui/pages/Movies";
 
 import "./Authenticated.css";
 import { capitalize } from "@helpers/string";
@@ -78,8 +80,9 @@ class Authenticated extends React.Component<RouteComponentProps> {
   public renderContent() {
     return (
       <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/genres" component={Genres} />
+        <Route exact path={ROUTES.home} component={Dashboard} />
+        <Route path={ROUTES.genres} component={Genres} />
+        <Route path={ROUTES.movies} component={Movies} />
       </Switch>
     );
   }
