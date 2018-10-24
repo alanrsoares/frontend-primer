@@ -9,7 +9,7 @@ const INITIAL_STATE: MoviesState = {
 };
 
 export default handleActions<MoviesState>(
-  actions.fetchMovies.success.reduce((payload, _) => ({
+  actions.fetchMovies.success.reduce((_, payload) => ({
     byId: indexBy("id", payload),
     idList: payload.map(genre => genre.id)
   })),
