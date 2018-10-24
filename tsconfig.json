@@ -36,6 +36,7 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "doczrc.js"
   ]
 }
