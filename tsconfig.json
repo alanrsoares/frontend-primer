@@ -20,8 +20,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "paths": {
-      "@domain/*": ["src/domain/*"],
       "@domain": ["src/domain/index"],
+      "@domain/*": ["src/domain/*"],
       "@ui": ["src/ui/index"],
       "@ui/*": ["src/ui/*"],
       "@store": ["src/store/index"],
