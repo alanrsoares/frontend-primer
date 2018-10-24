@@ -6,3 +6,12 @@ export const ENDPOINTS = {
   movies: "movies",
   shows: "shows"
 };
+
+export enum ROUTES {
+  home = "/",
+  genres = "/genres",
+  movies = "/movies",
+  shows = "/shows"
+}
+
+export type RouteKind = keyof typeof ROUTES;

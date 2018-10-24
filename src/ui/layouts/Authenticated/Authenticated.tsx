@@ -8,10 +8,12 @@ import {
   RouteComponentProps
 } from "react-router-dom";
 
+import { ROUTES } from "@domain/core";
 import Genres from "@ui/pages/Genres";
 import Dashboard from "@ui/pages/Dashboard";
 
 import "./Authenticated.css";
+import { capitalize } from "@helpers/string";
 
 const { Header, Content, Footer } = Layout;
 
@@ -44,12 +46,15 @@ class Authenticated extends React.Component<RouteComponentProps> {
         style={{ lineHeight: "64px" }}
         selectedKeys={[this.props.location.pathname]}
       >
-        <Menu.Item key="/">
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item key="/genres">
-          <Link to="/genres">Genres</Link>
-        </Menu.Item>
+        {Object.keys(ROUTES).map(key => {
+          const item = ROUTES[key] as string;
+
+          return (
+            <Menu.Item key={item}>
+              <Link to={item}>{capitalize(key)}</Link>
+            </Menu.Item>
+          );
+        })}
       </Menu>
     );
   }
@@ -59,12 +64,15 @@ class Authenticated extends React.Component<RouteComponentProps> {
       <Breadcrumb.Item key={name}>{name}</Breadcrumb.Item>
     );
 
+    const crumbs: string[] = ["Home"];
+
     switch (this.props.location.pathname) {
-      case "/genres":
-        return ["Home", "Genres"].map(toItem);
-      default:
-        return toItem("Home");
+      case ROUTES.genres:
+        crumbs.push("Genres");
+        break;
     }
+
+    return crumbs.map(toItem);
   }
 
   public renderContent() {
