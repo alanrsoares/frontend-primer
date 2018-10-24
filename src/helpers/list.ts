@@ -1,7 +1,4 @@
-export const indexBy = <T>(idKey: string, list: T[]) =>
-  list.reduce((acc, item) => {
-    return {
-      ...acc,
-      [item[idKey]]: item
-    };
-  }, {});
+import { indexBy as _indexBy } from "ramda";
+
+export const indexBy = <T, K extends keyof T>(key: K, list: T[]) =>
+  _indexBy(x => x[key].toString(), list);
