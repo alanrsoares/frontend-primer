@@ -1,10 +1,10 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest } from "redux-saga/effects";
 
-const noopSaga = function*() {
-  yield "test";
-};
+import actions from "@domain/movies/actions";
+
+import fetchMovies from "./fetchMovies";
 
 export default function* sagaWatcher(): SagaIterator {
-  yield takeLatest("SOME_ACTION_TYPE", noopSaga);
+  yield takeLatest(actions.fetchMovies.type, fetchMovies);
 }

@@ -4,8 +4,8 @@ import {
   Switch,
   Route,
   Link,
-  withRouter,
-  RouteComponentProps
+  RouteComponentProps,
+  withRouter
 } from "react-router-dom";
 
 import { ROUTES } from "@domain/core";
