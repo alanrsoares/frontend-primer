@@ -68,10 +68,8 @@ class Authenticated extends React.Component<RouteComponentProps> {
 
     const crumbs: string[] = ["Home"];
 
-    switch (this.props.location.pathname) {
-      case ROUTES.genres:
-        crumbs.push("Genres");
-        break;
+    if (this.props.location.pathname !== ROUTES.home) {
+      crumbs.push(capitalize(this.props.location.pathname.slice(1)));
     }
 
     return crumbs.map(toItem);
