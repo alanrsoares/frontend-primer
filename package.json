@@ -8,7 +8,8 @@
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docz:build": "docz build",
+    "lint": "tslint --project tsconfig.json"
   },
   "husky": {
     "hooks": {
@@ -25,6 +26,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/reselect": "^2.2.0",
     "antd": "^3.10.0",
+    "buble": "0.19.4",
     "ky": "^0.4.0",
     "ramda": "^0.25.0",
     "re-reduced": "^0.3.0",
