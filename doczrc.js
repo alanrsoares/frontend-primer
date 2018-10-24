@@ -1,4 +1,12 @@
-module.exports = {
-  title: "Docz Typescript",
-  typescript: true
+import { css } from "docz-plugin-css";
+
+export default {
+  title: "Frontend Primer",
+  typescript: true,
+  plugins: [
+    css({
+      preprocessor: "postcss",
+      cssmodules: false
+    })
+  ]
 };

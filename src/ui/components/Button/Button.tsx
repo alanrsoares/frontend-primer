@@ -1,7 +1,4 @@
-import React, { ReactNode } from "react";
-
-export const Button = (props: { children: ReactNode }) => (
-  <button>{props.children}</button>
-);
+import Button from "antd/es/button";
+import "antd/es/button/style/index.css";
 
 export default Button;
