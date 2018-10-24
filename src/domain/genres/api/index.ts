@@ -1,8 +1,9 @@
-import { delay } from "@helpers/promise";
+import { ENDPOINTS } from "@domain/core";
+import { Genre } from "@domain/genres/types";
+import { get } from "@helpers/api";
 
-import * as mocks from "./__mocks__";
+export const fetchGenres = get<void, Genre[]>(ENDPOINTS.genres);
 
-export const fetchGenres = async () => await delay(2000, () => mocks.genres);
-
-export const fetchDetail = async (id: string) =>
-  await delay(1000, () => mocks.genres[id]);
+export const fetchDetail = get<string, Genre>(ENDPOINTS.genres, {
+  transformEndpoint: (id, endpoint) => `${endpoint}/${id}`
+});

@@ -1,11 +1,10 @@
-import { delay } from "@helpers/promise";
+import { get } from "@helpers/api";
 
-import * as mocks from "./__mocks__";
+import { ENDPOINTS } from "@domain/core";
+import { Movie } from "@domain/movies/types";
 
-export const fetchMovies = async () => {
-  return await delay(2000, () => mocks.movies);
-};
+export const fetchMovies = get<void, Movie[]>(ENDPOINTS.movies);
 
-export const fetchDetail = async (id: string) => {
-  return await delay(1000, () => mocks.movies[id]);
-};
+export const fetchDetail = get<string, Movie>(ENDPOINTS.movies, {
+  transformEndpoint: (id, endpoint) => `${endpoint}/${id}`
+});

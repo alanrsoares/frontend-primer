@@ -1,11 +1,8 @@
-import { delay } from "@helpers/promise";
+import { get } from "@helpers/api";
 
-import * as mocks from "@domain/core/api/__mocks__";
+import { ENDPOINTS } from "@domain/core/constants";
+import { LoginPayload, UserProfile, Feature } from "@domain/core/types";
 
-export const fetchFeatures = async () => {
-  return await delay(1000, () => mocks.features);
-};
+export const fetchFeatures = get<void, Feature[]>(ENDPOINTS.features);
 
-export const login = async () => {
-  return await delay(1000, () => mocks.userProfile);
-};
+export const login = get<LoginPayload, UserProfile>(ENDPOINTS.login);
