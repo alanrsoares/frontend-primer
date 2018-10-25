@@ -35,7 +35,7 @@ const movies: Movie[] = [
 
 export default {
   "POST:login": (payload: LoginPayload) => ({
-    result: {
+    data: {
       id: "user-id-1",
       name: "Awesome User",
       email: payload.email
@@ -43,15 +43,15 @@ export default {
     delay: 1000
   }),
   "GET:features": (payload: any) => ({
-    result: features,
+    data: features,
     delay: 2000
   }),
   "GET:movies": (payload: any) => ({
-    result: movies,
+    data: movies,
     delay: 1000
   }),
   "GET:genres": (payload: any) => ({
-    result: genres,
+    data: genres,
     delay: 2000
   })
 };

@@ -1,4 +1,8 @@
+import axios, { AxiosResponse } from "axios";
+
 import { delay } from "redux-saga";
+
+export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 export interface RequestConfig<
   TPayload = any,
@@ -11,7 +15,7 @@ export interface RequestConfig<
   transformEndpoint?: (payload: TNewPayload, endpoint: string) => string;
 }
 
-export const request = (method: string) => <
+export const request = (method: HTTPMethod) => <
   TPayload = any,
   TResult = any,
   TNewPayload = TPayload,
@@ -33,30 +37,44 @@ export const request = (method: string) => <
   const key = `${method}:${$endpoint}`;
 
   if (process.env.NODE_ENV !== "production") {
+    interface MockResponse {
+      delay: number;
+      data: TResult;
+    }
+
     const mocks = require("../__mocks__/api.mocks").default;
 
-    console.log({ key, mocks });
-
     if (key in mocks) {
-      const response = mocks[key]($payload);
+      const response: MockResponse = mocks[key]($payload);
 
       console.log(`responding request "${key}" with mock response:`, response);
-      return delay(response.delay || 2000, response.result);
+
+      return delay(response.delay || 2000, $config.transformResult(
+        response.data
+      ) as TNewResult);
     }
   }
 
-  const $result = await fetch($endpoint, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify($payload)
-  });
+  let $result: AxiosResponse<TResult>;
 
-  const json = (await $result.json()) as TResult;
+  switch (method) {
+    case "POST":
+      $result = await axios.post<TResult>($endpoint, $payload);
+      break;
+    case "PUT":
+      $result = await axios.put<TResult>($endpoint, $payload);
+      break;
+    case "PATCH":
+      $result = await axios.patch<TResult>($endpoint, $payload);
+      break;
+    case "DELETE":
+      $result = await axios.delete($endpoint, $payload);
+      break;
+    default:
+      $result = await axios.get<TResult>($endpoint);
+  }
 
-  return $config.transformResult(json) as TNewResult;
+  return $config.transformResult($result.data) as TNewResult;
 };
 
 export const get = request("GET");
