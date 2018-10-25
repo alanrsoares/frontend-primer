@@ -13,15 +13,13 @@ export enum ENDPOINTS {
   login = "login",
   features = "features",
   genres = "genres",
-  movies = "movies",
-  shows = "shows"
+  movies = "movies"
 }
 
 export enum ROUTES {
   home = "/",
   genres = "/genres",
-  movies = "/movies",
-  shows = "/shows"
+  movies = "/movies"
 }
 
 export type RouteKind = keyof typeof ROUTES;
