@@ -42,15 +42,15 @@ export default {
     },
     delay: 1000
   }),
-  "GET:features": (payload: any) => ({
+  "GET:features": (_: void) => ({
     data: features,
     delay: 2000
   }),
-  "GET:movies": (payload: any) => ({
+  "GET:movies": (_: void) => ({
     data: movies,
     delay: 1000
   }),
-  "GET:genres": (payload: any) => ({
+  "GET:genres": (_: void) => ({
     data: genres,
     delay: 2000
   })
