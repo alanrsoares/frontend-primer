@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import {
   Switch,
   Route,
@@ -62,17 +62,19 @@ class Authenticated extends React.Component<RouteComponentProps> {
   }
 
   public renderBreadcrumbs() {
-    const toItem = (name: string) => (
-      <Breadcrumb.Item key={name}>{name}</Breadcrumb.Item>
+    const toItem = (content: React.ReactNode | string) => (
+      <Breadcrumb.Item key={typeof content === "string" ? content : "home"}>
+        {content}
+      </Breadcrumb.Item>
     );
 
-    const crumbs: string[] = ["Home"];
+    const crumbs: string[] = [];
 
     if (this.props.location.pathname !== ROUTES.home) {
       crumbs.push(capitalize(this.props.location.pathname.slice(1)));
     }
 
-    return crumbs.map(toItem);
+    return [toItem(<Icon type="home" />)].concat(crumbs.map(toItem));
   }
 
   public renderContent() {
