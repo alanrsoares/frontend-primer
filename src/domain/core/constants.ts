@@ -10,10 +10,10 @@ export const API_CONFIG = {
 };
 
 export enum ENDPOINTS {
-  login = "login",
-  features = "features",
-  genres = "genres",
-  movies = "movies"
+  login = "/login",
+  features = "/features",
+  genres = "/genres",
+  movies = "/movies"
 }
 
 export enum ROUTES {

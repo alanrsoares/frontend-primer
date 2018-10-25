@@ -1,4 +1,4 @@
-import { Feature, FEATURES, LoginPayload } from "@domain/core";
+import { Feature, FEATURES, ENDPOINTS, LoginPayload } from "@domain/core";
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
 
@@ -28,29 +28,29 @@ const movies: Movie[] = [
     title: "Alien 2",
     year: 1989,
     director: "Scorciezzi Martinez",
-    country: "U.S & A",
+    country: "U.S & A, Greatest Country In the world",
     score: 3.2
   }
 ];
 
 export default {
-  "POST:login": (payload: LoginPayload) => ({
+  [`POST:${ENDPOINTS.login}`]: (login: LoginPayload) => ({
     data: {
       id: "user-id-1",
       name: "Awesome User",
-      email: payload.email
+      email: login.email
     },
     delay: 1000
   }),
-  "GET:features": (_: void) => ({
+  [`GET:${ENDPOINTS.features}`]: (_: void) => ({
     data: features,
     delay: 2000
   }),
-  "GET:movies": (_: void) => ({
+  [`GET:${ENDPOINTS.movies}`]: (_: void) => ({
     data: movies,
     delay: 1000
   }),
-  "GET:genres": (_: void) => ({
+  [`GET:${ENDPOINTS.genres}`]: (_: void) => ({
     data: genres,
     delay: 2000
   })
