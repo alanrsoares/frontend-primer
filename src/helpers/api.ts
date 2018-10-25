@@ -1,3 +1,5 @@
+import { delay } from "redux-saga";
+
 export interface RequestConfig<
   TPayload = any,
   TResult = any,
@@ -39,7 +41,7 @@ export const request = (method: string) => <
       const response = mocks[key]($payload);
 
       console.log(`responding request "${key}" with mock response:`, response);
-      return Promise.resolve(response.items);
+      return delay(response.delay || 2000, response.result);
     }
   }
 

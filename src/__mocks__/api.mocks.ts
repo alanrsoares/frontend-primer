@@ -1,4 +1,4 @@
-import { Feature, FEATURES } from "@domain/core";
+import { Feature, FEATURES, LoginPayload } from "@domain/core";
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
 
@@ -34,13 +34,24 @@ const movies: Movie[] = [
 ];
 
 export default {
+  "POST:login": (payload: LoginPayload) => ({
+    result: {
+      id: "user-id-1",
+      name: "Awesome User",
+      email: payload.email
+    },
+    delay: 1000
+  }),
   "GET:features": (payload: any) => ({
-    items: features
+    result: features,
+    delay: 2000
   }),
   "GET:movies": (payload: any) => ({
-    items: movies
+    result: movies,
+    delay: 1000
   }),
   "GET:genres": (payload: any) => ({
-    items: genres
+    result: genres,
+    delay: 2000
   })
 };
