@@ -1,4 +1,5 @@
 import * as React from "react";
+import { applySpec } from "ramda";
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import {
   Switch,
@@ -7,6 +8,9 @@ import {
   RouteComponentProps,
   withRouter
 } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { Breadcrumb as BreadcrumbItem } from "@domain/core";
 
 import { ROUTES } from "@domain/core";
 
@@ -16,10 +20,15 @@ import Movies from "@ui/pages/Movies";
 
 import "./Authenticated.css";
 import { capitalize } from "@helpers/string";
+import { State } from "@domain";
 
 const { Header, Content, Footer } = Layout;
 
-class Authenticated extends React.Component<RouteComponentProps> {
+interface Props extends RouteComponentProps {
+  breadcrumbs: BreadcrumbItem[];
+}
+
+class Authenticated extends React.Component<Props> {
   public render() {
     return (
       <Layout className="Authenticated layout">
@@ -62,19 +71,14 @@ class Authenticated extends React.Component<RouteComponentProps> {
   }
 
   public renderBreadcrumbs() {
-    const toItem = (content: React.ReactNode | string) => (
-      <Breadcrumb.Item key={typeof content === "string" ? content : "home"}>
-        {content}
+    const toItem = (breadcrumb: BreadcrumbItem) => (
+      <Breadcrumb.Item key={breadcrumb.text || "home"}>
+        {breadcrumb.icon && <Icon type={breadcrumb.icon} />}
+        {breadcrumb.text}
       </Breadcrumb.Item>
     );
 
-    const crumbs: string[] = [];
-
-    if (this.props.location.pathname !== ROUTES.home) {
-      crumbs.push(capitalize(this.props.location.pathname.slice(1)));
-    }
-
-    return [toItem(<Icon type="home" />)].concat(crumbs.map(toItem));
+    return this.props.breadcrumbs.map(toItem);
   }
 
   public renderContent() {
@@ -88,4 +92,10 @@ class Authenticated extends React.Component<RouteComponentProps> {
   }
 }
 
-export default withRouter(Authenticated);
+const enhance = connect(
+  applySpec<Props>({
+    breadcrumbs: (state: State) => state.core.breadcrumbs
+  })
+);
+
+export default withRouter(enhance(Authenticated));

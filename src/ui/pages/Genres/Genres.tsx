@@ -2,7 +2,8 @@ import * as React from "react";
 import { applySpec } from "ramda";
 import { connectWithActions } from "re-reduced";
 
-import { selectors, actions, Genre } from "@domain/genres";
+import { actions } from "@domain";
+import { selectors, Genre } from "@domain/genres";
 
 interface Props {
   genres: Genre[];
@@ -13,7 +14,8 @@ export class Genres extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    props.actions.fetchGenres();
+    props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Genres" }]);
+    props.actions.genres.fetchGenres();
   }
 
   public render() {

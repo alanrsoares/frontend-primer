@@ -14,6 +14,11 @@ export interface UserProfile {
   email: string;
 }
 
+export interface Breadcrumb {
+  text?: string;
+  icon?: string;
+}
+
 export interface UserState {
   isAuthenticated: boolean;
   isLoggingIn: boolean;
@@ -28,4 +33,5 @@ export interface LoginPayload {
 export interface State {
   features: FeaturesState;
   user: UserState;
+  breadcrumbs: Breadcrumb[];
 }

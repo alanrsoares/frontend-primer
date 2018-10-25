@@ -2,7 +2,8 @@ import * as React from "react";
 import { applySpec } from "ramda";
 import { connectWithActions } from "re-reduced";
 
-import { selectors, actions, Movie } from "@domain/movies";
+import { actions } from "@domain";
+import { selectors, Movie } from "@domain/movies";
 
 interface Props {
   movies: Movie[];
@@ -12,8 +13,8 @@ interface Props {
 export class Movies extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
-
-    props.actions.fetchMovies();
+    props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Movies" }]);
+    props.actions.movies.fetchMovies();
   }
 
   public render() {

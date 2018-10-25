@@ -1,6 +1,11 @@
-import { createAsyncActions } from "re-reduced";
+import { createAsyncActions, createAction } from "re-reduced";
 
-import { Feature, LoginPayload, UserProfile } from "@domain/core/types";
+import {
+  Feature,
+  LoginPayload,
+  UserProfile,
+  Breadcrumb
+} from "@domain/core/types";
 
 export default {
   features: {
@@ -8,5 +13,6 @@ export default {
   },
   user: {
     login: createAsyncActions<LoginPayload, UserProfile>("LOGIN", "CORE/USER")
-  }
+  },
+  setBreadcrumbs: createAction<Breadcrumb[]>("@CORE/SET_BREADCRUMBS")
 };

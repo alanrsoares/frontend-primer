@@ -3,7 +3,13 @@ import { handleActions } from "re-reduced";
 
 import { indexBy } from "@helpers/list";
 
-import { actions, State, UserState, FeaturesState } from "@domain/core";
+import {
+  actions,
+  State,
+  UserState,
+  FeaturesState,
+  Breadcrumb
+} from "@domain/core";
 
 const INITIAL_STATE: State = {
   features: {
@@ -14,7 +20,8 @@ const INITIAL_STATE: State = {
     isAuthenticated: false,
     profile: undefined,
     isLoggingIn: false
-  }
+  },
+  breadcrumbs: []
 };
 
 const features = handleActions<FeaturesState>(
@@ -40,7 +47,13 @@ const user = handleActions<UserState>(
   INITIAL_STATE.user
 );
 
+const breadcrumbs = handleActions<Breadcrumb[]>(
+  actions.setBreadcrumbs.reduce((_, payload) => payload),
+  INITIAL_STATE.breadcrumbs
+);
+
 export default combineReducers<State>({
   user,
-  features
+  features,
+  breadcrumbs
 });
