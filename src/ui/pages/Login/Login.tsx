@@ -116,7 +116,8 @@ class LoginForm extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions(actions)(
+const enhance = connectWithActions(
+  actions,
   applySpec<Props>({
     isLoggingIn: selectors.getUserIsLoggingIn
   })

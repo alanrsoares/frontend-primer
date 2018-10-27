@@ -31,7 +31,8 @@ class App extends React.PureComponent<Props> {
   }
 }
 
-const enhance = connectWithActions(actions)(
+const enhance = connectWithActions(
+  actions,
   /* map State to Props  */
   applySpec<Props>({
     isAuthenticated: selectors.getUserIsAuthenticated
