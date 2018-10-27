@@ -15,7 +15,7 @@ class Dashboard extends React.PureComponent<Props> {
     props.actions.setBreadcrumbs([{ text: "Home" }]);
   }
   public render() {
-    return <div>foo</div>;
+    return <div>Hi, I'm a Dashboard</div>;
   }
 }
 
