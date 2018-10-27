@@ -43,9 +43,9 @@ export class Movies extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions(
+const enhance = connectWithActions<Props>(
   actions,
-  applySpec<Props>({
+  applySpec({
     movies: selectors.getMovies
   })
 );
