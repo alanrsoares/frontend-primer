@@ -14,5 +14,5 @@ export default {
   user: {
     login: createAsyncActions<LoginPayload, UserProfile>("LOGIN", "CORE/USER")
   },
-  setBreadcrumbs: createAction<Breadcrumb[]>("@CORE/SET_BREADCRUMBS")
+  setBreadcrumbs: createAction<Breadcrumb[]>("CORE/SET_BREADCRUMBS")
 };
