@@ -27,7 +27,7 @@
     "axios": "^0.18.0",
     "buble": "0.19.4",
     "ramda": "^0.25.0",
-    "re-reduced": "~0.7.8",
+    "re-reduced": "~0.7.10",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
