@@ -18,6 +18,6 @@ class Dashboard extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions<Props>(actions);
+const enhance = connectWithActions(actions);
 
 export default enhance(Dashboard);
