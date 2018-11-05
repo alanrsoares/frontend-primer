@@ -4,7 +4,7 @@ import { connectWithActions } from "re-reduced";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 
-import { selectors, State } from "@domain";
+import { selectors } from "@domain";
 import { LoginPayload, actions } from "@domain/core";
 
 import "./Login.css";
@@ -117,7 +117,7 @@ class LoginForm extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions<Props, State>(actions, {
+const enhance = connectWithActions<Props>(actions, {
   isLoggingIn: selectors.getUserIsLoggingIn
 });
 

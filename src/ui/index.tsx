@@ -3,7 +3,7 @@ import { connectWithActions } from "re-reduced";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { State, selectors } from "@domain";
+import { selectors } from "@domain";
 import { actions } from "@domain/core";
 import Public from "@ui/layouts/Public";
 import Authenticated from "@ui/layouts/Authenticated";
@@ -31,7 +31,7 @@ class App extends React.PureComponent<Props> {
   }
 }
 
-const enhance = connectWithActions<Props, State>(actions, {
+const enhance = connectWithActions<Props>(actions, {
   isAuthenticated: selectors.getUserIsAuthenticated
 });
 

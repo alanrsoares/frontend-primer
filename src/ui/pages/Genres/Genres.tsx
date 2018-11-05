@@ -43,7 +43,7 @@ export class Genres extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions<Props, State>(actions, {
+const enhance = connectWithActions<Props>(actions, {
   genres: selectors.getGenres
 });
 

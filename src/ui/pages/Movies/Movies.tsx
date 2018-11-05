@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connectWithActions } from "re-reduced";
 
-import { actions, selectors, State } from "@domain";
+import { actions, selectors } from "@domain";
 import { Movie } from "@domain/movies";
 
 interface Props {
@@ -42,7 +42,7 @@ export class Movies extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions<Props, State>(actions, {
+const enhance = connectWithActions<Props>(actions, {
   movies: selectors.getMovies
 });
 
