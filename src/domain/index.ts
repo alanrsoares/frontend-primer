@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { mergeAll } from "ramda";
 
 import * as core from "@domain/core";
 import * as genres from "@domain/genres";
@@ -17,11 +16,11 @@ export const actions = {
   movies: movies.actions
 };
 
-export const selectors = mergeAll([
-  core.selectors,
-  genres.selectors,
-  movies.selectors
-]);
+export const selectors = {
+  ...core.selectors,
+  ...genres.selectors,
+  ...movies.selectors
+};
 
 // combines all of the domain reducers into a single reducer function
 export const rootReducer = combineReducers({

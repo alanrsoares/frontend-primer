@@ -26,7 +26,9 @@ export const getDisabledFeatures = createSelector(
     features.filter(feature => feature.isEnabled)
 );
 
-export const getUserIsAuthenticated = (state: State) =>
-  state.core.user.isAuthenticated;
+export const getUserIsAuthenticated = <TOwnProps>(
+  state: State,
+  ownProps: TOwnProps
+) => state.core.user.isAuthenticated;
 
 export const getUserIsLoggingIn = (state: State) => state.core.user.isLoggingIn;

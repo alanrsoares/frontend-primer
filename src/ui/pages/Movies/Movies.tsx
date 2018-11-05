@@ -1,9 +1,8 @@
 import * as React from "react";
-import { applySpec } from "ramda";
 import { connectWithActions } from "re-reduced";
 
-import { actions } from "@domain";
-import { selectors, Movie } from "@domain/movies";
+import { actions, selectors, State } from "@domain";
+import { Movie } from "@domain/movies";
 
 interface Props {
   movies: Movie[];
@@ -43,11 +42,8 @@ export class Movies extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions<Props>(
-  actions,
-  applySpec({
-    movies: selectors.getMovies
-  })
-);
+const enhance = connectWithActions<Props, State>(actions, {
+  movies: selectors.getMovies
+});
 
 export default enhance(Movies);

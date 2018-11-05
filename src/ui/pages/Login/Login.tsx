@@ -1,10 +1,11 @@
 import * as React from "react";
-import { applySpec, mapObjIndexed, assoc } from "ramda";
+import { mapObjIndexed, assoc } from "ramda";
 import { connectWithActions } from "re-reduced";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 
-import { LoginPayload, actions, selectors } from "@domain/core";
+import { selectors, State } from "@domain";
+import { LoginPayload, actions } from "@domain/core";
 
 import "./Login.css";
 
@@ -116,11 +117,8 @@ class LoginForm extends React.Component<Props> {
   }
 }
 
-const enhance = connectWithActions<Props>(
-  actions,
-  applySpec({
-    isLoggingIn: selectors.getUserIsLoggingIn
-  })
-);
+const enhance = connectWithActions<Props, State>(actions, {
+  isLoggingIn: selectors.getUserIsLoggingIn
+});
 
 export default enhance(Form.create<Fields>()(LoginForm));
