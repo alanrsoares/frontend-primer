@@ -1,4 +1,4 @@
-import { createAsyncActions, createAction } from "re-reduced";
+import { createAsyncAction, createAction } from "re-reduced";
 
 import {
   Feature,
@@ -9,10 +9,10 @@ import {
 
 export default {
   features: {
-    fetch: createAsyncActions<void, Feature[]>("FETCH", "CORE/FEATRUES")
+    fetch: createAsyncAction<void, Feature[]>("FETCH", "CORE/FEATRUES")
   },
   user: {
-    login: createAsyncActions<LoginPayload, UserProfile>("LOGIN", "CORE/USER")
+    login: createAsyncAction<LoginPayload, UserProfile>("LOGIN", "CORE/USER")
   },
   setBreadcrumbs: createAction<Breadcrumb[]>("CORE/SET_BREADCRUMBS")
 };

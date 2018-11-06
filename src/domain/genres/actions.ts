@@ -1,7 +1,7 @@
-import { createAsyncActions } from "re-reduced";
+import { createAsyncAction } from "re-reduced";
 
 import { Genre } from "@domain/genres";
 
 export default {
-  fetchGenres: createAsyncActions<void, Genre[]>("FETCH", "GENRES")
+  fetchGenres: createAsyncAction<void, Genre[]>("FETCH", "GENRES")
 };
