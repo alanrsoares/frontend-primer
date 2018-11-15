@@ -10764,10 +10764,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-reduced@~0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-0.10.0.tgz#966ab5203861a029b369315c4902ab4384405269"
-  integrity sha512-XvhwN2Of2V3h3xNHiQkTJnlurvhkigB3A2unjNxO3+5+rE6y8RaC1xIVYBlA8mlw2sNT4HqJ6j4YFgOdzBph9A==
+re-reduced@~0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-0.11.0.tgz#9165e554847f5afd5a23e1ed9e944821cf6f9905"
+  integrity sha512-2oHBKOojo4PWiZdldeVUtaeFOXLTz2Ny/xRQ+2MqgnKkoE/jEN4T0GOXYN2enNeni9a/MA7SQETEegoAgddqWQ==
   dependencies:
     ramda "^0.25.0"
     react-redux "^5.0.7"

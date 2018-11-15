@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { handleActions } from "re-reduced";
+import { createReducer, match } from "re-reduced";
 
 import { indexBy } from "@helpers/list";
 
@@ -19,13 +19,13 @@ const INITIAL_STATE: State = {
 };
 
 export default combineReducers<State>({
-  user: handleActions(
+  user: createReducer(
     [
-      actions.user.login.request.reduce((state, _) => ({
+      match(actions.user.login.request, (state, _) => ({
         ...state,
         isLoggingIn: true
       })),
-      actions.user.login.success.reduce((_, profile) => ({
+      match(actions.user.login.success, (_, profile) => ({
         profile,
         isAuthenticated: true,
         isLoggingIn: false
@@ -33,15 +33,17 @@ export default combineReducers<State>({
     ],
     INITIAL_STATE.user
   ),
-  features: handleActions(
-    actions.features.fetch.success.reduce((_, payload) => ({
-      byId: indexBy("id", payload),
-      idList: payload.map(feature => feature.id)
-    })),
+  features: createReducer(
+    [
+      match(actions.features.fetch.success, (_, payload) => ({
+        byId: indexBy("id", payload),
+        idList: payload.map(feature => feature.id)
+      }))
+    ],
     INITIAL_STATE.features
   ),
-  breadcrumbs: handleActions(
-    actions.setBreadcrumbs.reduce((_, payload) => payload),
+  breadcrumbs: createReducer(
+    [match(actions.setBreadcrumbs, (_, payload) => payload)],
     INITIAL_STATE.breadcrumbs
   )
 });
