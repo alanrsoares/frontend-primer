@@ -47,27 +47,27 @@ export const request = (method: HTTPMethod) => <
 
     const key = `${method}:${$endpoint}`;
 
-    if (process.env.NODE_ENV !== "production") {
-      interface MockResponse {
-        delay: number;
-        data: TResult;
-      }
-
-      const mocks = require("../__mocks__/api.mocks").default;
-
-      if (key in mocks) {
-        const response: MockResponse = mocks[key]($payload);
-
-        console.log(
-          `responding request "${key}" with mock response:`,
-          response.data
-        );
-
-        return delay(response.delay || 2000, $config.transformResult(
-          response.data
-        ) as TNewResult);
-      }
+    // if (process.env.NODE_ENV !== "production") {
+    interface MockResponse {
+      delay: number;
+      data: TResult;
     }
+
+    const mocks = require("../__mocks__/api.mocks").default;
+
+    if (key in mocks) {
+      const response: MockResponse = mocks[key]($payload);
+
+      console.log(
+        `responding request "${key}" with mock response:`,
+        response.data
+      );
+
+      return delay(response.delay || 2000, $config.transformResult(
+        response.data
+      ) as TNewResult);
+    }
+    // }
 
     let $result: AxiosResponse<TResult>;
 
