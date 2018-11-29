@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connectWithActions } from "re-reduced";
 
-import { actions, selectors } from "../../../domain";
-import { Genre } from "../../../domain/genres";
+import { actions, selectors } from "@domain";
+import { Genre } from "@domain/genres";
 
 interface Props {
   genres: Genre[];

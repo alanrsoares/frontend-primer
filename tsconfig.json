@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
@@ -23,7 +24,16 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@domain": ["src/domain/index"],
+      "@domain/*": ["src/domain/*"],
+      "@ui": ["src/ui/index"],
+      "@ui/*": ["src/ui/*"],
+      "@store": ["src/store/index"],
+      "@store/*": ["src/store/*"],
+      "@helpers/*": ["src/helpers/*"]
+    }
   },
   "exclude": [
     "node_modules",
