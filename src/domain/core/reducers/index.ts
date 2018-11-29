@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { createReducer, match } from "re-reduced";
 
-import { indexBy } from "@helpers/list";
+import { indexBy } from "../../../helpers/list";
 
-import { actions, State } from "@domain/core";
+import { actions, State } from "../../../domain/core";
 
 const INITIAL_STATE: State = {
   features: {

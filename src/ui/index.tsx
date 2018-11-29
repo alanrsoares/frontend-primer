@@ -3,10 +3,10 @@ import { connectWithActions } from "re-reduced";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { selectors } from "@domain";
-import { actions } from "@domain/core";
-import Public from "@ui/layouts/Public";
-import Authenticated from "@ui/layouts/Authenticated";
+import { selectors } from "../domain";
+import { actions } from "../domain/core";
+import Public from "./layouts/Public";
+import Authenticated from "./layouts/Authenticated";
 
 import "./index.css";
 

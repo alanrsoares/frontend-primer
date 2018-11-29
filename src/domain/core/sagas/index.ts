@@ -1,7 +1,7 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, all } from "redux-saga/effects";
 
-import actions from "@domain/core/actions";
+import actions from "../../../domain/core/actions";
 
 import fetchFeatures from "./fetchFeatures";
 import login from "./login";

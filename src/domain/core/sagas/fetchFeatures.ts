@@ -1,6 +1,6 @@
 import { apiWorkerFactory } from "re-reduced";
 
-import { actions, api } from "@domain/core";
+import { actions, api } from "../../../domain/core";
 
 const fetchFeaturesWorker = apiWorkerFactory(
   actions.features.fetch,

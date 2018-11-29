@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "moduleResolution": "node",
     "rootDir": "src",
     "allowSyntheticDefaultImports": true,
@@ -20,15 +19,11 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "paths": {
-      "@domain": ["src/domain/index"],
-      "@domain/*": ["src/domain/*"],
-      "@ui": ["src/ui/index"],
-      "@ui/*": ["src/ui/*"],
-      "@store": ["src/store/index"],
-      "@store/*": ["src/store/*"],
-      "@helpers/*": ["src/helpers/*"]
-    }
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "exclude": [
     "node_modules",
@@ -39,5 +34,6 @@
     "jest",
     "src/setupTests.ts",
     "doczrc.js"
-  ]
+  ],
+  "include": ["src"]
 }

@@ -1,9 +1,9 @@
 import { SagaIterator } from "redux-saga";
 import { all, fork } from "redux-saga/effects";
 
-import core from "@domain/core/sagas";
-import genres from "@domain/genres/sagas";
-import movies from "@domain/movies/sagas";
+import core from "../../domain/core/sagas";
+import genres from "../../domain/genres/sagas";
+import movies from "../../domain/movies/sagas";
 
 const sagaWatchers = [core, genres, movies];
 

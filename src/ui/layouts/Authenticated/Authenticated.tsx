@@ -10,16 +10,16 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { Breadcrumb as BreadcrumbItem } from "@domain/core";
+import { Breadcrumb as BreadcrumbItem } from "../../../domain/core";
 
-import { capitalize } from "@helpers/string";
+import { capitalize } from "../../../helpers/string";
 
-import { State } from "@domain";
-import { ROUTES } from "@domain/core";
+import { State } from "../../../domain";
+import { ROUTES } from "../../../domain/core";
 
-import Dashboard from "@ui/pages/Dashboard";
-import Genres from "@ui/pages/Genres";
-import Movies from "@ui/pages/Movies";
+import Dashboard from "../../pages/Dashboard";
+import Genres from "../../pages/Genres";
+import Movies from "../../pages/Movies";
 
 import "./Authenticated.css";
 
