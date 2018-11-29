@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connectWithActions } from "re-reduced";
 
-import { actions, selectors } from "../../../domain";
-import { Movie } from "../../../domain/movies";
+import { actions, selectors } from "@domain";
+import { Movie } from "@domain/movies";
 
 interface Props {
   movies: Movie[];

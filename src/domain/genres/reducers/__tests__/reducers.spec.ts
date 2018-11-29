@@ -1,6 +1,6 @@
-import { Genre } from "../../types";
-import actions from "../../actions";
-import reducer from "../../reducers";
+import { Genre } from "@domain/genres/types";
+import actions from "@domain/genres/actions";
+import reducer from "@domain/genres/reducers";
 
 describe("genres/reducers", () => {
   describe("fetchGenres", () => {

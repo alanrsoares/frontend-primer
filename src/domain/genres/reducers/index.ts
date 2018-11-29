@@ -1,8 +1,9 @@
 import { createReducer, match } from "re-reduced";
 
-import { indexBy } from "../../../helpers/list";
-import { State as GenresState } from "../types";
-import actions from "../actions";
+import { indexBy } from "@helpers/list";
+
+import { State as GenresState } from "@domain/genres/types";
+import actions from "@domain/genres/actions";
 
 const INITIAL_STATE: GenresState = {
   byId: {},

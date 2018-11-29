@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 
-import * as core from "../domain/core";
-import * as genres from "../domain/genres";
-import * as movies from "../domain/movies";
+import * as core from "@domain/core";
+import * as genres from "@domain/genres";
+import * as movies from "@domain/movies";
 
 export interface State {
   core: core.State;

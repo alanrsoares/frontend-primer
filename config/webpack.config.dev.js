@@ -228,6 +228,18 @@ module.exports = {
                       }
                     }
                   }
+                ],
+                [
+                  "module-resolver",
+                  {
+                    root: ["./"],
+                    alias: {
+                      "@domain": "./src/domain",
+                      "@helpers": "./src/helpers",
+                      "@store": "./src/store",
+                      "@ui": "./src/ui"
+                    }
+                  }
                 ]
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).

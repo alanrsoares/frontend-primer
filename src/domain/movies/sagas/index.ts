@@ -1,7 +1,7 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest } from "redux-saga/effects";
 
-import actions from "../actions";
+import actions from "@domain/movies/actions";
 
 import fetchMovies from "./fetchMovies";
 

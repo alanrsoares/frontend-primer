@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connectWithActions } from "re-reduced";
 
-import { actions } from "../../../domain/core";
+import { actions } from "@domain/core";
 
 interface Props {
   actions: typeof actions;

@@ -1,6 +1,6 @@
-import { Feature, FEATURES, ENDPOINTS, LoginPayload } from "../domain/core";
-import { Genre } from "../domain/genres";
-import { Movie } from "../domain/movies";
+import { Feature, FEATURES, ENDPOINTS, LoginPayload } from "@domain/core";
+import { Genre } from "@domain/genres";
+import { Movie } from "@domain/movies";
 
 const features: Feature[] = [
   { id: FEATURES.MY_SUPER_SECRET_FEATURE, isEnabled: true }

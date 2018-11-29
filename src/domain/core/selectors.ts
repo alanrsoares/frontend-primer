@@ -1,5 +1,6 @@
-import { State } from "../../domain";
 import { createSelector } from "reselect";
+
+import { State } from "@domain";
 
 // first expose selectors for non-calculated state properties
 

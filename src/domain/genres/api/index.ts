@@ -1,7 +1,7 @@
-import { get } from "../../../helpers/api";
+import { get } from "@helpers/api";
 
-import { ENDPOINTS } from "../../core";
-import { Genre } from "../../genres/types";
+import { ENDPOINTS } from "@domain/core";
+import { Genre } from "@domain/genres/types";
 
 export const fetchGenres = get<void, Genre[]>(ENDPOINTS.genres);
 

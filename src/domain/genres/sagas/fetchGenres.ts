@@ -1,5 +1,6 @@
 import { apiWorkerFactory } from "re-reduced";
 
-import { actions, api } from "../";
+import actions from "@domain/genres/actions";
+import * as api from "@domain/genres/api";
 
 export default apiWorkerFactory(actions.fetchGenres, api.fetchGenres);

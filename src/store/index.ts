@@ -2,9 +2,9 @@ import { applyMiddleware, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 
-import rootSaga from "../store/middleware/saga";
-import logger from "../store/middleware/logger";
-import { rootReducer } from "../domain";
+import { rootReducer } from "@domain";
+import rootSaga from "@store/middleware/saga";
+import logger from "@store/middleware/logger";
 
 // set-up redux middlewares
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Layout } from "antd";
 
-import Login from "../../pages/Login";
+import Login from "@ui/pages/Login";
 
 const { Header, Content } = Layout;
 

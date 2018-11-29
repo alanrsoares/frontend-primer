@@ -1,7 +1,7 @@
-import { get } from "../../../helpers/api";
+import { get } from "@helpers/api";
 
-import { ENDPOINTS } from "../../../domain/core";
-import { Movie } from "../../../domain/movies/types";
+import { ENDPOINTS } from "@domain/core";
+import { Movie } from "@domain/movies/types";
 
 export const fetchMovies = () => {
   throw new Error("error");

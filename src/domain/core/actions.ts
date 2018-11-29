@@ -5,7 +5,7 @@ import {
   LoginPayload,
   UserProfile,
   Breadcrumb
-} from "../../domain/core/types";
+} from "@domain/core/types";
 
 export default {
   setBreadcrumbs: createAction<Breadcrumb[]>("SET_BREADCRUMBS", "CORE"),
