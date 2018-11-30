@@ -12,6 +12,7 @@ interface Props {
 export class Movies extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
+
     props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Movies" }]);
     props.actions.movies.fetchMovies();
   }

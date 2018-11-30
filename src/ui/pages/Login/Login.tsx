@@ -21,28 +21,6 @@ interface Fields extends LoginPayload {
 }
 
 class LoginForm extends React.Component<Props> {
-  public decoratorOptions = {
-    remember: {
-      valuePropName: "checked",
-      initialValue: true
-    },
-    password: {
-      rules: [{ required: true, message: "Please input your Password!" }]
-    },
-    email: {
-      rules: [
-        {
-          required: true,
-          message: "Please input your email!"
-        },
-        {
-          type: "email",
-          message: "Must be a valid email!"
-        }
-      ]
-    }
-  };
-
   public handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     this.props.form.validateFields((err: Error, values: Fields) => {
@@ -65,10 +43,27 @@ class LoginForm extends React.Component<Props> {
   }
 
   get decorators() {
-    return mapObjIndexed(
-      (v, k) => this.props.form.getFieldDecorator(k, v),
-      this.decoratorOptions
-    );
+    return mapObjIndexed((v, k) => this.props.form.getFieldDecorator(k, v), {
+      remember: {
+        valuePropName: "checked",
+        initialValue: true
+      },
+      password: {
+        rules: [{ required: true, message: "Please input your Password!" }]
+      },
+      email: {
+        rules: [
+          {
+            required: true,
+            message: "Please input your email!"
+          },
+          {
+            type: "email",
+            message: "Must be a valid email!"
+          }
+        ]
+      }
+    });
   }
 
   public render() {
