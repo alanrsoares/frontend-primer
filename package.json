@@ -25,15 +25,15 @@
     "antd": "^3.10.9",
     "axios": "^0.18.0",
     "ramda": "^0.25.0",
-    "re-reduced": "~0.11.0",
+    "re-reduced": "~0.15.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
     "redux": "^4.0.0",
-    "redux-saga": "^0.16.0",
+    "redux-saga": "^1.0.0",
     "reselect": "^4.0.0"
   },
   "devDependencies": {
