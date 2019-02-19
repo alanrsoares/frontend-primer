@@ -2,6 +2,13 @@ import { Feature, FEATURES, ENDPOINTS, LoginPayload } from "@domain/core";
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
 
+export interface APIMockResult<T = any> {
+  data: T;
+  status: number;
+  delay?: number;
+  ok?: boolean;
+}
+
 const features: Feature[] = [
   { id: FEATURES.MY_SUPER_SECRET_FEATURE, isEnabled: true }
 ];
@@ -33,25 +40,31 @@ const movies: Movie[] = [
   }
 ];
 
-export default {
+const mocks: { [keys: string]: (...args: any[]) => APIMockResult } = {
   [`POST:${ENDPOINTS.login}`]: (login: LoginPayload) => ({
     data: {
       id: "user-id-1",
       name: "Awesome User",
       email: login.email
     },
+    status: 200,
     delay: 1000
   }),
   [`GET:${ENDPOINTS.features}`]: (_: void) => ({
     data: features,
+    status: 200,
     delay: 2000
   }),
   [`GET:${ENDPOINTS.movies}`]: (_: void) => ({
     data: movies,
+    status: 200,
     delay: 1000
   }),
   [`GET:${ENDPOINTS.genres}`]: (_: void) => ({
     data: genres,
+    status: 200,
     delay: 2000
   })
 };
+
+export default mocks;
