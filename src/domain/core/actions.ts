@@ -10,9 +10,9 @@ import {
 export default {
   setBreadcrumbs: createAction<Breadcrumb[]>("SET_BREADCRUMBS", "CORE"),
   features: {
-    fetch: createAsyncAction<void, Feature[]>("FETCH", "CORE/FEATRUES")
+    fetch: createAsyncAction<Feature[]>("FETCH", "CORE/FEATRUES")
   },
   user: {
-    login: createAsyncAction<LoginPayload, UserProfile>("LOGIN", "CORE/USER")
+    login: createAsyncAction<UserProfile, LoginPayload>("LOGIN", "CORE/USER")
   }
 };
