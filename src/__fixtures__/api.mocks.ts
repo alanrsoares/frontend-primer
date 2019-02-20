@@ -9,11 +9,11 @@ export interface APIMockResult<T = any> {
   ok?: boolean;
 }
 
-const features: Feature[] = [
+export const features: Feature[] = [
   { id: FEATURES.MY_SUPER_SECRET_FEATURE, isEnabled: true }
 ];
 
-const genres: Genre[] = [
+export const genres: Genre[] = [
   { id: "id-0", name: "horror" },
   { id: "id-1", name: "thriller" },
   { id: "id-2", name: "adventure" },
@@ -21,7 +21,7 @@ const genres: Genre[] = [
   { id: "id-4", name: "independent" }
 ];
 
-const movies: Movie[] = [
+export const movies: Movie[] = [
   {
     id: "id-0",
     title: "Alien",

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 import { delay } from "../helpers/promise";
-import { APIMockResult } from "../__mocks__/api.mocks";
+import { APIMockResult } from "../__fixtures__/api.mocks";
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
