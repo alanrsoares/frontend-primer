@@ -300,6 +300,19 @@ module.exports = {
                       }
                     }
                   }
+                ],
+                [
+                  "module-resolver",
+                  {
+                    root: ["./"],
+                    alias: {
+                      "@fixtures": "./src/__fixtures__",
+                      "@domain": "./src/domain",
+                      "@helpers": "./src/helpers",
+                      "@store": "./src/store",
+                      "@ui": "./src/ui"
+                    }
+                  }
                 ]
               ],
               cacheDirectory: true,

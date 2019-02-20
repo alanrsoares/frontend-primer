@@ -234,6 +234,7 @@ module.exports = {
                   {
                     root: ["./"],
                     alias: {
+                      "@fixtures": "./src/__fixtures__",
                       "@domain": "./src/domain",
                       "@helpers": "./src/helpers",
                       "@store": "./src/store",

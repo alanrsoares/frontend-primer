@@ -32,7 +32,8 @@
       "@ui/*": ["src/ui/*"],
       "@store": ["src/store/index"],
       "@store/*": ["src/store/*"],
-      "@helpers/*": ["src/helpers/*"]
+      "@helpers/*": ["src/helpers/*"],
+      "@fixtures/*": ["src/__fixtures__/*"]
     }
   },
   "exclude": [
