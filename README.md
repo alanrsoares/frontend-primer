@@ -1,8 +1,8 @@
 # Frontend Primer
+
 React + Redux modern frontend architecture
 
 [![Travis](https://img.shields.io/travis/alanrsoares/frontend-primer/master.svg)](https://travis-ci.org/alanrsoares/frontend-primer)
-
 
 A boilerplate client-side application with a modern and scalable structure that values reusability and testability
 
@@ -22,19 +22,19 @@ A boilerplate client-side application with a modern and scalable structure that 
 
 - [x] Jest
 - [ ] Enzyme
-- [ ] redux-saga-test-plan
+- [x] redux-saga-test-plan
 
 ## Infrastructure
 
-- [x] Travis CI 
+- [x] Travis CI
 - [x] Netlify CD
 - [ ] Auth0
 
-## Code quality 
+## Code quality
 
 - [x] TSlint
 - [x] Prettier
 
-
 ### License
+
 MIT
