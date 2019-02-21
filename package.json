@@ -25,7 +25,7 @@
     "antd": "^3.10.9",
     "axios": "^0.18.0",
     "ramda": "^0.25.0",
-    "re-reduced": "^1.1.1",
+    "re-reduced": "^1.1.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^6.0.0",

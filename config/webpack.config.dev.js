@@ -18,6 +18,8 @@ const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
 
+const sharedWebpackConfig = require("./webpack.shared");
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = "/";
@@ -229,19 +231,7 @@ module.exports = {
                     }
                   }
                 ],
-                [
-                  "module-resolver",
-                  {
-                    root: ["./"],
-                    alias: {
-                      "@fixtures": "./src/__fixtures__",
-                      "@domain": "./src/domain",
-                      "@helpers": "./src/helpers",
-                      "@store": "./src/store",
-                      "@ui": "./src/ui"
-                    }
-                  }
-                ]
+                ...sharedWebpackConfig.jsLoaderPlugins
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
