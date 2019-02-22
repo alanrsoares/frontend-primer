@@ -48,23 +48,23 @@ export const request = (method: HTTPMethod) => <
 
     const key = `${method}:${$endpoint}`;
 
-    if (process.env.NODE_ENV !== "production") {
-      const mocks = require("@fixtures/api.mocks").default;
+    // if (process.env.NODE_ENV !== "production") {
+    const mocks = require("@fixtures/api.mocks").default;
 
-      if (key in mocks) {
-        const response: APIMockResult<TResult> = mocks[key]($payload);
+    if (key in mocks) {
+      const response: APIMockResult<TResult> = mocks[key]($payload);
 
-        console.log(
-          `responding request "${key}" with mock response:`,
-          response.data
-        );
+      console.log(
+        `responding request "${key}" with mock response:`,
+        response.data
+      );
 
-        return delay<TNewResult>(
-          response.delay || 2000,
-          () => $config.transformResult(response.data) as TNewResult
-        );
-      }
+      return delay<TNewResult>(
+        response.delay || 2000,
+        () => $config.transformResult(response.data) as TNewResult
+      );
     }
+    // }
 
     let $result: AxiosResponse<TResult>;
 
