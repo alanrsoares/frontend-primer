@@ -104,7 +104,7 @@
     "terser-webpack-plugin": "1.1.0",
     "tslint": "^5.12.1",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.2.1",
+    "typescript": "^3.3.3",
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
     "webpack-dev-server": "^3.1.11",

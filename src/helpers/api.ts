@@ -16,6 +16,10 @@ export interface RequestConfig<
   transformEndpoint?: (payload: TNewPayload, endpoint: string) => string;
 }
 
+type RequestFn<TPayload, TNewResult> = TPayload extends void
+  ? () => Promise<TNewResult>
+  : (payload: TPayload) => Promise<TNewResult>;
+
 /**
  * Creates a request function with the given HTTPVerb,
  * endpoint and optional config
@@ -30,7 +34,7 @@ export const request = (method: HTTPMethod) => <
 >(
   endppoint: string,
   config?: RequestConfig<TPayload, TResult, TNewPayload, TNewResult>
-) =>
+): RequestFn<TPayload, TNewResult> => {
   /**
    * Fires an http request and returns a promise of type T or an Error
    * @param payload
@@ -97,7 +101,10 @@ export const request = (method: HTTPMethod) => <
 
       throw error;
     }
-  };
+  }
+
+  return requestFn as RequestFn<TPayload, TNewResult>;
+};
 
 export const get = request("GET");
 
