@@ -1,7 +1,7 @@
-import { createAsyncAction } from "re-reduced";
+import { createActions } from "re-reduced";
 
 import { Genre } from "@domain/genres/types";
 
-export default {
-  fetchGenres: createAsyncAction<Genre[]>("FETCH", "GENRES")
-};
+export default createActions("GENRES", create => ({
+  fetchGenres: create.asyncAction<Genre[]>()
+}));

@@ -1,4 +1,4 @@
-import { createAsyncAction, createAction } from "re-reduced";
+import { createActions } from "re-reduced";
 
 import {
   Feature,
@@ -7,12 +7,20 @@ import {
   Breadcrumb
 } from "@domain/core/types";
 
+const core = createActions("CORE", create => ({
+  setBreadcrumbs: create.action<Breadcrumb[]>()
+}));
+
+const user = createActions("CORE/USER", create => ({
+  login: create.asyncAction<UserProfile, LoginPayload>()
+}));
+
+const features = createActions("CORE/FEATURES", create => ({
+  fetch: create.asyncAction<Feature[]>()
+}));
+
 export default {
-  setBreadcrumbs: createAction<Breadcrumb[]>("SET_BREADCRUMBS", "CORE"),
-  features: {
-    fetch: createAsyncAction<Feature[]>("FETCH", "CORE/FEATRUES")
-  },
-  user: {
-    login: createAsyncAction<UserProfile, LoginPayload>("LOGIN", "CORE/USER")
-  }
+  ...core,
+  user,
+  features
 };

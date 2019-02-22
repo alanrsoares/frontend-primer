@@ -1,7 +1,7 @@
-import { createAsyncAction } from "re-reduced";
+import { createActions } from "re-reduced";
 
 import { Movie } from "./types";
 
-export default {
-  fetchMovies: createAsyncAction<Movie[]>("FETCH", "MOVIES")
-};
+export default createActions("MOVIES", create => ({
+  fetchMovies: create.asyncAction<Movie[]>()
+}));
