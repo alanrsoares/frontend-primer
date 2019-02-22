@@ -24,6 +24,10 @@ export const parseAxiosRequest = <TResult, TPayload>(
   }
 };
 
+type RequestFn<TPayload, TNewResult> = TPayload extends void
+  ? () => Promise<TNewResult>
+  : (payload: TPayload) => Promise<TNewResult>;
+
 export interface RequestConfig<
   TPayload = any,
   TResult = any,
@@ -34,10 +38,6 @@ export interface RequestConfig<
   transformResult?: (result: TResult) => TNewResult;
   transformEndpoint?: (payload: TNewPayload, endpoint: string) => string;
 }
-
-type RequestFn<TPayload, TNewResult> = TPayload extends void
-  ? () => Promise<TNewResult>
-  : (payload: TPayload) => Promise<TNewResult>;
 
 /**
  * Creates a request function with the given HTTPVerb,
