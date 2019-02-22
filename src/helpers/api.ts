@@ -5,6 +5,25 @@ import { APIMockResult } from "@fixtures/api.mocks";
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
+export const parseAxiosRequest = <TResult, TPayload>(
+  method: HTTPMethod,
+  endpoint: string,
+  payload: TPayload
+) => {
+  switch (method) {
+    case "POST":
+      return axios.post<TResult>(endpoint, payload);
+    case "PUT":
+      return axios.put<TResult>(endpoint, payload);
+    case "PATCH":
+      return axios.patch<TResult>(endpoint, payload);
+    case "DELETE":
+      return axios.delete(endpoint, payload);
+    default:
+      return axios.get<TResult>(endpoint);
+  }
+};
+
 export interface RequestConfig<
   TPayload = any,
   TResult = any,
@@ -70,25 +89,13 @@ export const request = (method: HTTPMethod) => <
     }
     // }
 
-    let $result: AxiosResponse<TResult>;
-
     try {
-      switch (method) {
-        case "POST":
-          $result = await axios.post<TResult>($endpoint, $payload);
-          break;
-        case "PUT":
-          $result = await axios.put<TResult>($endpoint, $payload);
-          break;
-        case "PATCH":
-          $result = await axios.patch<TResult>($endpoint, $payload);
-          break;
-        case "DELETE":
-          $result = await axios.delete($endpoint, $payload);
-          break;
-        default:
-          $result = await axios.get<TResult>($endpoint);
-      }
+      const request = parseAxiosRequest<TResult, TNewPayload>(
+        method,
+        $endpoint,
+        $payload
+      );
+      const $result: AxiosResponse<TResult> = await request;
 
       return $config.transformResult($result.data) as TNewResult;
     } catch (error) {
