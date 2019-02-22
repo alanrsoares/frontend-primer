@@ -11,9 +11,11 @@ import registerServiceWorker from "./registerServiceWorker";
 const store = configureStore();
 
 const App = () => (
-  <Provider store={store}>
-    <UI />
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <UI />
+    </Provider>
+  </React.StrictMode>
 );
 
 ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
