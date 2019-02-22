@@ -95,9 +95,9 @@ export const request = (method: HTTPMethod) => <
         $endpoint,
         $payload
       );
-      const $result: AxiosResponse<TResult> = await request;
+      const $response: AxiosResponse<TResult> = await request;
 
-      return $config.transformResult($result.data) as TNewResult;
+      return $config.transformResult($response.data) as TNewResult;
     } catch (error) {
       if (process.env.NODE_ENV !== "production") {
         console.warn(
