@@ -10,51 +10,37 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { Breadcrumb as BreadcrumbItem } from "@domain/core";
+import { Breadcrumb as BreadcrumbItem, selectors, ROUTES } from "@domain/core";
 
 import { capitalize } from "@helpers/string";
-
-import { State } from "@domain";
-import { ROUTES } from "@domain/core";
 
 import Dashboard from "@ui/pages/Dashboard";
 import Genres from "@ui/pages/Genres";
 import Movies from "@ui/pages/Movies";
 
-import "./Authenticated.css";
-
-const { Header, Content, Footer } = Layout;
+import styles from "./Authenticated.module.css";
 
 interface Props extends RouteComponentProps {
   breadcrumbs: BreadcrumbItem[];
 }
 
-const styles: { [key: string]: React.CSSProperties } = {
-  layout: { minHeight: "100vh" },
-  contentWrapper: { padding: "0 50px" },
-  breadcrumb: { margin: "16px 0" },
-  content: { background: "#fff", padding: 24, minHeight: 280 },
-  footer: { margin: 10, textAlign: "center" },
-  menu: { lineHeight: "64px" }
-};
-
 class Authenticated extends React.Component<Props> {
   public render() {
     return (
-      <Layout className="Authenticated layout" style={styles.layout}>
-        <Header>
-          <div className="logo" />
+      <Layout className={styles.layout}>
+        <Layout.Header>
+          <div className={styles.logo} />
           {this.renderMenu()}
-        </Header>
-        <Content style={styles.contentWrapper}>
-          <Breadcrumb style={styles.breadcrumb}>
+        </Layout.Header>
+        <Layout.Content className={styles.content}>
+          <Breadcrumb className={styles.breadcrumbs}>
             {this.renderBreadcrumbs()}
           </Breadcrumb>
-          <div style={styles.content}>{this.renderContent()}</div>
-        </Content>
-        <Footer style={styles.footer}>
+          <div className={styles.page}>{this.renderPage()}</div>
+        </Layout.Content>
+        <Layout.Footer className={styles.footer}>
           Frontend Primer ©{new Date().getFullYear()}
-        </Footer>
+        </Layout.Footer>
       </Layout>
     );
   }
@@ -64,7 +50,7 @@ class Authenticated extends React.Component<Props> {
       <Menu
         theme="dark"
         mode="horizontal"
-        style={styles.menu}
+        className={styles.menu}
         selectedKeys={[this.props.location.pathname]}
       >
         {Object.keys(ROUTES).map(key => {
@@ -91,7 +77,7 @@ class Authenticated extends React.Component<Props> {
     return this.props.breadcrumbs.map(toItem);
   }
 
-  public renderContent() {
+  public renderPage() {
     return (
       <Switch>
         <Route exact path={ROUTES.home} component={Dashboard} />
@@ -104,7 +90,7 @@ class Authenticated extends React.Component<Props> {
 
 const enhance = connect(
   applySpec<Props>({
-    breadcrumbs: (state: State) => state.core.breadcrumbs
+    breadcrumbs: selectors.getBreadcrumbs
   })
 );
 

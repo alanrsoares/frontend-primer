@@ -8,6 +8,8 @@ export const getFeaturesById = (state: State) => state.core.features.byId;
 
 export const getFeaturesIdList = (state: State) => state.core.features.idList;
 
+export const getBreadcrumbs = (state: State) => state.core.breadcrumbs;
+
 // then you'll be able to use those as base building blocks in composite selectors
 
 export const getFeatures = createSelector(

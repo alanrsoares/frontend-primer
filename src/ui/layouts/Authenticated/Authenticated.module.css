@@ -1,0 +1,34 @@
+.logo {
+  width: 120px;
+  height: 31px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px 24px 16px 0;
+  float: left;
+}
+
+.layout {
+  min-height: 100vh !important;
+}
+
+.content {
+  padding: 0 50px;
+}
+
+.breadcrumbs {
+  margin: 16px 0 !important;
+}
+
+.page {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.footer {
+  margin: 10px;
+  text-align: center;
+}
+
+.menu {
+  line-height: 64px !important;
+}
