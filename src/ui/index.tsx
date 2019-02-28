@@ -28,8 +28,12 @@ function App(props: Props) {
     return <div>initializing app...</div>;
   }
 
+  const SubRouteComponent = props.isAuthenticated ? Authenticated : Public;
+
   return (
-    <Router>{props.isAuthenticated ? <Authenticated /> : <Public />}</Router>
+    <Router>
+      <SubRouteComponent />
+    </Router>
   );
 }
 
