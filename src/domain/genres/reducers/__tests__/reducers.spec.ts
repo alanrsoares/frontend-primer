@@ -27,9 +27,9 @@ describe("genres/reducers", () => {
           idList: ["genre-id-1", "genre-id-2", "genre-id-3"]
         };
 
-        expect(
-          reducer(initialState, actions.fetchGenres.success(payload))
-        ).toEqual(expectedState);
+        expect(reducer(initialState, actions.fetch.success(payload))).toEqual(
+          expectedState
+        );
       });
     });
   });

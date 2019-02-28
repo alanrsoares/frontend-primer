@@ -6,5 +6,5 @@ import actions from "@domain/movies/actions";
 import fetchMovies from "./fetchMovies";
 
 export default function* sagaWatcher(): SagaIterator {
-  yield takeLatest(actions.fetchMovies.type, fetchMovies);
+  yield takeLatest(actions.fetch.type, fetchMovies);
 }

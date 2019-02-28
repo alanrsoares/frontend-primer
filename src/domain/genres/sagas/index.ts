@@ -6,5 +6,5 @@ import actions from "@domain/genres/actions";
 import fetchGenres from "./fetchGenres";
 
 export default function* sagaWatcher(): SagaIterator {
-  yield takeLatest(actions.fetchGenres.type, fetchGenres);
+  yield takeLatest(actions.fetch.type, fetchGenres);
 }

@@ -12,7 +12,7 @@ const INITIAL_STATE: GenresState = {
 
 export default createReducer<GenresState>(
   [
-    match(actions.fetchGenres.success, (_, payload) => ({
+    match(actions.fetch.success, (_, payload) => ({
       byId: indexBy("id", payload),
       idList: payload.map(genre => genre.id)
     }))

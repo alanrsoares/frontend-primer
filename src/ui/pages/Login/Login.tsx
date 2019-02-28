@@ -1,5 +1,5 @@
 import * as React from "react";
-import { mapObjIndexed, assoc } from "ramda";
+import { mapObjIndexed, assoc, flip } from "ramda";
 import { connectWithActions } from "re-reduced";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { FormComponentProps } from "antd/lib/form";
@@ -27,7 +27,7 @@ class LoginForm extends React.Component<Props> {
   }
 
   get decorators() {
-    return mapObjIndexed((v, k) => this.props.form.getFieldDecorator(k, v), {
+    return mapObjIndexed(flip(this.props.form.getFieldDecorator), {
       remember: {
         valuePropName: "checked",
         initialValue: true

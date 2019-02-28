@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { connectWithActions } from "re-reduced";
 
 import { actions, selectors } from "@domain";
@@ -9,38 +9,28 @@ interface Props {
   actions: typeof actions;
 }
 
-export class Movies extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-
+export function Movies(props: Props) {
+  useEffect(() => {
     props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Movies" }]);
-    props.actions.movies.fetchMovies();
-  }
+    props.actions.movies.fetch();
+  }, []);
 
-  public render() {
-    return (
-      <div className="Movies">
-        <h3>Movies</h3>
-        {this.renderContent()}
-      </div>
-    );
-  }
-
-  private renderContent() {
-    if (!this.props.movies.length) {
-      return <div>Loading movies...</div>;
-    }
-
-    return (
-      <div>
-        <ul>{this.props.movies.map(this.renderItem)}</ul>
-      </div>
-    );
-  }
-
-  private renderItem(item: Movie) {
-    return <li key={item.id}>{item.title}</li>;
-  }
+  return (
+    <div className="Movies">
+      <h3>Movies</h3>
+      {!props.movies.length ? (
+        <div>Loading movies...</div>
+      ) : (
+        <div>
+          <ul>
+            {props.movies.map(item => (
+              <li key={item.id}>{item.title}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 const enhance = connectWithActions<Props>(actions, {

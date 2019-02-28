@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { connectWithActions } from "re-reduced";
 
 import { actions, selectors } from "@domain";
@@ -9,38 +9,28 @@ interface Props {
   actions: typeof actions;
 }
 
-export class Genres extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
-
+export function Genres(props: Props) {
+  useEffect(() => {
     props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Genres" }]);
-    props.actions.genres.fetchGenres();
-  }
+    props.actions.genres.fetch();
+  }, []);
 
-  public render() {
-    return (
-      <div className="Genres">
-        <h3>Genres</h3>
-        {this.renderContent()}
-      </div>
-    );
-  }
-
-  private renderContent() {
-    if (!this.props.genres.length) {
-      return <div>Loading genres...</div>;
-    }
-
-    return (
-      <div>
-        <ul>{this.props.genres.map(this.renderItem)}</ul>
-      </div>
-    );
-  }
-
-  private renderItem(item: Genre) {
-    return <li key={item.id}>{item.name}</li>;
-  }
+  return (
+    <div className="Genres">
+      <h3>Genres</h3>
+      {!props.genres.length ? (
+        <div>Loading genres...</div>
+      ) : (
+        <div>
+          <ul>
+            {props.genres.map(item => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
 
 const enhance = connectWithActions<Props>(actions, {

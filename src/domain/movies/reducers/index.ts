@@ -11,7 +11,7 @@ const INITIAL_STATE: MoviesState = {
 
 export default createReducer<MoviesState>(
   [
-    match(actions.fetchMovies.success, (_, payload) => ({
+    match(actions.fetch.success, (_, payload) => ({
       byId: indexBy("id", payload),
       idList: payload.map(genre => genre.id)
     }))
