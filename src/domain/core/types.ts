@@ -25,13 +25,23 @@ export interface UserState {
   profile?: UserProfile;
 }
 
+export interface AuthState {
+  token: string | undefined;
+}
+
 export interface LoginPayload {
   email: string;
   password: string;
+}
+
+export interface LoginResponse {
+  token: string;
+  profile: UserProfile;
 }
 
 export interface State {
   features: FeaturesState;
   user: UserState;
   breadcrumbs: Breadcrumb[];
+  auth: AuthState;
 }

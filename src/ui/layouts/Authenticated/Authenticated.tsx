@@ -1,6 +1,5 @@
 import * as React from "react";
-import { applySpec } from "ramda";
-import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import { Layout, Menu, Breadcrumb, Icon, Button } from "antd";
 import {
   Switch,
   Route,
@@ -8,9 +7,13 @@ import {
   RouteComponentProps,
   withRouter
 } from "react-router-dom";
-import { connect } from "react-redux";
 
-import { Breadcrumb as BreadcrumbItem, selectors, ROUTES } from "@domain/core";
+import {
+  Breadcrumb as BreadcrumbItem,
+  selectors,
+  ROUTES,
+  actions
+} from "@domain/core";
 
 import { capitalize } from "@helpers/string";
 
@@ -19,18 +22,23 @@ import Genres from "@ui/pages/Genres";
 import Movies from "@ui/pages/Movies";
 
 import styles from "./Authenticated.module.css";
+import { connectWithActions } from "re-reduced";
 
 interface Props extends RouteComponentProps {
   breadcrumbs: BreadcrumbItem[];
+  actions: typeof actions;
 }
 
 class Authenticated extends React.Component<Props> {
   public render() {
     return (
       <Layout className={styles.layout}>
-        <Layout.Header>
+        <Layout.Header style={{ display: "flex" }}>
           <div className={styles.logo} />
-          {this.renderMenu()}
+          <div style={{ flexGrow: 1 }}>{this.renderMenu()}</div>
+          <div className={styles.user}>
+            <Button onClick={this.handleLogout}>Logout</Button>
+          </div>
         </Layout.Header>
         <Layout.Content className={styles.content}>
           <Breadcrumb className={styles.breadcrumbs}>
@@ -86,12 +94,14 @@ class Authenticated extends React.Component<Props> {
       </Switch>
     );
   }
+
+  private handleLogout = () => {
+    this.props.actions.user.logout();
+  };
 }
 
-const enhance = connect(
-  applySpec<Props>({
-    breadcrumbs: selectors.getBreadcrumbs
-  })
-);
+const enhance = connectWithActions<Props>(actions, {
+  breadcrumbs: selectors.getBreadcrumbs
+});
 
-export default withRouter(enhance(Authenticated));
+export default enhance(withRouter(Authenticated));

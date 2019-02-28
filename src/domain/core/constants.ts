@@ -11,6 +11,7 @@ export const API_CONFIG = {
 
 export enum ENDPOINTS {
   login = "/login",
+  logout = "/logout",
   features = "/features",
   genres = "/genres",
   movies = "/movies"

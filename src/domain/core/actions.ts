@@ -3,8 +3,8 @@ import { createActions } from "re-reduced";
 import {
   Feature,
   LoginPayload,
-  UserProfile,
-  Breadcrumb
+  Breadcrumb,
+  LoginResponse
 } from "@domain/core/types";
 
 const core = createActions("CORE", create => ({
@@ -12,7 +12,8 @@ const core = createActions("CORE", create => ({
 }));
 
 const user = createActions("CORE/USER", create => ({
-  login: create.asyncAction<UserProfile, LoginPayload>()
+  login: create.asyncAction<LoginResponse, LoginPayload>(),
+  logout: create.asyncAction<void>()
 }));
 
 const features = createActions("CORE/FEATURES", create => ({

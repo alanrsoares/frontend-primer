@@ -40,15 +40,26 @@ export const movies: Movie[] = [
   }
 ];
 
+const MOCK_JWT =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
 const mocks: { [keys: string]: (...args: any[]) => APIMockResult } = {
   [`POST:${ENDPOINTS.login}`]: (login: LoginPayload) => ({
     data: {
-      id: "user-id-1",
-      name: "Awesome User",
-      email: login.email
+      token: MOCK_JWT,
+      profile: {
+        id: "user-id-1",
+        name: "Awesome User",
+        email: login.email
+      }
     },
     status: 200,
     delay: 1000
+  }),
+  [`POST:${ENDPOINTS.logout}`]: (_: void) => ({
+    data: undefined,
+    status: 200,
+    delay: 500
   }),
   [`GET:${ENDPOINTS.features}`]: (_: void) => ({
     data: features,

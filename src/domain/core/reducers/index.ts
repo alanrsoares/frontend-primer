@@ -1,10 +1,25 @@
 import { combineReducers } from "redux";
 import { createReducer, match } from "re-reduced";
+import { persistReducer, PersistConfig } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 import { indexBy } from "@helpers/list";
 
-import { State } from "@domain/core/types";
+import {
+  State,
+  UserState,
+  FeaturesState,
+  Breadcrumb,
+  AuthState
+} from "@domain/core/types";
 import actions from "@domain/core/actions";
+
+export const persistConfig: PersistConfig = {
+  storage,
+  key: "@primer-v1:core",
+  version: 1,
+  blacklist: ["breadcrumbs"]
+};
 
 const INITIAL_STATE: State = {
   features: {
@@ -16,35 +31,58 @@ const INITIAL_STATE: State = {
     profile: undefined,
     isLoggingIn: false
   },
+  auth: {
+    token: undefined
+  },
   breadcrumbs: []
 };
 
-export default combineReducers<State>({
-  user: createReducer(
-    [
-      match(actions.user.login.request, (state, _) => ({
-        ...state,
-        isLoggingIn: true
-      })),
-      match(actions.user.login.success, (_, profile) => ({
-        profile,
-        isAuthenticated: true,
-        isLoggingIn: false
-      }))
-    ],
-    INITIAL_STATE.user
-  ),
-  features: createReducer(
-    [
-      match(actions.features.fetch.success, (_, payload) => ({
-        byId: indexBy("id", payload),
-        idList: payload.map(feature => feature.id)
-      }))
-    ],
-    INITIAL_STATE.features
-  ),
-  breadcrumbs: createReducer(
-    [match(actions.setBreadcrumbs, (_, payload) => payload)],
-    INITIAL_STATE.breadcrumbs
-  )
+const user = createReducer<UserState>(
+  [
+    match(actions.user.login.request, (state, _) => ({
+      ...state,
+      isLoggingIn: true
+    })),
+    match(actions.user.login.success, (_, { profile }) => ({
+      profile,
+      isAuthenticated: true,
+      isLoggingIn: false
+    })),
+    match(actions.user.logout.success, () => INITIAL_STATE.user)
+  ],
+  INITIAL_STATE.user
+);
+
+const features = createReducer<FeaturesState>(
+  [
+    match(actions.features.fetch.success, (_, payload) => ({
+      byId: indexBy("id", payload),
+      idList: payload.map(feature => feature.id)
+    }))
+  ],
+  INITIAL_STATE.features
+);
+
+const breadcrumbs = createReducer<Breadcrumb[]>(
+  [match(actions.setBreadcrumbs, (_, payload) => payload)],
+  INITIAL_STATE.breadcrumbs
+);
+
+const auth = createReducer<AuthState>(
+  [
+    match(actions.user.login.success, (_, { token }) => ({
+      token
+    })),
+    match(actions.user.logout.success, () => INITIAL_STATE.auth)
+  ],
+  INITIAL_STATE.auth
+);
+
+const reducer = combineReducers<State>({
+  breadcrumbs,
+  features,
+  user,
+  auth
 });
+
+export default persistReducer(persistConfig, reducer);
