@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { connectWithActions } from "re-reduced";
 
 import { BrowserRouter as Router } from "react-router-dom";
@@ -16,20 +16,14 @@ interface Props {
   actions: typeof actions;
 }
 
-class App extends React.PureComponent<Props> {
-  constructor(props: Props) {
-    super(props);
+function App(props: Props) {
+  useEffect(() => {
+    props.actions.features.fetch();
+  }, []);
 
-    this.props.actions.features.fetch();
-  }
-
-  public render() {
-    return (
-      <Router>
-        {this.props.isAuthenticated ? <Authenticated /> : <Public />}
-      </Router>
-    );
-  }
+  return (
+    <Router>{props.isAuthenticated ? <Authenticated /> : <Public />}</Router>
+  );
 }
 
 const enhance = connectWithActions<Props>(actions, {

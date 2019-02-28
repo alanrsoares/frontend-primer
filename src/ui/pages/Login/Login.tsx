@@ -21,22 +21,6 @@ interface Fields extends LoginPayload {
 }
 
 class LoginForm extends React.Component<Props> {
-  public handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    this.props.form.validateFields((err: Error, values: Fields) => {
-      if (!err) {
-        console.log(
-          "Received values of form: ",
-          assoc("password", "omitted for security reasons", values)
-        );
-        this.props.actions.user.login({
-          email: values.email,
-          password: values.password
-        });
-      }
-    });
-  };
-
   get hasErrors() {
     const errors = this.props.form.getFieldsError() as Fields;
     return !!errors.email || !!errors.password;
@@ -110,6 +94,22 @@ class LoginForm extends React.Component<Props> {
       />
     );
   }
+
+  private handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    this.props.form.validateFields((err: Error, values: Fields) => {
+      if (!err) {
+        console.log(
+          "Received values of form: ",
+          assoc("password", "omitted for security reasons", values)
+        );
+        this.props.actions.user.login({
+          email: values.email,
+          password: values.password
+        });
+      }
+    });
+  };
 }
 
 const enhance = connectWithActions<Props>(actions, {
