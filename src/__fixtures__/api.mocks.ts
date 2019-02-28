@@ -59,17 +59,17 @@ const mocks: { [keys: string]: (...args: any[]) => APIMockResult } = {
   [`POST:${ENDPOINTS.logout}`]: (_: void) => ({
     data: undefined,
     status: 200,
-    delay: 500
+    delay: 100
   }),
   [`POST:${ENDPOINTS.validateToken}`]: (_: void) => ({
     data: true,
     status: 200,
-    delay: 500
+    delay: 100
   }),
   [`GET:${ENDPOINTS.features}`]: (_: void) => ({
     data: features,
     status: 200,
-    delay: 2000
+    delay: 1000
   }),
   [`GET:${ENDPOINTS.movies}`]: (_: void) => ({
     data: movies,
@@ -79,7 +79,7 @@ const mocks: { [keys: string]: (...args: any[]) => APIMockResult } = {
   [`GET:${ENDPOINTS.genres}`]: (_: void) => ({
     data: genres,
     status: 200,
-    delay: 2000
+    delay: 1000
   })
 };
 
