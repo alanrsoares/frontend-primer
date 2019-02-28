@@ -13,13 +13,20 @@ import "./index.css";
 
 interface Props {
   isAuthenticated: boolean;
+  isBootstrapped: boolean;
   actions: typeof actions;
 }
 
 function App(props: Props) {
   useEffect(() => {
-    props.actions.features.fetch();
+    if (!props.isBootstrapped) {
+      props.actions.bootstrap();
+    }
   }, []);
+
+  if (!props.isBootstrapped) {
+    return <div>initializing app...</div>;
+  }
 
   return (
     <Router>{props.isAuthenticated ? <Authenticated /> : <Public />}</Router>
@@ -27,7 +34,8 @@ function App(props: Props) {
 }
 
 const enhance = connectWithActions<Props>(actions, {
-  isAuthenticated: selectors.getUserIsAuthenticated
+  isAuthenticated: selectors.getUserIsAuthenticated,
+  isBootstrapped: selectors.getIsBootstrapped
 });
 
 export default enhance(App);

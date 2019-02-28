@@ -61,6 +61,11 @@ const mocks: { [keys: string]: (...args: any[]) => APIMockResult } = {
     status: 200,
     delay: 500
   }),
+  [`POST:${ENDPOINTS.validateToken}`]: (_: void) => ({
+    data: true,
+    status: 200,
+    delay: 500
+  }),
   [`GET:${ENDPOINTS.features}`]: (_: void) => ({
     data: features,
     status: 200,

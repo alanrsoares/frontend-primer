@@ -8,7 +8,8 @@ import {
 } from "@domain/core/types";
 
 const core = createActions("CORE", create => ({
-  setBreadcrumbs: create.action<Breadcrumb[]>()
+  setBreadcrumbs: create.action<Breadcrumb[]>(),
+  bootstrap: create.asyncAction<void>()
 }));
 
 const user = createActions("CORE/USER", create => ({

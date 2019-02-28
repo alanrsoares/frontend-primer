@@ -44,4 +44,5 @@ export interface State {
   user: UserState;
   breadcrumbs: Breadcrumb[];
   auth: AuthState;
+  isBootstrapped: boolean;
 }

@@ -16,12 +16,13 @@ import actions from "@domain/core/actions";
 
 export const persistConfig: PersistConfig = {
   storage,
-  key: "@primer-v1:core",
+  key: "@primer-v2:core",
   version: 1,
-  blacklist: ["breadcrumbs"]
+  blacklist: ["breadcrumbs", "isBootstrapped"]
 };
 
 const INITIAL_STATE: State = {
+  isBootstrapped: false,
   features: {
     byId: {},
     idList: []
@@ -78,11 +79,17 @@ const auth = createReducer<AuthState>(
   INITIAL_STATE.auth
 );
 
+const isBootstrapped = createReducer<boolean>(
+  [match(actions.bootstrap.success, () => true)],
+  INITIAL_STATE.isBootstrapped
+);
+
 const reducer = combineReducers<State>({
   breadcrumbs,
   features,
   user,
-  auth
+  auth,
+  isBootstrapped
 });
 
 export default persistReducer(persistConfig, reducer);

@@ -10,11 +10,12 @@ export const API_CONFIG = {
 };
 
 export enum ENDPOINTS {
-  login = "/login",
-  logout = "/logout",
   features = "/features",
   genres = "/genres",
-  movies = "/movies"
+  movies = "/movies",
+  login = "/auth/login",
+  logout = "/auth/logout",
+  validateToken = "/auth/validate"
 }
 
 export enum ROUTES {

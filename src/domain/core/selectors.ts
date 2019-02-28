@@ -35,3 +35,7 @@ export const getUserIsAuthenticated = <TOwnProps>(
 ) => state.core.user.isAuthenticated;
 
 export const getUserIsLoggingIn = (state: State) => state.core.user.isLoggingIn;
+
+export const getAuthToken = (state: State) => state.core.auth.token;
+
+export const getIsBootstrapped = (state: State) => state.core.isBootstrapped;
