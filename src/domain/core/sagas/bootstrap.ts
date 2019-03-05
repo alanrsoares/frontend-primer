@@ -1,6 +1,8 @@
 import { select, put, call, fork, take } from "redux-saga/effects";
 import { SagaIterator } from "redux-saga";
 
+import axios from "axios";
+
 import actions from "@domain/core/actions";
 import * as selectors from "@domain/core/selectors";
 import * as api from "@domain/core/api";
@@ -19,6 +21,7 @@ export default function* bootstrapWorker(): SagaIterator {
       yield fork(fetchFeatures, actions.features.fetch());
       // waits until the features are fetched
       yield take(actions.features.fetch.success.type);
+
       yield put(actions.bootstrap.success());
     } else {
       yield put(actions.user.logout());
