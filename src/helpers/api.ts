@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 import { delay } from "@helpers/promise";
-import { APIMockResult } from "@fixtures/api.mocks";
+import { APIMockResult } from "@fixtures/mocks";
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
@@ -72,7 +72,7 @@ export const request = (method: HTTPMethod) => <
     const key = `${method}:${$endpoint}`;
 
     // if (process.env.NODE_ENV !== "production") {
-    const mocks = require("@fixtures/api.mocks").default;
+    const mocks = require("@fixtures/mocks").default;
 
     if (key in mocks) {
       const response: APIMockResult<TResult> = mocks[key]($payload);

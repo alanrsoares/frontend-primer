@@ -3,7 +3,7 @@ import { testSaga } from "redux-saga-test-plan";
 import actions from "@domain/core/actions";
 import * as api from "@domain/core/api";
 
-import { features } from "../../../../__fixtures__/api.mocks";
+import * as mocks from "@fixtures/mocks";
 
 import fetchFeatures from "../fetchFeatures";
 
@@ -17,8 +17,8 @@ describe("Core.sagas", () => {
         .put(triggerAction.request())
         .next()
         .call(api.fetchFeatures)
-        .next(features)
-        .put(triggerAction.success(features))
+        .next(mocks.features)
+        .put(triggerAction.success(mocks.features))
         .next()
         .isDone();
     });

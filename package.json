@@ -148,7 +148,8 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
-      "^@(domain|helpers|store|ui)(.*)": "<rootDir>/src/$1$2"
+      "^@(domain|helpers|store|ui)(.*)": "<rootDir>/src/$1$2",
+      "^@fixtures/(.*)": "<rootDir>/src/__fixtures__/$1"
     },
     "moduleFileExtensions": [
       "web.js",
