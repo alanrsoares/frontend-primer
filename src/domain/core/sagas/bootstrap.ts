@@ -1,8 +1,6 @@
 import { select, put, call, fork, take } from "redux-saga/effects";
 import { SagaIterator } from "redux-saga";
 
-import axios from "axios";
-
 import actions from "@domain/core/actions";
 import * as selectors from "@domain/core/selectors";
 import * as api from "@domain/core/api";
