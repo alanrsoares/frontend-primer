@@ -2,8 +2,9 @@ import {
   Feature,
   FEATURES,
   ENDPOINTS,
-  API_CONFIG,
-  LoginPayload
+  // API_CONFIG,
+  LoginPayload,
+  API_CONFIG
 } from "@domain/core";
 
 import ApiMockRouter from "@helpers/ApiMockRouter";
@@ -54,7 +55,7 @@ const MOCK_JWT =
 
 const mockRouter = new ApiMockRouter(API_CONFIG.HOST);
 
-export default mockRouter
+export const mockApi = mockRouter
   .post(ENDPOINTS.login, (_, body: LoginPayload) => ({
     data: {
       token: MOCK_JWT,

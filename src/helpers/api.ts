@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 import { delay } from "@helpers/promise";
-import { API_CONFIG } from "@domain/core";
+import { API_CONFIG } from "@domain/core/constants";
 
 import ApiMockRouter from "./ApiMockRouter";
 
@@ -73,18 +73,18 @@ export const request = (method: HTTPMethod) => <
 
     // if (process.env.NODE_ENV !== "production") {
     const key = `${method}:${$endpoint}`;
-    const mockRouter: ApiMockRouter = require("@fixtures/mocks").default;
+    const mockApi: ApiMockRouter = require("@fixtures/mocks").mockApi;
 
-    const match = mockRouter.match(
-      method,
-      `${API_CONFIG.HOST}${$endpoint}`,
-      $payload
-    );
+    const fullEndpoint = `${API_CONFIG.HOST}${$endpoint}`;
 
-    if (!!match) {
-      const mockResponse = $config.transformResult(match.data) as TNewResult;
-      console.info(`reponding ${key} with response: `, mockResponse);
-      return await delay<TNewResult>(match.delay, () => mockResponse);
+    const match = mockApi.match(method, fullEndpoint, $payload);
+
+    if (match) {
+      const mockResult = $config.transformResult(match.data) as TNewResult;
+
+      console.info(`responding ${key} with`, mockResult);
+
+      return delay(match.delay, () => mockResult);
     }
 
     // }
