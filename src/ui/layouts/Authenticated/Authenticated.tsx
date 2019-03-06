@@ -32,21 +32,21 @@ interface Props extends RouteComponentProps {
 class Authenticated extends React.Component<Props> {
   public render() {
     return (
-      <Layout className={styles.layout}>
-        <Layout.Header style={{ display: "flex" }}>
+      <Layout tagName="section" className={styles.layout}>
+        <Layout.Header tagName="header" style={{ display: "flex" }}>
           <div className={styles.logo} />
           <div style={{ flexGrow: 1 }}>{this.renderMenu()}</div>
           <div className={styles.user}>
             <Button onClick={this.handleLogout}>Logout</Button>
           </div>
         </Layout.Header>
-        <Layout.Content className={styles.content}>
+        <Layout.Content tagName="section" className={styles.content}>
           <Breadcrumb className={styles.breadcrumbs}>
             {this.renderBreadcrumbs()}
           </Breadcrumb>
           <div className={styles.page}>{this.renderPage()}</div>
         </Layout.Content>
-        <Layout.Footer className={styles.footer}>
+        <Layout.Footer tagName="footer" className={styles.footer}>
           Frontend Primer ©{new Date().getFullYear()}
         </Layout.Footer>
       </Layout>

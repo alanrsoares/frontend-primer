@@ -7,9 +7,9 @@ const { Header, Content } = Layout;
 
 export default function Public() {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Header style={{ background: "#fff", padding: 0 }} />
-      <Content style={{ margin: "24px 16px 0" }}>
+    <Layout tagName="section" style={{ minHeight: "100vh" }}>
+      <Header tagName="header" style={{ background: "#fff", padding: 0 }} />
+      <Content tagName="section" style={{ margin: "24px 16px 0" }}>
         <div
           style={{
             padding: 24,
