@@ -6,7 +6,8 @@
     "object-literal-sort-keys": false,
     "no-console": [false, "warning"],
     "jsx-no-lambda": false,
-    "jsx-boolean-value": false
+    "jsx-boolean-value": false,
+    "member-ordering": false
   },
   "linterOptions": {
     "exclude": [

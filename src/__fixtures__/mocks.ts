@@ -1,4 +1,13 @@
-import { Feature, FEATURES, ENDPOINTS, LoginPayload } from "@domain/core";
+import {
+  Feature,
+  FEATURES,
+  ENDPOINTS,
+  API_CONFIG,
+  LoginPayload
+} from "@domain/core";
+
+import ApiMockRouter from "@helpers/ApiMockRouter";
+
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
 
@@ -43,44 +52,32 @@ export const movies: Movie[] = [
 const MOCK_JWT =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
 
-const mocks: { [keys: string]: (...args: any[]) => APIMockResult } = {
-  [`POST:${ENDPOINTS.login}`]: (login: LoginPayload) => ({
+const mockRouter = new ApiMockRouter(API_CONFIG.HOST);
+
+export default mockRouter
+  .post(ENDPOINTS.login, (_, body: LoginPayload) => ({
     data: {
       token: MOCK_JWT,
       profile: {
         id: "user-id-1",
         name: "Awesome User",
-        email: login.email
+        email: body.email
       }
     },
-    status: 200,
     delay: 1000
-  }),
-  [`POST:${ENDPOINTS.logout}`]: (_: void) => ({
-    data: undefined,
-    status: 200,
-    delay: 100
-  }),
-  [`POST:${ENDPOINTS.validateToken}`]: (_: void) => ({
-    data: true,
-    status: 200,
-    delay: 100
-  }),
-  [`GET:${ENDPOINTS.features}`]: (_: void) => ({
-    data: features,
-    status: 200,
-    delay: 1000
-  }),
-  [`GET:${ENDPOINTS.movies}`]: (_: void) => ({
-    data: movies,
-    status: 200,
-    delay: 1000
-  }),
-  [`GET:${ENDPOINTS.genres}`]: (_: void) => ({
-    data: genres,
-    status: 200,
-    delay: 1000
-  })
-};
-
-export default mocks;
+  }))
+  .post(ENDPOINTS.logout, () => ({
+    data: undefined
+  }))
+  .post(ENDPOINTS.validateToken, () => ({
+    data: true
+  }))
+  .get(ENDPOINTS.features, () => ({
+    data: features
+  }))
+  .get(ENDPOINTS.movies, () => ({
+    data: movies
+  }))
+  .get(ENDPOINTS.genres, () => ({
+    data: genres
+  }));
