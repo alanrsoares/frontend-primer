@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "antd": "^3.13.5",
+    "antd": "^3.14.1",
     "axios": "^0.18.0",
     "ramda": "^0.26.1",
     "re-reduced": "^1.4.1",
