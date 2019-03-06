@@ -7,6 +7,8 @@ import * as mocks from "@fixtures/mocks";
 
 import fetchFeatures from "../fetchFeatures";
 
+console.log(api.fetchFeatures);
+
 describe("Core.sagas", () => {
   describe("fetchFeatures", () => {
     it("should fetch features successfully", () => {
