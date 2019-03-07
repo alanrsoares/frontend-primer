@@ -3,7 +3,10 @@ export enum FEATURES {
 }
 
 export const API_CONFIG = {
-  HOST: "/api"
+  HOST:
+    process.env.NODE_ENV === "production"
+      ? "https://frontend-primer.netlify.com"
+      : "/api"
 };
 
 export enum ENDPOINTS {
