@@ -11,6 +11,8 @@ import Authenticated from "@ui/layouts/Authenticated";
 
 import "./index.css";
 
+import Splash from "@ui/components/Splash";
+
 interface Props {
   isAuthenticated: boolean;
   isBootstrapped: boolean;
@@ -25,7 +27,7 @@ function App(props: Props) {
   }, []);
 
   if (!props.isBootstrapped) {
-    return <div>initializing app...</div>;
+    return <Splash />;
   }
 
   const SubRouteComponent = props.isAuthenticated ? Authenticated : Public;

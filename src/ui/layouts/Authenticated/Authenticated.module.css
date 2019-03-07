@@ -13,10 +13,6 @@
   color: white;
 }
 
-.layout {
-  min-height: 100vh !important;
-}
-
 .content {
   padding: 0 50px;
 }
