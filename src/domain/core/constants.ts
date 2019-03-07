@@ -3,10 +3,7 @@ export enum FEATURES {
 }
 
 export const API_CONFIG = {
-  HOST:
-    process.env.NODE_ENV === "production"
-      ? "http://www.omdbapi.com/?i=tt3896198&apikey=4c4c5521"
-      : "/api"
+  HOST: "/api"
 };
 
 export enum ENDPOINTS {
