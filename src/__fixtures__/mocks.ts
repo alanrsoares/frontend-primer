@@ -1,6 +1,6 @@
 import {
   Feature,
-  FEATURES,
+  Features,
   ENDPOINTS,
   // API_CONFIG,
   LoginPayload,
@@ -19,9 +19,7 @@ export interface APIMockResult<T = any> {
   ok?: boolean;
 }
 
-export const features: Feature[] = [
-  { id: FEATURES.MY_SUPER_SECRET_FEATURE, isEnabled: true }
-];
+export const features: Feature[] = [{ id: Features.movies, isEnabled: true }];
 
 export const genres: Genre[] = [
   { id: "id-0", name: "horror" },

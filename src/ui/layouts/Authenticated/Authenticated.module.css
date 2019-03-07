@@ -5,6 +5,10 @@
   margin: 16px 24px 16px 0;
 }
 
+.header {
+  display: flex;
+}
+
 .user {
   color: white;
 }

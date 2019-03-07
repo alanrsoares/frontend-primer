@@ -1,7 +1,3 @@
-export enum FEATURES {
-  MY_SUPER_SECRET_FEATURE = "MY_SUPER_SECRET_FEATURE"
-}
-
 export const API_CONFIG = {
   HOST:
     process.env.NODE_ENV === "production"

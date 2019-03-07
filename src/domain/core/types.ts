@@ -1,5 +1,9 @@
+export enum Features {
+  movies = "movies"
+}
+
 export interface Feature {
-  id: string;
+  id: Features;
   isEnabled: boolean;
 }
 

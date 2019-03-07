@@ -36,7 +36,7 @@ function Authenticated(props: Props) {
 
   return (
     <Layout tagName="section" className={styles.layout}>
-      <Layout.Header tagName="header" style={{ display: "flex" }}>
+      <Layout.Header tagName="header" className={styles.header}>
         <div className={styles.logo} />
         <div style={{ flexGrow: 1 }}>
           <Menu

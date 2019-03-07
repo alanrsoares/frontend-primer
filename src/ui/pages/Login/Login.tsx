@@ -7,7 +7,7 @@ import { FormComponentProps } from "antd/lib/form";
 import { selectors } from "@domain";
 import { LoginPayload, actions } from "@domain/core";
 
-import "./Login.css";
+import styles from "./Login.module.css";
 
 const FormItem = Form.Item;
 
@@ -52,18 +52,18 @@ class LoginForm extends React.Component<Props> {
 
   public render() {
     return (
-      <Form onSubmit={this.handleSubmit} className="Login">
+      <Form onSubmit={this.handleSubmit} className={styles.container}>
         <FormItem>{this.renderEmailField()}</FormItem>
         <FormItem>{this.renderPasswordField()}</FormItem>
         <FormItem>
           {this.decorators.remember(<Checkbox>Remember me</Checkbox>)}
-          <a className="Login--forgot" href="">
+          <a className={styles.forgot} href="">
             Forgot password
           </a>
           <Button
             type="primary"
             htmlType="submit"
-            className="Login--button"
+            className={styles.button}
             disabled={this.props.isLoggingIn || this.hasErrors}
           >
             {this.props.isLoggingIn ? "Loging in..." : "Log in"}

@@ -1,11 +1,11 @@
-.Login {
+.container {
   max-width: 300px;
 }
 
-.Login--forgot {
+.forgot {
   float: right;
 }
 
-.Login--button {
+.button {
   width: 100%;
 }
