@@ -1,9 +1,11 @@
 @keyframes spin {
   from {
     transform: rotate(0deg);
+    transform-origin: 50% 45%;
   }
   to {
     transform: rotate(360deg);
+    transform-origin: 50% 45%;
   }
 }
 
@@ -16,7 +18,6 @@
 }
 
 .spinner {
-  height: 4em;
   width: 4em;
   animation-name: spin;
   animation-duration: 4000ms;
