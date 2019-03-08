@@ -35,6 +35,11 @@ A boilerplate client-side application with a modern and scalable structure that 
 - [x] TSlint
 - [x] Prettier
 
+## TODO
+
+- [ ] Swap Ant Design for Material UI
+- [ ] Introduce Formik for form management
+
 ### License
 
 MIT
