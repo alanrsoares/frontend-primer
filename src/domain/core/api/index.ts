@@ -1,4 +1,4 @@
-import { get, post } from "@helpers/api";
+import { get, post } from "@lib/apiClient";
 
 import { ENDPOINTS } from "@domain/core/constants";
 import { LoginPayload, Feature, LoginResponse } from "@domain/core/types";

@@ -2,12 +2,11 @@ import {
   Feature,
   Features,
   ENDPOINTS,
-  // API_CONFIG,
   LoginPayload,
   API_CONFIG
 } from "@domain/core";
 
-import ApiMockRouter from "@helpers/ApiMockRouter";
+import ApiMockRouter from "@lib/ApiMockRouter";
 
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";

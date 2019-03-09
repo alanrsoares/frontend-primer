@@ -1,4 +1,4 @@
-import { HTTPMethod } from "./api";
+import { HTTPMethod } from "./apiClient";
 
 export interface MockHandlerConfig<TData = any> {
   delay: number;

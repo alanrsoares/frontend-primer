@@ -1,4 +1,4 @@
-import { get } from "@helpers/api";
+import { get } from "@lib/apiClient";
 
 import { ENDPOINTS } from "@domain/core";
 import { Genre } from "@domain/genres/types";

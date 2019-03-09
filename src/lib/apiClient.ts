@@ -86,7 +86,6 @@ export const request = (method: HTTPMethod) => <
 
       return delay(match.delay, () => mockResult);
     }
-
     // }
 
     try {

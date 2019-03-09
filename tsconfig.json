@@ -33,6 +33,7 @@
       "@store": ["src/store/index"],
       "@store/*": ["src/store/*"],
       "@helpers/*": ["src/helpers/*"],
+      "@lib/*": ["src/lib/*"],
       "@fixtures/*": ["src/__fixtures__/*"]
     }
   },

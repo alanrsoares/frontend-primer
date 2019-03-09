@@ -9,7 +9,8 @@ module.exports = {
           "@domain": "./src/domain",
           "@helpers": "./src/helpers",
           "@store": "./src/store",
-          "@ui": "./src/ui"
+          "@ui": "./src/ui",
+          "@lib": "./src/lib"
         }
       }
     ]
