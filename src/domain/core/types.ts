@@ -7,10 +7,7 @@ export interface Feature {
   isEnabled: boolean;
 }
 
-export interface FeaturesState {
-  byId: { [key: string]: Feature };
-  idList: ReadonlyArray<string>;
-}
+export type FeaturesState = LazyCollection<Feature>;
 
 export interface UserProfile {
   id: string;
@@ -49,4 +46,22 @@ export interface State {
   breadcrumbs: Breadcrumb[];
   auth: AuthState;
   isBootstrapped: boolean;
+}
+
+export enum RequestStatus {
+  Idle = "Idle",
+  Pending = "Pending",
+  Failed = "Failed",
+  Fulfilled = "Fulfilled"
+}
+
+export interface RequestState<TError = Error> {
+  status: RequestStatus;
+  error?: TError;
+}
+
+export interface LazyCollection<TResult, TError = Error> {
+  byId: { [id: string]: TResult };
+  idList: string[];
+  request: RequestState<TError>;
 }

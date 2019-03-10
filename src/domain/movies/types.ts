@@ -1,3 +1,5 @@
+import { LazyCollection } from "@domain/core";
+
 export interface Movie {
   id: string;
   title: string;
@@ -7,7 +9,4 @@ export interface Movie {
   score: number;
 }
 
-export interface State {
-  byId: { [key: string]: Movie };
-  idList: ReadonlyArray<string>;
-}
+export type State = LazyCollection<Movie>;

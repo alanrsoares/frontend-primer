@@ -10,7 +10,8 @@ import {
   UserState,
   FeaturesState,
   Breadcrumb,
-  AuthState
+  AuthState,
+  RequestStatus
 } from "@domain/core/types";
 import actions from "@domain/core/actions";
 
@@ -25,7 +26,10 @@ const INITIAL_STATE: State = {
   isBootstrapped: false,
   features: {
     byId: {},
-    idList: []
+    idList: [],
+    request: {
+      status: RequestStatus.Idle
+    }
   },
   user: {
     isAuthenticated: false,
@@ -56,7 +60,8 @@ const user = createReducer<UserState>(
 
 const features = createReducer<FeaturesState>(
   [
-    match(actions.features.fetch.success, (_, payload) => ({
+    match(actions.features.fetch.success, (state, payload) => ({
+      ...state,
       byId: indexBy("id", payload),
       idList: payload.map(feature => feature.id)
     }))
