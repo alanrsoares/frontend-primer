@@ -1,5 +1,5 @@
 import * as React from "react";
-import { mapObjIndexed, assoc, flip } from "ramda";
+import { mapObjIndexed, flip } from "ramda";
 import { connectWithActions } from "re-reduced";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { FormComponentProps } from "antd/lib/form";
@@ -99,10 +99,6 @@ class LoginForm extends React.Component<Props> {
     e.preventDefault();
     this.props.form.validateFields((err: Error, values: Fields) => {
       if (!err) {
-        console.log(
-          "Received values of form: ",
-          assoc("password", "omitted for security reasons", values)
-        );
         this.props.actions.user.login({
           email: values.email,
           password: values.password

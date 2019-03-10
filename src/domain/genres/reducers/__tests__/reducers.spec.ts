@@ -1,6 +1,7 @@
 import { Genre } from "@domain/genres/types";
 import actions from "@domain/genres/actions";
 import reducer from "@domain/genres/reducers";
+import { RequestStatus } from "@domain/core";
 
 describe("genres/reducers", () => {
   describe("fetchGenres", () => {
@@ -9,7 +10,11 @@ describe("genres/reducers", () => {
         // arrange
         const initialState = {
           byId: {},
-          idList: []
+          idList: [],
+          request: {
+            status: RequestStatus.Idle,
+            error: undefined
+          }
         };
 
         const payload: Genre[] = [
@@ -24,7 +29,11 @@ describe("genres/reducers", () => {
             "genre-id-2": { id: "genre-id-2", name: "horror" },
             "genre-id-3": { id: "genre-id-3", name: "comedy" }
           },
-          idList: ["genre-id-1", "genre-id-2", "genre-id-3"]
+          idList: ["genre-id-1", "genre-id-2", "genre-id-3"],
+          request: {
+            status: RequestStatus.Fulfilled,
+            error: undefined
+          }
         };
 
         expect(reducer(initialState, actions.fetch.success(payload))).toEqual(
