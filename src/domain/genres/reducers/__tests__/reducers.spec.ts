@@ -1,7 +1,7 @@
+import { RequestStatus } from "@lib/types";
 import { Genre } from "@domain/genres/types";
 import actions from "@domain/genres/actions";
 import reducer from "@domain/genres/reducers";
-import { RequestStatus } from "@domain/core";
 
 describe("genres/reducers", () => {
   describe("fetchGenres", () => {
