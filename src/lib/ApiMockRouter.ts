@@ -4,6 +4,7 @@ export interface MockHandlerConfig<TData = any> {
   delay: number;
   status: number;
   data: TData;
+  headers: object;
 }
 
 export type ApiMockHandler<TData = any, TArgs = void, TBody = any> = (
@@ -21,7 +22,8 @@ export interface Route<T = any> {
 const mockHandlerConfigDefaults: MockHandlerConfig = {
   delay: 300,
   status: 200,
-  data: {}
+  data: {},
+  headers: {}
 };
 
 export default class ApiMockRouter {
