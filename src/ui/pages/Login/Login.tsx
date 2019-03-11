@@ -4,8 +4,9 @@ import { connectWithActions } from "re-reduced";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { FormComponentProps } from "antd/lib/form";
 
-import { selectors } from "@domain";
-import { LoginPayload, actions } from "@domain/core";
+import { selectors, actions } from "@domain/core";
+
+import { LoginPayload } from "@domain/core/user/types";
 
 import styles from "./Login.module.css";
 

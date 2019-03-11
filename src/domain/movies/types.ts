@@ -1,4 +1,6 @@
-import { LazyCollection } from "@domain/core";
+import { LazyCollection } from "@lib/types";
+
+export type MoviesState = LazyCollection<Movie>;
 
 export interface Movie {
   id: string;
@@ -8,5 +10,3 @@ export interface Movie {
   year: number;
   score: number;
 }
-
-export type State = LazyCollection<Movie>;

@@ -5,7 +5,7 @@ import * as api from "@domain/core/api";
 
 import * as mocks from "@fixtures/mocks";
 
-import fetchFeatures from "../fetchFeatures";
+import { fetchFeatures } from "../sagas";
 
 describe("Core.sagas", () => {
   describe("fetchFeatures", () => {

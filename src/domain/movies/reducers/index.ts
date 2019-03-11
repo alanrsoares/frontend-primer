@@ -2,9 +2,9 @@ import { createReducer, match } from "re-reduced";
 
 import { indexBy } from "@helpers/list";
 
-import { RequestStatus } from "@domain/core/types";
-import { State as MoviesState } from "@domain/movies/types";
+import { MoviesState } from "@domain/movies/types";
 import actions from "@domain/movies/actions";
+import { RequestStatus } from "@lib/types";
 
 const INITIAL_STATE: MoviesState = {
   byId: {},

@@ -4,12 +4,6 @@ import * as core from "@domain/core";
 import * as genres from "@domain/genres";
 import * as movies from "@domain/movies";
 
-export interface State {
-  core: core.State;
-  genres: genres.State;
-  movies: movies.State;
-}
-
 export const actions = {
   core: core.actions,
   genres: genres.actions,

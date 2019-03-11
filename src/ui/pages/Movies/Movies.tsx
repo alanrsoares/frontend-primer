@@ -11,7 +11,10 @@ interface Props {
 
 export function Movies(props: Props) {
   useEffect(() => {
-    props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Movies" }]);
+    props.actions.core.app.setBreadcrumbs([
+      { icon: "home" },
+      { text: "Movies" }
+    ]);
     props.actions.movies.fetch();
   }, []);
 

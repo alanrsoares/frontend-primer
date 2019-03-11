@@ -11,7 +11,10 @@ interface Props {
 
 export function Genres(props: Props) {
   useEffect(() => {
-    props.actions.core.setBreadcrumbs([{ icon: "home" }, { text: "Genres" }]);
+    props.actions.core.app.setBreadcrumbs([
+      { icon: "home" },
+      { text: "Genres" }
+    ]);
     props.actions.genres.fetch();
   }, []);
 

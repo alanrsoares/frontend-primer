@@ -1,15 +1,11 @@
-import {
-  Feature,
-  Features,
-  ENDPOINTS,
-  LoginPayload,
-  API_CONFIG
-} from "@domain/core";
+import { ENDPOINTS, API_CONFIG } from "@domain/core";
 
 import ApiMockRouter from "@lib/ApiMockRouter";
 
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
+import { Feature, Features } from "@domain/core/features/types";
+import { LoginPayload } from "@domain/core/user/types";
 
 export interface APIMockResult<T = any> {
   data: T;

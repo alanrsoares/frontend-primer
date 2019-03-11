@@ -9,7 +9,7 @@ interface Props {
 
 function Dashboard(props: Props) {
   useEffect(() => {
-    props.actions.setBreadcrumbs([{ text: "Home" }]);
+    props.actions.app.setBreadcrumbs([{ text: "Home" }]);
   }, []);
 
   return <div>Hello, I'm a Dashboard</div>;

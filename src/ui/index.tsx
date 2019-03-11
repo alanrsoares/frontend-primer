@@ -22,7 +22,7 @@ interface Props {
 function App(props: Props) {
   useEffect(() => {
     if (!props.isBootstrapped) {
-      props.actions.bootstrap();
+      props.actions.app.bootstrap();
     }
   }, []);
 

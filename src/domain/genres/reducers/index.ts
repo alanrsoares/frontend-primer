@@ -2,8 +2,8 @@ import { createReducer, match } from "re-reduced";
 
 import { indexBy } from "@helpers/list";
 
-import { RequestStatus } from "@domain/core/types";
-import { State as GenresState } from "@domain/genres/types";
+import { RequestStatus } from "@lib/types";
+import { GenresState } from "@domain/genres/types";
 import actions from "@domain/genres/actions";
 
 const INITIAL_STATE: GenresState = {
