@@ -1,8 +1,8 @@
 import * as _api from "./api";
 import * as _selectors from "./selectors";
 
-export * from "./constants";
 export * from "./types";
+export * from "./constants";
 
 export { default as actions } from "./actions";
 export { default as reducers } from "./reducers";
