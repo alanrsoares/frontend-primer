@@ -2,7 +2,7 @@
 
 React + Redux modern frontend architecture
 
-[![Travis](https://img.shields.io/travis/alanrsoares/frontend-primer/master.svg)](https://travis-ci.org/alanrsoares/frontend-primer)
+[![Travis](https://img.shields.io/travis/alanrsoares/frontend-primer/master.svg)](https://travis-ci.org/alanrsoares/frontend-primer) [![Greenkeeper badge](https://badges.greenkeeper.io/alanrsoares/frontend-primer.svg)](https://greenkeeper.io/)
 
 A boilerplate client-side application with a modern and scalable structure that values reusability and testability
 
