@@ -19,7 +19,6 @@ import { fetchFeatures } from "@domain/core/features/sagas";
  * Application initialization saga
  */
 export function* bootstrap(): SagaIterator {
-  console.log("fooo");
   const token = yield select(selectors.getAuthToken);
 
   yield put(actions.app.bootstrap.request());

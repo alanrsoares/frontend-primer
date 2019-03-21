@@ -35,8 +35,8 @@ function Authenticated(props: Props) {
   };
 
   return (
-    <Layout tagName="section">
-      <Layout.Header tagName="header" className={styles.header}>
+    <Layout>
+      <Layout.Header className={styles.header}>
         <div className={styles.logo} />
         <div style={{ flexGrow: 1 }}>
           <Menu
@@ -60,7 +60,7 @@ function Authenticated(props: Props) {
           <Button onClick={handleLogout}>Logout</Button>
         </div>
       </Layout.Header>
-      <Layout.Content tagName="section" className={styles.content}>
+      <Layout.Content className={styles.content}>
         <Breadcrumb className={styles.breadcrumbs}>
           {props.breadcrumbs.map(breadcrumb => (
             <Breadcrumb.Item key={breadcrumb.text || "home"}>
@@ -77,7 +77,7 @@ function Authenticated(props: Props) {
           </Switch>
         </div>
       </Layout.Content>
-      <Layout.Footer tagName="footer" className={styles.footer}>
+      <Layout.Footer className={styles.footer}>
         Frontend Primer ©{new Date().getFullYear()}
       </Layout.Footer>
     </Layout>
