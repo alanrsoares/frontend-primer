@@ -70,8 +70,16 @@ export const mockApi = mockRouter
     data: features
   }))
   .get(ENDPOINTS.movies, () => ({
-    data: movies
+    data: {
+      count: 2,
+      page: 0,
+      data: movies
+    }
   }))
   .get(ENDPOINTS.genres, () => ({
-    data: genres
+    data: {
+      count: 2,
+      page: 0,
+      data: genres
+    }
   }));
