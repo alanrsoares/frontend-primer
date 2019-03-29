@@ -36,7 +36,7 @@ export function createLazyCollectionReducer<
       match(action.success, (state, payload) => ({
         ...state,
         byId: indexBy(idKey, payload.data),
-        idList: payload.data.map(item => item[idKey] as any) as string[],
+        idList: payload.data.map(item => String(item[idKey])),
         request: {
           status: RequestStatus.Fulfilled
         }
