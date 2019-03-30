@@ -1,6 +1,6 @@
 import { Movie } from "@domain/movies/types";
 import actions from "@domain/movies/actions";
 
-import { createLazyCollectionReducer } from "@helpers/reducers";
+import { createAsyncCollectionReducer } from "@helpers/reducers";
 
-export default createLazyCollectionReducer<Movie>(actions.fetch, "id");
+export default createAsyncCollectionReducer<Movie>(actions.fetch, "id");

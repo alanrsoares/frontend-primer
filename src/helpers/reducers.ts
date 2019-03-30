@@ -1,6 +1,6 @@
 import { AsyncAction, createReducer, match } from "re-reduced";
 
-import { LazyCollection, RequestStatus } from "@lib/types";
+import { LazyCollection as AsyncCollection, RequestStatus } from "@lib/types";
 
 import { indexBy } from "./list";
 
@@ -10,13 +10,17 @@ export interface PaginatedResult<TData> {
   data: TData[];
 }
 
-export function createLazyCollectionReducer<
+export function createAsyncCollectionReducer<
   TData,
-  TAction extends AsyncAction<PaginatedResult<TData>> = AsyncAction<
-    PaginatedResult<TData>
-  >
->(action: TAction, idKey: keyof TData) {
-  const initialState: LazyCollection<TData> = {
+  TPayload = void,
+  TError = Error
+>(
+  action: AsyncAction<PaginatedResult<TData>, TPayload, TError>,
+  idKey: keyof TData
+) {
+  type ReducerState = AsyncCollection<TData, TError>;
+
+  const INITIAL_STATE: ReducerState = {
     byId: {},
     idList: [],
     request: {
@@ -25,7 +29,7 @@ export function createLazyCollectionReducer<
     }
   };
 
-  return createReducer<LazyCollection<TData>>(
+  return createReducer<ReducerState>(
     [
       match(action.request, state => ({
         ...state,
@@ -49,6 +53,6 @@ export function createLazyCollectionReducer<
         }
       }))
     ],
-    initialState
+    INITIAL_STATE
   );
 }

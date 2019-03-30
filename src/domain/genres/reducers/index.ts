@@ -1,5 +1,5 @@
 import { Genre } from "@domain/genres/types";
 import actions from "@domain/genres/actions";
-import { createLazyCollectionReducer } from "@helpers/reducers";
+import { createAsyncCollectionReducer } from "@helpers/reducers";
 
-export default createLazyCollectionReducer<Genre>(actions.fetch, "id");
+export default createAsyncCollectionReducer<Genre>(actions.fetch, "id");

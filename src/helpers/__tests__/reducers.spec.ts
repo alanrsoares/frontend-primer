@@ -2,12 +2,12 @@ import { createActions } from "re-reduced";
 
 import {
   PaginatedResult,
-  createLazyCollectionReducer
+  createAsyncCollectionReducer
 } from "@helpers/reducers";
 import { LazyCollection, RequestStatus } from "@lib/types";
 
 describe("Helpers - reducers", () => {
-  describe("createLazyCollectionReducer", () => {
+  describe("createAsyncCollectionReducer", () => {
     interface Foo {
       id: string;
       name: string;
@@ -17,7 +17,7 @@ describe("Helpers - reducers", () => {
       fetchFoos: create.asyncAction<PaginatedResult<Foo>>()
     }));
 
-    const reducer = createLazyCollectionReducer<Foo>(actions.fetchFoos, "id");
+    const reducer = createAsyncCollectionReducer<Foo>(actions.fetchFoos, "id");
 
     const initialState: LazyCollection<Foo> = {
       byId: {},
