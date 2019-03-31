@@ -3,6 +3,7 @@ import { AsyncAction, createReducer, match } from "re-reduced";
 import { LazyCollection as AsyncCollection, RequestStatus } from "@lib/types";
 
 import { indexBy } from "./list";
+import { merge, mergeWith } from "ramda";
 
 export interface PaginatedResult<TData> {
   count: number;
@@ -13,23 +14,25 @@ export interface PaginatedResult<TData> {
 export function createAsyncCollectionReducer<
   TData,
   TPayload = void,
-  TError = Error
+  TError = Error,
+  TState extends AsyncCollection<TData, TError> = AsyncCollection<TData, TError>
 >(
   action: AsyncAction<PaginatedResult<TData>, TPayload, TError>,
-  idKey: keyof TData
+  idKey: keyof TData,
+  initialState?: Partial<TState>
 ) {
-  type ReducerState = AsyncCollection<TData, TError>;
-
-  const INITIAL_STATE: ReducerState = {
+  const defaultState = {
     byId: {},
-    idList: [],
+    idList: [] as string[],
     request: {
       status: RequestStatus.Idle,
       error: undefined
     }
   };
 
-  return createReducer<ReducerState>(
+  const INITIAL_STATE = merge(defaultState, initialState) as TState;
+
+  return createReducer<TState>(
     [
       match(action.request, state => ({
         ...state,
