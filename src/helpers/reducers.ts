@@ -3,7 +3,7 @@ import { AsyncAction, createReducer, match } from "re-reduced";
 import { LazyCollection as AsyncCollection, RequestStatus } from "@lib/types";
 
 import { indexBy } from "./list";
-import { merge, mergeWith } from "ramda";
+import { merge } from "ramda";
 
 export interface PaginatedResult<TData> {
   count: number;
