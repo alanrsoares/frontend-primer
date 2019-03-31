@@ -25,8 +25,7 @@ export function createAsyncCollectionReducer<
     byId: {},
     idList: [] as string[],
     request: {
-      status: RequestStatus.Idle,
-      error: undefined
+      status: RequestStatus.Idle
     }
   };
 
