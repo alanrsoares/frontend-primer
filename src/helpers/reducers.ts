@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { AsyncAction, createReducer, match } from "re-reduced";
+import { AsyncAction, createReducer } from "re-reduced";
 import { merge, always } from "ramda";
 
 import { indexBy } from "@helpers/list";
@@ -24,19 +24,17 @@ export function createRequestReducer<
 
   return createReducer<RequestState<TError>>(
     [
-      match(
-        action.request,
+      action.request.reduce(
         always({
           status: RequestStatus.Pending
         })
       ),
-      match(
-        action.success,
+      action.success.reduce(
         always({
           status: RequestStatus.Fulfilled
         })
       ),
-      match(action.failure, (_, payload) => ({
+      action.failure.reduce((_, payload) => ({
         status: RequestStatus.Failed,
         error: payload
       }))
@@ -52,7 +50,7 @@ export function createPaginationReducer<
 >(action: AsyncAction<PaginatedResult<TData[]>, TPayload, TError>) {
   const INITIAL_STATE: PaginationState = null;
   return createReducer<PaginationState>(
-    [match(action.success, (_, payload) => payload.pagination || null)],
+    action.success.reduce((_, payload) => payload.pagination || null),
     INITIAL_STATE
   );
 }
@@ -81,15 +79,13 @@ export function createAsyncCollectionReducer<
 
   return combineReducers<TState>({
     byId: createReducer(
-      [match(action.success, (_, payload) => indexBy(idKey, payload.items))],
+      action.success.reduce((_, payload) => indexBy(idKey, payload.items)),
       INITIAL_STATE.byId
     ),
     idList: createReducer(
-      [
-        match(action.success, (_, payload) =>
-          payload.items.map(item => String(item[idKey]))
-        )
-      ],
+      action.success.reduce((_, payload) =>
+        payload.items.map(item => String(item[idKey]))
+      ),
       INITIAL_STATE.idList
     ),
     request: createRequestReducer(action)
