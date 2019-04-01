@@ -34,9 +34,9 @@ export function createRequestReducer<
           status: RequestStatus.Fulfilled
         })
       ),
-      action.failure.reduce((_, payload) => ({
+      action.failure.reduce((_, error) => ({
         status: RequestStatus.Failed,
-        error: payload
+        error
       }))
     ],
     INITIAL_STATE
