@@ -1,22 +1,22 @@
+import { combineReducers } from "redux";
 import { AsyncAction, createReducer, match } from "re-reduced";
 import { merge } from "ramda";
 
 import {
   AsyncCollection,
   RequestStatus,
-  Paginated,
+  PaginatedResult,
   PaginationState,
-  Collection
+  Result
 } from "@lib/types";
 
 import { indexBy } from "./list";
-import { combineReducers } from "redux";
 
 export function createPaginationReducer<
   TData = any,
   TPayload = void,
   TError = Error
->(action: AsyncAction<Paginated<TData[]>, TPayload, TError>) {
+>(action: AsyncAction<PaginatedResult<TData[]>, TPayload, TError>) {
   const INITIAL_STATE: PaginationState = null;
   return createReducer<PaginationState>(
     [match(action.success, (_, payload) => payload.pagination || null)],
@@ -28,25 +28,23 @@ export function createAsyncCollectionReducer<
   TData,
   TPayload = void,
   TError = Error,
-  TState extends AsyncCollection<TData, TError> = AsyncCollection<
-    TData,
-    TError
-  >,
-  TResult extends Collection<TData[]> = Collection<TData[]>
+  TResult extends Result<TData[]> = Result<TData[]>
 >(
   action: AsyncAction<TResult, TPayload, TError>,
   idKey: keyof TData,
-  initialState?: Partial<TState>
+  initialState?: Partial<AsyncCollection<TData, TError>>
 ) {
-  const defaultState = {
+  type TState = AsyncCollection<TData, TError>;
+
+  const defaultState: TState = {
     byId: {},
-    idList: [] as string[],
+    idList: [],
     request: {
       status: RequestStatus.Idle
     }
   };
 
-  const INITIAL_STATE = merge(defaultState, initialState) as TState;
+  const INITIAL_STATE: TState = merge(defaultState, initialState);
 
   return createReducer<TState>(
     [
@@ -79,29 +77,28 @@ export function createAsyncCollectionReducer<
 export function createAsyncPaginatedCollectionReducer<
   TData,
   TPayload = void,
-  TError = Error,
-  TState extends Paginated<AsyncCollection<TData, TError>> = Paginated<
-    AsyncCollection<TData, TError>
-  >
+  TError = Error
 >(
-  action: AsyncAction<Paginated<TData[]>, TPayload, TError>,
+  action: AsyncAction<PaginatedResult<TData[]>, TPayload, TError>,
   idKey: keyof TData,
-  initialState?: Partial<TState>
+  initialState?: Partial<PaginatedResult<AsyncCollection<TData, TError>>>
 ) {
-  const defaultState = {
+  type TState = PaginatedResult<AsyncCollection<TData, TError>>;
+
+  const defaultState: TState = {
     items: {
       byId: {},
-      idList: [] as string[],
+      idList: [],
       request: {
         status: RequestStatus.Idle
       }
     },
     pagination: null
-  } as TState;
+  };
 
-  const INITIAL_STATE = merge(defaultState, initialState) as TState;
+  const INITIAL_STATE: TState = merge(defaultState, initialState);
 
-  return combineReducers<Paginated<AsyncCollection<TData, TError>>>({
+  return combineReducers<TState>({
     items: createAsyncCollectionReducer(action, idKey, INITIAL_STATE.items),
     pagination: createPaginationReducer(action)
   });

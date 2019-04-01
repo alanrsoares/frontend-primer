@@ -2,7 +2,7 @@ import { ENDPOINTS, API_CONFIG } from "@domain/core";
 
 import ApiMockRouter from "@lib/ApiMockRouter";
 
-import { Paginated } from "@lib/types";
+import { PaginatedResult } from "@lib/types";
 import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
 import { Feature, Features } from "@domain/core/features/types";
@@ -68,15 +68,15 @@ export const mockApi = mockRouter
     data: true
   }))
   .get(ENDPOINTS.features, () => ({
-    data: features
+    data: { items: features }
   }))
-  .get<void, Paginated<Movie[]>>(ENDPOINTS.movies, () => ({
+  .get<void, PaginatedResult<Movie[]>>(ENDPOINTS.movies, () => ({
     data: {
       items: movies,
       pagination: { total: 2, pageSize: 20, pageIndex: 0 }
     }
   }))
-  .get<void, Paginated<Genre[]>>(ENDPOINTS.genres, () => ({
+  .get<void, PaginatedResult<Genre[]>>(ENDPOINTS.genres, () => ({
     data: {
       items: genres,
       pagination: { total: 2, pageSize: 20, pageIndex: 0 }

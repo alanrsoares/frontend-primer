@@ -1,8 +1,8 @@
-import { AsyncCollection, Paginated } from "@lib/types";
+import { AsyncCollection, PaginatedResult } from "@lib/types";
 
 export interface Genre {
   id: string;
   name: string;
 }
 
-export type GenresState = Paginated<AsyncCollection<Genre>>;
+export type GenresState = PaginatedResult<AsyncCollection<Genre>>;

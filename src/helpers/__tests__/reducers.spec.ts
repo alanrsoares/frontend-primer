@@ -1,7 +1,7 @@
 import { createActions } from "re-reduced";
 
 import { createAsyncPaginatedCollectionReducer } from "@helpers/reducers";
-import { AsyncCollection, RequestStatus, Paginated } from "@lib/types";
+import { AsyncCollection, RequestStatus, PaginatedResult } from "@lib/types";
 
 describe("Helpers - reducers", () => {
   describe("createAsyncCollectionReducer", () => {
@@ -11,7 +11,7 @@ describe("Helpers - reducers", () => {
     }
 
     const actions = createActions(create => ({
-      fetchFoos: create.asyncAction<Paginated<Foo[]>>()
+      fetchFoos: create.asyncAction<PaginatedResult<Foo[]>>()
     }));
 
     const reducer = createAsyncPaginatedCollectionReducer<Foo>(
@@ -19,7 +19,7 @@ describe("Helpers - reducers", () => {
       "id"
     );
 
-    const initialState: Paginated<AsyncCollection<Foo>> = {
+    const initialState: PaginatedResult<AsyncCollection<Foo>> = {
       items: {
         byId: {},
         idList: [],
@@ -66,7 +66,7 @@ describe("Helpers - reducers", () => {
     });
 
     it("should handle AsyncAction.success updating the request status and indexing the result data", () => {
-      const mockSuccessPayload: Paginated<Foo[]> = {
+      const mockSuccessPayload: PaginatedResult<Foo[]> = {
         items: [{ id: "id-1", name: "FOO 1" }, { id: "id-2", name: "FOO 2" }],
         pagination: { total: 2, pageSize: 2, pageIndex: 0 }
       };

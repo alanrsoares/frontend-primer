@@ -16,11 +16,11 @@ export interface AsyncCollection<TResult, TError = Error> {
   request: RequestState<TError>;
 }
 
-export interface Collection<T> {
+export interface Result<T> {
   items: T;
 }
 
-export interface Paginated<T> extends Collection<T> {
+export interface PaginatedResult<T> extends Result<T> {
   pagination: PaginationState;
 }
 
