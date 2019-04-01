@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import { AsyncAction, createReducer, match } from "re-reduced";
-import { merge } from "ramda";
+import { merge, always } from "ramda";
+
+import { indexBy } from "@helpers/list";
 
 import {
   AsyncCollection,
@@ -10,8 +12,6 @@ import {
   Result,
   RequestState
 } from "@lib/types";
-
-import { indexBy } from "./list";
 
 export function createRequestReducer<
   TResult = any,
@@ -24,12 +24,18 @@ export function createRequestReducer<
 
   return createReducer<RequestState<TError>>(
     [
-      match(action.request, () => ({
-        status: RequestStatus.Pending
-      })),
-      match(action.success, () => ({
-        status: RequestStatus.Fulfilled
-      })),
+      match(
+        action.request,
+        always({
+          status: RequestStatus.Pending
+        })
+      ),
+      match(
+        action.success,
+        always({
+          status: RequestStatus.Fulfilled
+        })
+      ),
       match(action.failure, (_, payload) => ({
         status: RequestStatus.Failed,
         error: payload
