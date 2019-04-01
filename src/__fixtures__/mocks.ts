@@ -6,6 +6,7 @@ import { Genre } from "@domain/genres";
 import { Movie } from "@domain/movies";
 import { Feature, Features } from "@domain/core/features/types";
 import { LoginPayload } from "@domain/core/user/types";
+import { Paginated } from "@helpers/reducers";
 
 export interface APIMockResult<T = any> {
   data: T;
@@ -69,17 +70,19 @@ export const mockApi = mockRouter
   .get(ENDPOINTS.features, () => ({
     data: features
   }))
-  .get(ENDPOINTS.movies, () => ({
+  .get<void, Paginated<Movie>>(ENDPOINTS.movies, () => ({
     data: {
-      count: 2,
-      page: 0,
-      data: movies
+      total: 2,
+      pageSize: 20,
+      pageIndex: 0,
+      items: movies
     }
   }))
-  .get(ENDPOINTS.genres, () => ({
+  .get<void, Paginated<Genre>>(ENDPOINTS.genres, () => ({
     data: {
-      count: 2,
-      page: 0,
-      data: genres
+      total: 2,
+      pageSize: 20,
+      pageIndex: 0,
+      items: genres
     }
   }));

@@ -1,10 +1,7 @@
 import { createActions } from "re-reduced";
 
-import {
-  PaginatedResult,
-  createAsyncCollectionReducer
-} from "@helpers/reducers";
-import { LazyCollection, RequestStatus } from "@lib/types";
+import { Paginated, createAsyncCollectionReducer } from "@helpers/reducers";
+import { AsyncCollection, RequestStatus } from "@lib/types";
 
 describe("Helpers - reducers", () => {
   describe("createAsyncCollectionReducer", () => {
@@ -14,12 +11,12 @@ describe("Helpers - reducers", () => {
     }
 
     const actions = createActions(create => ({
-      fetchFoos: create.asyncAction<PaginatedResult<Foo>>()
+      fetchFoos: create.asyncAction<Paginated<Foo>>()
     }));
 
     const reducer = createAsyncCollectionReducer<Foo>(actions.fetchFoos, "id");
 
-    const initialState: LazyCollection<Foo> = {
+    const initialState: AsyncCollection<Foo> = {
       byId: {},
       idList: [],
       request: {
@@ -57,10 +54,11 @@ describe("Helpers - reducers", () => {
     });
 
     it("should handle AsyncAction.success updating the request status and indexing the result data", () => {
-      const mockSuccessPayload: PaginatedResult<Foo> = {
-        count: 2,
-        page: 0,
-        data: [{ id: "id-1", name: "FOO 1" }, { id: "id-2", name: "FOO 2" }]
+      const mockSuccessPayload: Paginated<Foo> = {
+        total: 2,
+        pageSize: 2,
+        pageIndex: 0,
+        items: [{ id: "id-1", name: "FOO 1" }, { id: "id-2", name: "FOO 2" }]
       };
 
       const expectedState = {

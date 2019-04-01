@@ -10,7 +10,7 @@ export interface RequestState<TError = Error> {
   error?: TError;
 }
 
-export interface LazyCollection<TResult, TError = Error> {
+export interface AsyncCollection<TResult, TError = Error> {
   byId: { [id: string]: TResult };
   idList: string[];
   request: RequestState<TError>;

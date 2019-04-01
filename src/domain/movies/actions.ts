@@ -1,9 +1,9 @@
 import { createActions } from "re-reduced";
 
 import { Movie } from "./types";
-import { PaginatedResult } from "@helpers/reducers";
+import { Paginated } from "@helpers/reducers";
 
 export default createActions("MOVIES", create => ({
-  fetch: create.asyncAction<PaginatedResult<Movie>>(),
+  fetch: create.asyncAction<Paginated<Movie>>(),
   fetchDetails: create.asyncAction<Movie, { id: string }>()
 }));

@@ -1,6 +1,6 @@
-import { LazyCollection } from "@lib/types";
+import { AsyncCollection } from "@lib/types";
 
-export type MoviesState = LazyCollection<Movie>;
+export type MoviesState = AsyncCollection<Movie>;
 
 export interface Movie {
   id: string;

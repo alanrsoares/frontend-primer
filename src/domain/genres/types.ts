@@ -1,8 +1,8 @@
-import { LazyCollection } from "@lib/types";
+import { AsyncCollection } from "@lib/types";
 
 export interface Genre {
   id: string;
   name: string;
 }
 
-export type GenresState = LazyCollection<Genre>;
+export type GenresState = AsyncCollection<Genre>;
