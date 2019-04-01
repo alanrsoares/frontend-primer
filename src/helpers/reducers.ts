@@ -7,10 +7,37 @@ import {
   RequestStatus,
   PaginatedResult,
   PaginationState,
-  Result
+  Result,
+  RequestState
 } from "@lib/types";
 
 import { indexBy } from "./list";
+
+export function createRequestReducer<
+  TResult = any,
+  TPayload = void,
+  TError = Error
+>(action: AsyncAction<TResult, TPayload, TError>) {
+  const INITIAL_STATE: RequestState<TError> = {
+    status: RequestStatus.Idle
+  };
+
+  return createReducer<RequestState<TError>>(
+    [
+      match(action.request, () => ({
+        status: RequestStatus.Pending
+      })),
+      match(action.success, () => ({
+        status: RequestStatus.Fulfilled
+      })),
+      match(action.failure, (_, payload) => ({
+        status: RequestStatus.Failed,
+        error: payload
+      }))
+    ],
+    INITIAL_STATE
+  );
+}
 
 export function createPaginationReducer<
   TData = any,
@@ -46,32 +73,21 @@ export function createAsyncCollectionReducer<
 
   const INITIAL_STATE: TState = merge(defaultState, initialState);
 
-  return createReducer<TState>(
-    [
-      match(action.request, state => ({
-        ...state,
-        request: {
-          status: RequestStatus.Pending
-        }
-      })),
-      match(action.success, (state, payload) => ({
-        ...state,
-        byId: indexBy(idKey, payload.items),
-        idList: payload.items.map(item => String(item[idKey])),
-        request: {
-          status: RequestStatus.Fulfilled
-        }
-      })),
-      match(action.failure, (state, payload) => ({
-        ...state,
-        request: {
-          status: RequestStatus.Failed,
-          error: payload
-        }
-      }))
-    ],
-    INITIAL_STATE
-  );
+  return combineReducers<TState>({
+    byId: createReducer(
+      [match(action.success, (_, payload) => indexBy(idKey, payload.items))],
+      INITIAL_STATE.byId
+    ),
+    idList: createReducer(
+      [
+        match(action.success, (_, payload) =>
+          payload.items.map(item => String(item[idKey]))
+        )
+      ],
+      INITIAL_STATE.idList
+    ),
+    request: createRequestReducer(action)
+  });
 }
 
 export function createAsyncPaginatedCollectionReducer<
