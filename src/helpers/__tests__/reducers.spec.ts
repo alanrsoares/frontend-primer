@@ -1,7 +1,7 @@
 import { createActions } from "re-reduced";
 
-import { Paginated, createAsyncCollectionReducer } from "@helpers/reducers";
-import { AsyncCollection, RequestStatus } from "@lib/types";
+import { createAsyncPaginatedCollectionReducer } from "@helpers/reducers";
+import { AsyncCollection, RequestStatus, Paginated } from "@lib/types";
 
 describe("Helpers - reducers", () => {
   describe("createAsyncCollectionReducer", () => {
@@ -11,24 +11,33 @@ describe("Helpers - reducers", () => {
     }
 
     const actions = createActions(create => ({
-      fetchFoos: create.asyncAction<Paginated<Foo>>()
+      fetchFoos: create.asyncAction<Paginated<Foo[]>>()
     }));
 
-    const reducer = createAsyncCollectionReducer<Foo>(actions.fetchFoos, "id");
+    const reducer = createAsyncPaginatedCollectionReducer<Foo>(
+      actions.fetchFoos,
+      "id"
+    );
 
-    const initialState: AsyncCollection<Foo> = {
-      byId: {},
-      idList: [],
-      request: {
-        status: RequestStatus.Idle
-      }
+    const initialState: Paginated<AsyncCollection<Foo>> = {
+      items: {
+        byId: {},
+        idList: [],
+        request: {
+          status: RequestStatus.Idle
+        }
+      },
+      pagination: null
     };
 
     it("should handle AsyncAction.request updating the request status", () => {
       const expectedState = {
         ...initialState,
-        request: {
-          status: RequestStatus.Pending
+        items: {
+          ...initialState.items,
+          request: {
+            status: RequestStatus.Pending
+          }
         }
       };
 
@@ -42,9 +51,12 @@ describe("Helpers - reducers", () => {
 
       const expectedState = {
         ...initialState,
-        request: {
-          status: RequestStatus.Failed,
-          error: mockError
+        items: {
+          ...initialState.items,
+          request: {
+            status: RequestStatus.Failed,
+            error: mockError
+          }
         }
       };
 
@@ -54,22 +66,23 @@ describe("Helpers - reducers", () => {
     });
 
     it("should handle AsyncAction.success updating the request status and indexing the result data", () => {
-      const mockSuccessPayload: Paginated<Foo> = {
-        total: 2,
-        pageSize: 2,
-        pageIndex: 0,
-        items: [{ id: "id-1", name: "FOO 1" }, { id: "id-2", name: "FOO 2" }]
+      const mockSuccessPayload: Paginated<Foo[]> = {
+        items: [{ id: "id-1", name: "FOO 1" }, { id: "id-2", name: "FOO 2" }],
+        pagination: { total: 2, pageSize: 2, pageIndex: 0 }
       };
 
       const expectedState = {
-        byId: {
-          "id-1": { id: "id-1", name: "FOO 1" },
-          "id-2": { id: "id-2", name: "FOO 2" }
+        items: {
+          byId: {
+            "id-1": { id: "id-1", name: "FOO 1" },
+            "id-2": { id: "id-2", name: "FOO 2" }
+          },
+          idList: ["id-1", "id-2"],
+          request: {
+            status: RequestStatus.Fulfilled
+          }
         },
-        idList: ["id-1", "id-2"],
-        request: {
-          status: RequestStatus.Fulfilled
-        }
+        pagination: { total: 2, pageSize: 2, pageIndex: 0 }
       };
 
       expect(

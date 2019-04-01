@@ -1,6 +1,6 @@
-import { AsyncCollection } from "@lib/types";
+import { AsyncCollection, Paginated } from "@lib/types";
 
-export type MoviesState = AsyncCollection<Movie>;
+export type MoviesState = Paginated<AsyncCollection<Movie>>;
 
 export interface Movie {
   id: string;

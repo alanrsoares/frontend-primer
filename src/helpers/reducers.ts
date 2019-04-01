@@ -1,24 +1,40 @@
 import { AsyncAction, createReducer, match } from "re-reduced";
 import { merge } from "ramda";
 
-import { AsyncCollection, RequestStatus } from "@lib/types";
+import {
+  AsyncCollection,
+  RequestStatus,
+  Paginated,
+  PaginationState,
+  Collection
+} from "@lib/types";
 
 import { indexBy } from "./list";
+import { combineReducers } from "redux";
 
-export interface Paginated<TData> {
-  total: number;
-  pageIndex: number;
-  pageSize: number;
-  items: TData[];
+export function createPaginationReducer<
+  TData = any,
+  TPayload = void,
+  TError = Error
+>(action: AsyncAction<Paginated<TData[]>, TPayload, TError>) {
+  const INITIAL_STATE: PaginationState = null;
+  return createReducer<PaginationState>(
+    [match(action.success, (_, payload) => payload.pagination || null)],
+    INITIAL_STATE
+  );
 }
 
 export function createAsyncCollectionReducer<
   TData,
   TPayload = void,
   TError = Error,
-  TState extends AsyncCollection<TData, TError> = AsyncCollection<TData, TError>
+  TState extends AsyncCollection<TData, TError> = AsyncCollection<
+    TData,
+    TError
+  >,
+  TResult extends Collection<TData[]> = Collection<TData[]>
 >(
-  action: AsyncAction<Paginated<TData>, TPayload, TError>,
+  action: AsyncAction<TResult, TPayload, TError>,
   idKey: keyof TData,
   initialState?: Partial<TState>
 ) {
@@ -58,4 +74,35 @@ export function createAsyncCollectionReducer<
     ],
     INITIAL_STATE
   );
+}
+
+export function createAsyncPaginatedCollectionReducer<
+  TData,
+  TPayload = void,
+  TError = Error,
+  TState extends Paginated<AsyncCollection<TData, TError>> = Paginated<
+    AsyncCollection<TData, TError>
+  >
+>(
+  action: AsyncAction<Paginated<TData[]>, TPayload, TError>,
+  idKey: keyof TData,
+  initialState?: Partial<TState>
+) {
+  const defaultState = {
+    items: {
+      byId: {},
+      idList: [] as string[],
+      request: {
+        status: RequestStatus.Idle
+      }
+    },
+    pagination: null
+  } as TState;
+
+  const INITIAL_STATE = merge(defaultState, initialState) as TState;
+
+  return combineReducers<Paginated<AsyncCollection<TData, TError>>>({
+    items: createAsyncCollectionReducer(action, idKey, INITIAL_STATE.items),
+    pagination: createPaginationReducer(action)
+  });
 }

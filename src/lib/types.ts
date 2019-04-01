@@ -15,3 +15,17 @@ export interface AsyncCollection<TResult, TError = Error> {
   idList: string[];
   request: RequestState<TError>;
 }
+
+export interface Collection<T> {
+  items: T;
+}
+
+export interface Paginated<T> extends Collection<T> {
+  pagination: PaginationState;
+}
+
+export type PaginationState = null | {
+  total: number;
+  pageIndex: number;
+  pageSize: number;
+};
