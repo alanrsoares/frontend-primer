@@ -5,4 +5,4 @@ import { Result } from "@lib/types";
 import { Feature } from "./types";
 import { ENDPOINTS } from "../constants";
 
-export const fetchFeatures = get<void, Result<Feature[]>>(ENDPOINTS.features);
+export const fetchFeatures = get<Result<Feature[]>>(ENDPOINTS.features);

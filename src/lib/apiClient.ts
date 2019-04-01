@@ -48,8 +48,8 @@ export interface RequestConfig<
  * @param method - HTTP Method ("GET", "POST", "PUT", "DELETE", "PATCH")
  */
 export const request = (method: HTTPMethod) => <
-  TPayload = any,
   TResult = any,
+  TPayload = void,
   TNewPayload = TPayload,
   TNewResult = TResult
 >(

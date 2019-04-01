@@ -1,3 +1,5 @@
+export type Optional<T> = void | undefined | T;
+
 export enum RequestStatus {
   Idle = "Idle",
   Pending = "Pending",
@@ -20,12 +22,17 @@ export interface Result<T> {
   items: T;
 }
 
+export type PaginationQuery = Optional<{
+  pageIndex: number;
+  pageSize: number;
+}>;
+
+export type PaginationState =
+  | null
+  | PaginationQuery & {
+      total: number;
+    };
+
 export interface PaginatedResult<T> extends Result<T> {
   pagination: PaginationState;
 }
-
-export type PaginationState = null | {
-  total: number;
-  pageIndex: number;
-  pageSize: number;
-};
