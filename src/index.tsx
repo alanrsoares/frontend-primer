@@ -21,6 +21,6 @@ const App = () => (
   </React.StrictMode>
 );
 
-ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+ReactDOM.render(<App />, document.getElementById("main") as HTMLElement);
 
 registerServiceWorker();

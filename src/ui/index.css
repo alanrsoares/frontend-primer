@@ -1,6 +1,0 @@
-@import "~antd/dist/antd.min.css";
-
-#root {
-  display: flex;
-  min-height: 100vh;
-}

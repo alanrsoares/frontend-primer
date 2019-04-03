@@ -23,10 +23,10 @@
     ]
   },
   "dependencies": {
-    "antd": "^3.15.1",
     "axios": "^0.18.0",
+    "query-string": "^6.4.2",
     "ramda": "^0.26.1",
-    "re-reduced": "^1.4.2",
+    "re-reduced": "^1.4.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",

@@ -5,7 +5,7 @@ export * from "./types";
 export * from "./constants";
 
 export { default as actions } from "./actions";
-export { default as reducers } from "./reducers";
+export { default as reducers } from "./reducer";
 export { default as sagas } from "./sagas";
 
 export const api = _api;

@@ -37,7 +37,7 @@ export interface RequestConfig<
   TNewResult = TResult
 > {
   transformPayload?: (payload: TPayload) => TNewPayload;
-  transformResult?: (result: TResult) => TNewResult;
+  transformResult?: (result: TResult, payload: TNewPayload) => TNewResult;
   transformEndpoint?: (payload: TNewPayload, endpoint: string) => string;
 }
 
@@ -63,7 +63,7 @@ export const request = (method: HTTPMethod) => <
   async function requestFn(payload: TPayload): Promise<TNewResult> {
     const $config = {
       transformPayload: (p: TPayload) => p,
-      transformResult: (result: TResult) => result,
+      transformResult: (result: TResult, _: TNewPayload) => result,
       transformEndpoint: (_: TNewPayload, oldEndpoint: string) => oldEndpoint,
       ...(config || {})
     };
@@ -80,7 +80,10 @@ export const request = (method: HTTPMethod) => <
     const match = mockApi.match(method, fullEndpoint, $payload);
 
     if (match) {
-      const mockResult = $config.transformResult(match.data) as TNewResult;
+      const mockResult = $config.transformResult(
+        match.data,
+        $payload
+      ) as TNewResult;
 
       console.info(`responding ${key} with`, mockResult);
 
@@ -96,7 +99,7 @@ export const request = (method: HTTPMethod) => <
       );
       const $response: AxiosResponse<TResult> = await axiosRequest;
 
-      return $config.transformResult($response.data) as TNewResult;
+      return $config.transformResult($response.data, $payload) as TNewResult;
     } catch (error) {
       if (process.env.NODE_ENV !== "production") {
         console.warn(

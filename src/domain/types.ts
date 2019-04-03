@@ -1,13 +1,10 @@
 import { CoreState } from "./core/types";
-import { GenresState } from "./genres/types";
-import { MoviesState } from "./movies/types";
+import { ContentState } from "./content/types";
 
 export * from "./core/types";
-export * from "./genres/types";
-export * from "./movies/types";
+export * from "./content/types";
 
 export interface State {
   core: CoreState;
-  genres: GenresState;
-  movies: MoviesState;
+  content: ContentState;
 }

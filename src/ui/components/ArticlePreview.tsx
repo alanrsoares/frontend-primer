@@ -1,0 +1,46 @@
+import React from "react";
+import { Article } from "@domain/content/types";
+import { Link } from "react-router-dom";
+import { Routes } from "@domain/core";
+
+function HeartButton(props: { count: number; onClick(): void }) {
+  return (
+    <button
+      className="btn btn-outline-primary btn-sm pull-xs-right"
+      onClick={props.onClick}
+    >
+      <i className="ion-heart" /> {props.count}
+    </button>
+  );
+}
+
+interface Props extends Article {
+  onFavorite(slug: string): void;
+}
+
+export default function ArticlePreview(props: Props) {
+  return (
+    <div className="article-preview">
+      <div className="article-meta">
+        <Link to={Routes.profile(props.author.username)}>
+          <img src={props.author.image} />
+        </Link>
+        <div className="info">
+          <Link to={Routes.profile(props.author.username)} className="author">
+            {props.author.username}
+          </Link>
+          <span className="date">{props.createdAt}</span>
+        </div>
+        <HeartButton
+          onClick={() => props.onFavorite(props.slug)}
+          count={props.favoritesCount}
+        />
+      </div>
+      <Link to={Routes.article(props.slug)} className="preview-link">
+        <h1>{props.title}</h1>
+        <p>{props.body}</p>
+        <span>Read more...</span>
+      </Link>
+    </div>
+  );
+}

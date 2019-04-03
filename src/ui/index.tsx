@@ -9,8 +9,6 @@ import { actions } from "@domain/core";
 import Public from "@ui/layouts/Public";
 import Authenticated from "@ui/layouts/Authenticated";
 
-import "./index.css";
-
 import Splash from "@ui/components/Splash";
 
 interface Props {
