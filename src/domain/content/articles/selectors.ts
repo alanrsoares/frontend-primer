@@ -1,12 +1,23 @@
 import { State } from "@domain/types";
 import { createSelector } from "reselect";
 import { RouteChildrenProps } from "react-router";
+import { prop } from "ramda";
 
 export const getArticlesState = (state: State) => state.content.articles;
 
-export const getArticles = createSelector(
+export const getArticlesItems = createSelector(
   getArticlesState,
-  ({ items }) => items.idList.map(id => items.byId[id])
+  prop("items")
+);
+
+export const getArticlesPagination = createSelector(
+  getArticlesState,
+  state => state.pagination!
+);
+
+export const getArticles = createSelector(
+  getArticlesItems,
+  ({ idList, byId }) => idList.map(id => byId[id])
 );
 
 export const getArticleFromRoute = <
@@ -16,8 +27,12 @@ export const getArticleFromRoute = <
   ownProps: T
 ) => {
   const slug = ownProps.match && ownProps.match.params.slug;
+
   if (slug) {
-    return getArticlesState(state).items.byId[slug];
+    return (
+      state.content.articles.detail.value ||
+      getArticlesState(state).items.byId[slug]
+    );
   }
   return;
 };

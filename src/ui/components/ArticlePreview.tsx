@@ -29,7 +29,9 @@ export default function ArticlePreview(props: Props) {
           <Link to={Routes.profile(props.author.username)} className="author">
             {props.author.username}
           </Link>
-          <span className="date">{props.createdAt}</span>
+          <span className="date">
+            {new Date(props.createdAt).toDateString()}
+          </span>
         </div>
         <HeartButton
           onClick={() => props.onFavorite(props.slug)}
@@ -38,8 +40,17 @@ export default function ArticlePreview(props: Props) {
       </div>
       <Link to={Routes.article(props.slug)} className="preview-link">
         <h1>{props.title}</h1>
-        <p>{props.body}</p>
+        <p>{props.description}</p>
         <span>Read more...</span>
+        <ul className="tag-list">
+          {props.tagList.map(tag => {
+            return (
+              <li className="tag-default tag-pill tag-outline" key={tag}>
+                {tag}
+              </li>
+            );
+          })}
+        </ul>
       </Link>
     </div>
   );

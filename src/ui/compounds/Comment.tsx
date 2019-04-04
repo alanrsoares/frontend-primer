@@ -1,23 +1,28 @@
 import React from "react";
 import { ArticleComment } from "@domain/content/types";
+import { Link } from "react-router-dom";
 
-interface Props extends ArticleComment {}
+import { Routes } from "@domain/core";
 
-export default function Comment(props: Props) {
+export default function Comment(props: ArticleComment) {
+  const profileRoute = Routes.profile(props.author.username);
+
   return (
     <div className="card">
       <div className="card-block">
         <p className="card-text">{props.body}</p>
       </div>
       <div className="card-footer">
-        <a href="" className="comment-author">
+        <Link to={profileRoute} className="comment-author">
           <img src={props.author.image} className="comment-author-img" />
-        </a>
+        </Link>
         &nbsp;
-        <a href={`@${props.author.username}`} className="comment-author">
+        <Link to={profileRoute} className="comment-author">
           {props.author.username}
-        </a>
-        <span className="date-posted">{props.createdAt}</span>
+        </Link>
+        <span className="date-posted">
+          {new Date(props.createdAt).toDateString()}
+        </span>
       </div>
     </div>
   );

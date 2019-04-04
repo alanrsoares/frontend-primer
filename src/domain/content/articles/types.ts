@@ -1,6 +1,7 @@
 import { PaginationQuery, UTCTimeStamp } from "../types";
-import { AuthorProfile } from "../profile/types";
-import { AsyncCollection, PaginatedResult } from "@lib/types";
+
+import { AsyncCollection, Paginated, AsyncValue } from "@lib/types";
+import { AuthorProfile } from "../profiles/types";
 
 export interface Article {
   /**
@@ -15,6 +16,7 @@ export interface Article {
   favorited: boolean;
   favoritesCount: number;
   tagList: string[];
+  description: string;
 }
 
 export interface ArticlesResponse {
@@ -22,11 +24,18 @@ export interface ArticlesResponse {
   articlesCount: number;
 }
 
+export interface ArticleResponse {
+  article: Article;
+}
+
 export interface ArticlesQuery extends PaginationQuery {
   /**
    * use author's username
    */
   author?: string;
+  tag?: string;
 }
 
-export type ArticlesState = PaginatedResult<AsyncCollection<Article>>;
+export type ArticlesState = Paginated<AsyncCollection<Article>> & {
+  detail: AsyncValue<Article>;
+};

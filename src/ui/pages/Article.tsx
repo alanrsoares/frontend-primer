@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter, RouteChildrenProps } from "react-router";
 import { connectWithActions } from "re-reduced";
+import { Link } from "react-router-dom";
+import Markdown from "react-markdown";
 
 import { Article, ArticleComment } from "@domain/content/types";
 import { selectors } from "@domain";
 
 import { actions } from "@domain/content";
+import { Routes } from "@domain/core";
 
 interface Props extends RouteChildrenProps<{ slug: string }> {
   actions: typeof actions;
@@ -14,32 +17,51 @@ interface Props extends RouteChildrenProps<{ slug: string }> {
 }
 
 export function ArticleComponent(props: Props) {
-  console.log(props);
+  useEffect(() => {
+    if (!props.article && props.match) {
+      props.actions.articles.fetchDetail(props.match.params.slug);
+      props.actions.comments.fetch(props.match.params.slug);
+    }
+  }, []);
+
+  if (!props.article) {
+    return <div>Loading article...</div>;
+  }
+
+  const { article } = props;
 
   return (
     <div className="article-page">
       <div className="banner">
         <div className="container">
-          <h1>How to build webapps that scale</h1>
+          <h1>{article.title}</h1>
 
           <div className="article-meta">
-            <a href="">
-              <img src="http://i.imgur.com/Qr71crq.jpg" />
-            </a>
+            <Link to={Routes.profile(props.article.author.username)}>
+              <img src={article.author.image} />
+            </Link>
             <div className="info">
-              <a href="" className="author">
-                Eric Simons
-              </a>
-              <span className="date">January 20th</span>
+              <Link
+                to={Routes.profile(article.author.username)}
+                className="author"
+              >
+                {article.author.username}
+              </Link>
+              <span className="date">
+                {new Date(article.createdAt).toDateString()}
+              </span>
             </div>
-            <button className="btn btn-sm btn-outline-secondary">
-              <i className="ion-plus-round" />
-              &nbsp; Follow Eric Simons <span className="counter">(10)</span>
-            </button>
+            {!article.author.following && (
+              <button className="btn btn-sm btn-outline-secondary">
+                <i className="ion-plus-round" />
+                &nbsp; Follow {article.author.username}
+              </button>
+            )}
             &nbsp;&nbsp;
             <button className="btn btn-sm btn-outline-primary">
               <i className="ion-heart" />
-              &nbsp; Favorite Post <span className="counter">(29)</span>
+              &nbsp; Favorite Post{" "}
+              <span className="counter">({article.favoritesCount})</span>
             </button>
           </div>
         </div>
@@ -48,12 +70,9 @@ export function ArticleComponent(props: Props) {
       <div className="container page">
         <div className="row article-content">
           <div className="col-md-12">
-            <p>
-              Web development technologies have evolved at an incredible clip
-              over the past few years.
-            </p>
-            <h2 id="introducing-ionic">Introducing RealWorld.</h2>
-            <p>It's a great solution for learning how other frameworks work.</p>
+            <p>{article.description}</p>
+            <h2 id="introducing-ionic">{article.title}</h2>
+            <Markdown source={article.body} />
           </div>
         </div>
 
@@ -61,23 +80,29 @@ export function ArticleComponent(props: Props) {
 
         <div className="article-actions">
           <div className="article-meta">
-            <a href="profile.html">
-              <img src="http://i.imgur.com/Qr71crq.jpg" />
-            </a>
+            <Link to={Routes.profile(article.author.username)}>
+              <img src={article.author.image} />
+            </Link>
             <div className="info">
-              <a href="" className="author">
-                Eric Simons
-              </a>
-              <span className="date">January 20th</span>
+              <Link
+                to={Routes.profile(article.author.username)}
+                className="author"
+              >
+                {article.author.username}
+              </Link>
+              <span className="date">
+                {new Date(article.createdAt).toDateString()}
+              </span>
             </div>
             <button className="btn btn-sm btn-outline-secondary">
               <i className="ion-plus-round" />
-              &nbsp; Follow Eric Simons <span className="counter">(10)</span>
+              &nbsp; Follow {article.author.username}
             </button>
             &nbsp;
             <button className="btn btn-sm btn-outline-primary">
               <i className="ion-heart" />
-              &nbsp; Favorite Post <span className="counter">(29)</span>
+              &nbsp; Favorite Post{" "}
+              <span className="counter">({article.favoritesCount})</span>
             </button>
           </div>
         </div>
@@ -156,7 +181,8 @@ export function ArticleComponent(props: Props) {
 }
 
 const enhance = connectWithActions<Props>(actions, {
-  article: selectors.getArticleFromRoute
+  article: selectors.getArticleFromRoute,
+  comments: selectors.getComments
 });
 
 export default withRouter(enhance(ArticleComponent));

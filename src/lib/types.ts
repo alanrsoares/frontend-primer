@@ -18,21 +18,27 @@ export interface AsyncCollection<TResult, TError = Error> {
   request: RequestState<TError>;
 }
 
+export interface AsyncValue<TResult, TError = Error> {
+  value: TResult | null;
+  request: RequestState<TError>;
+}
+
+export interface MasterDetailState<T, TError = Error>
+  extends Result<AsyncCollection<T, TError>> {}
+
 export interface Result<T> {
   items: T;
 }
 
-export type PaginationQuery = Optional<{
+export interface PaginationQuery {
   pageIndex: number;
   pageSize: number;
-}>;
+}
 
-export type PaginationState =
-  | null
-  | PaginationQuery & {
-      total: number;
-    };
+export type PaginationState = PaginationQuery & {
+  total: number;
+};
 
-export interface PaginatedResult<T> extends Result<T> {
-  pagination: PaginationState;
+export interface Paginated<T> extends Result<T> {
+  pagination: PaginationState | null;
 }

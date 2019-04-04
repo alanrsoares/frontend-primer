@@ -7,9 +7,10 @@ export const Endpoints = {
   login: "/auth/login",
   logout: "/auth/logout",
   validateToken: "/auth/validate",
-  tags: "/tags",
+  tags: `${API_CONFIG.HOST}/tags`,
   articles: `${API_CONFIG.HOST}/articles`,
-  comments: "/comments"
+  comments: `${API_CONFIG.HOST}/comments`,
+  profiles: `${API_CONFIG.HOST}/profiles`
 };
 
 export const Routes = {
@@ -18,8 +19,8 @@ export const Routes = {
   register: "/register",
   settings: "/settings",
   editor: (slug: string = ":slug") => `/editor/${slug}`,
-  profile: (username: string = ":username") => `/profile/${username}`,
-  article: (slug: string = ":slug") => `/article/${slug}`
+  article: (slug: string = ":slug") => `/article/${slug}`,
+  profile: (username: string = ":username") => `/@${username}`
 };
 
 export type RouteKind = keyof typeof Routes;

@@ -17,8 +17,8 @@ export function Public() {
         <Route exact path={Routes.home} component={Home} />
         <Route path={Routes.login} component={Auth} />
         <Route path={Routes.register} component={Auth} />
-        <Route path={Routes.profile()} component={Profile} />
         <Route path={Routes.article()} component={Article} />
+        <Route path={Routes.profile()} component={Profile} />
       </Switch>
     </>
   );

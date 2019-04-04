@@ -1,24 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { RouteChildrenProps } from "react-router";
 
-interface Props {}
+import { actions, AuthorProfile } from "@domain/content";
+import { connectWithActions } from "re-reduced";
+import { selectors } from "@domain";
 
-export default function Profile(props: Props) {
+interface Props extends RouteChildrenProps<{ username: string }> {
+  actions: typeof actions;
+  profile: AuthorProfile;
+}
+
+export function Profile(props: Props) {
+  useEffect(() => {
+    if (!props.profile && props.match) {
+      props.actions.profiles.fetchDetail(props.match.params.username);
+    }
+  }, []);
+
+  if (!props.profile) {
+    return <div>Loading profile...</div>;
+  }
+
+  const { profile } = props;
+
   return (
     <div className="profile-page">
       <div className="user-info">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-10 offset-md-1">
-              <img src="http://i.imgur.com/Qr71crq.jpg" className="user-img" />
-              <h4>Eric Simons</h4>
-              <p>
-                Cofounder @GoThinkster, lived in Aol's HQ for a few months,
-                kinda looks like Peeta from the Hunger Games
-              </p>
-              <button className="btn btn-sm btn-outline-secondary action-btn">
-                <i className="ion-plus-round" />
-                &nbsp; Follow Eric Simons
-              </button>
+              <img src={profile.image} className="user-img" />
+              <h4>{profile.username}</h4>
+              <p>{profile.bio}</p>
+              {profile.following ? (
+                <button className="btn btn-sm btn-outline-secondary action-btn">
+                  <i className="ion-plus-round" />
+                  &nbsp; Unfollow {profile.username}
+                </button>
+              ) : (
+                <button className="btn btn-sm btn-outline-secondary action-btn">
+                  <i className="ion-plus-round" />
+                  &nbsp; Follow {profile.username}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -97,3 +121,9 @@ export default function Profile(props: Props) {
     </div>
   );
 }
+
+const enhance = connectWithActions<Props>(actions, {
+  profile: selectors.getProfileFromRoute
+});
+
+export default enhance(Profile);

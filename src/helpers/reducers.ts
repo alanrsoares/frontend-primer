@@ -7,10 +7,11 @@ import { indexBy } from "@helpers/list";
 import {
   AsyncCollection,
   RequestStatus,
-  PaginatedResult,
+  Paginated,
   PaginationState,
   Result,
-  RequestState
+  RequestState,
+  AsyncValue
 } from "@lib/types";
 
 export function createRequestReducer<
@@ -47,9 +48,13 @@ export function createPaginationReducer<
   TData = any,
   TPayload = void,
   TError = Error
->(action: AsyncAction<PaginatedResult<TData[]>, TPayload, TError>) {
-  const INITIAL_STATE: PaginationState = null;
-  return createReducer<PaginationState>(
+>(
+  action: AsyncAction<Paginated<TData[]>, TPayload, TError>,
+  initialState?: PaginationState
+) {
+  const INITIAL_STATE: PaginationState | null = initialState || null;
+
+  return createReducer<PaginationState | null>(
     action.success.reduce((_, payload) => payload.pagination || null),
     INITIAL_STATE
   );
@@ -92,16 +97,34 @@ export function createAsyncCollectionReducer<
   });
 }
 
+export function createAsyncValueReducer<TData, TPayload = void, TError = Error>(
+  action: AsyncAction<TData, TPayload, TError>,
+  initialState?: TData
+) {
+  type TState = AsyncValue<TData, TError>;
+
+  return combineReducers<TState>({
+    value: createReducer(
+      [
+        action.success.reduce((_, payload) => payload),
+        action.failure.reduce(() => initialState || null)
+      ],
+      initialState || null
+    ),
+    request: createRequestReducer(action)
+  });
+}
+
 export function createAsyncPaginatedCollectionReducer<
   TData,
   TPayload = void,
   TError = Error
 >(
-  action: AsyncAction<PaginatedResult<TData[]>, TPayload, TError>,
+  action: AsyncAction<Paginated<TData[]>, TPayload, TError>,
   idKey: keyof TData,
-  initialState?: Partial<PaginatedResult<AsyncCollection<TData, TError>>>
+  initialState?: Partial<Paginated<AsyncCollection<TData, TError>>>
 ) {
-  type TState = PaginatedResult<AsyncCollection<TData, TError>>;
+  type TState = Paginated<AsyncCollection<TData, TError>>;
 
   const defaultState: TState = {
     items: {

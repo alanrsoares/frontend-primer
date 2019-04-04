@@ -1,9 +1,15 @@
-import { createAsyncPaginatedCollectionReducer } from "@helpers/reducers";
+import {
+  createAsyncCollectionReducer,
+  createPaginationReducer,
+  createAsyncValueReducer
+} from "@helpers/reducers";
 
 import actions from "./actions";
-import { Article, ArticlesQuery } from "./types";
+import { ArticlesState } from "./types";
+import { combineReducers } from "redux";
 
-export default createAsyncPaginatedCollectionReducer<Article, ArticlesQuery>(
-  actions.fetch,
-  "slug"
-);
+export default combineReducers<ArticlesState>({
+  items: createAsyncCollectionReducer(actions.fetch, "slug"),
+  pagination: createPaginationReducer(actions.fetch),
+  detail: createAsyncValueReducer(actions.fetchDetail)
+});

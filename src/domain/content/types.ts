@@ -1,4 +1,7 @@
 import { ArticlesState } from "./articles/types";
+import { ProfilesState } from "./profiles/types";
+import { CommentsState } from "./comments/types";
+import { TagsState } from "./tags/types";
 
 /**
  * UTCTimestamp
@@ -7,14 +10,18 @@ import { ArticlesState } from "./articles/types";
 export type UTCTimeStamp = string;
 
 export interface PaginationQuery {
-  limit?: number;
-  offset?: number;
+  limit: number;
+  offset: number;
 }
 
 export * from "./articles/types";
 export * from "./comments/types";
 export * from "./tags/types";
+export * from "./profiles/types";
 
 export interface ContentState {
   articles: ArticlesState;
+  profiles: ProfilesState;
+  comments: CommentsState;
+  tags: TagsState;
 }

@@ -1,35 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Routes } from "@domain/core";
 
-export default function SideBar() {
+const TagLink = (props: { children: string }) => (
+  <Link
+    to={`${Routes.home}?tag=${props.children}`}
+    className="tag-pill tag-default"
+  >
+    {props.children}
+  </Link>
+);
+
+interface Props {
+  tags: string[];
+}
+
+export default function SideBar(props: Props) {
   return (
     <div className="sidebar">
       <p>Popular Tags</p>
 
       <div className="tag-list">
-        <a href="" className="tag-pill tag-default">
-          programming
-        </a>
-        <a href="" className="tag-pill tag-default">
-          javascript
-        </a>
-        <a href="" className="tag-pill tag-default">
-          emberjs
-        </a>
-        <a href="" className="tag-pill tag-default">
-          angularjs
-        </a>
-        <a href="" className="tag-pill tag-default">
-          react
-        </a>
-        <a href="" className="tag-pill tag-default">
-          mean
-        </a>
-        <a href="" className="tag-pill tag-default">
-          node
-        </a>
-        <a href="" className="tag-pill tag-default">
-          rails
-        </a>
+        {!props.tags.length && <span>Loading tags...</span>}
+        {props.tags.map(tag => (
+          <TagLink key={tag}>{tag}</TagLink>
+        ))}
       </div>
     </div>
   );

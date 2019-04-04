@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { connectWithActions } from "re-reduced";
-import { Link, RouteProps, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import qs from "query-string";
+
+import { PaginationState } from "@lib/types";
+import { selectors } from "@domain";
 
 import { Routes } from "@domain/core";
 import { actions } from "@domain/content";
-import { selectors } from "@domain";
 
 import { Article } from "@domain/content/types";
 import ArticlePreview from "@ui/components/ArticlePreview";
+import { RouteChildrenProps } from "react-router";
+import Pagination from "./Pagination";
 
 const Tab = (props: {
   label: string;
@@ -42,59 +46,102 @@ const FeedToggle = (props: { children: React.ReactNodeArray }) => (
   </div>
 );
 
-type FeedKind = "global" | "private";
+type FeedKind = "global" | "private" | "tag";
 
-interface Props extends RouteProps {
+interface QueryState {
+  tag?: string;
+  pageIndex?: string;
+  feed?: FeedKind;
+}
+
+const getActiveFeed = (
+  query: QueryState,
+  isAuthenticated: boolean
+): FeedKind => {
+  if (query.tag) {
+    return "tag";
+  }
+  if (query.feed) {
+    return query.feed;
+  }
+
+  return isAuthenticated ? "private" : "global";
+};
+
+interface Props extends RouteChildrenProps {
   actions: typeof actions;
   isAuthenticated: boolean;
   articles: Article[];
+  pagination: PaginationState;
 }
 
 export function Feed(props: Props) {
-  useEffect(() => {
-    props.actions.articles.fetch({ limit: 10, offset: 0 });
-  }, []);
-  const query = props.location && qs.parse(props.location.search);
-  const selectedFeed: FeedKind =
-    query && query.feed
-      ? (query.feed as FeedKind)
-      : props.isAuthenticated
-      ? "private"
-      : "global";
+  const getQuery = useCallback(() => {
+    const queryString = props.location && qs.parse(props.location.search);
+    return (queryString || {}) as QueryState;
+  }, [props.location]);
 
-  const handleFavorite = () => {};
+  useEffect(() => {
+    const pageSize = 10;
+    const queryState = getQuery();
+    const pageIndex = queryState.pageIndex ? Number(queryState.pageIndex) : 1;
+
+    props.actions.articles.fetch({
+      limit: pageSize,
+      offset: (pageIndex - 1) * pageSize,
+      tag: queryState.tag
+    });
+  }, [props.location]);
+
+  const handleFavorite = useCallback(() => {
+    console.log("fav");
+  }, []);
+
+  const query = getQuery();
+  const activeFeed = getActiveFeed(query, props.isAuthenticated);
 
   return (
     <>
       <FeedToggle>
-        <Tab
-          label="Your Feed"
-          feed="private"
-          disabled={!props.isAuthenticated}
-          active={selectedFeed === "private"}
-        />
+        {props.isAuthenticated && (
+          <Tab
+            label="Your Feed"
+            feed="private"
+            disabled={!props.isAuthenticated}
+            active={activeFeed === "private"}
+          />
+        )}
         <Tab
           label="Global Feed"
           feed="global"
-          active={selectedFeed === "global"}
+          active={activeFeed === "global"}
         />
-      </FeedToggle>
-      <>
-        {props.articles.map(article => (
-          <ArticlePreview
-            key={article.slug}
-            onFavorite={handleFavorite}
-            {...article}
+        {query.tag && (
+          <Tab
+            label={`#${query.tag}`}
+            feed="global"
+            active={activeFeed === "tag"}
           />
-        ))}
-      </>
+        )}
+      </FeedToggle>
+
+      {props.articles.map(article => (
+        <ArticlePreview
+          key={article.slug}
+          onFavorite={handleFavorite}
+          {...article}
+        />
+      ))}
+
+      <Pagination {...props.pagination} />
     </>
   );
 }
 
 const enhance = connectWithActions<Props>(actions, {
   isAuthenticated: selectors.getUserIsAuthenticated,
-  articles: selectors.getArticles
+  articles: selectors.getArticles,
+  pagination: selectors.getArticlesPagination
 });
 
 export default withRouter(enhance(Feed));
