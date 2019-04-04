@@ -48,13 +48,11 @@ export default function ArticlePreview(props: Props) {
         <p>{props.description}</p>
         <span>Read more...</span>
         <ul className="tag-list">
-          {props.tagList.slice(0, maxTagCount).map(tag => {
-            return (
-              <li className="tag-default tag-pill tag-outline" key={tag}>
-                {tag}
-              </li>
-            );
-          })}
+          {props.tagList.slice(0, maxTagCount).map(tag => (
+            <li className="tag-default tag-pill tag-outline" key={tag}>
+              {tag}
+            </li>
+          ))}
           {tagCount > maxTagCount && (
             <li className="tag-default tag-pill tag-outline">
               +{tagCount - maxTagCount} tags...
