@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback } from "react";
 import { connectWithActions } from "re-reduced";
+import { RouteChildrenProps } from "react-router";
 import { Link, withRouter } from "react-router-dom";
+
 import qs from "query-string";
 
 import { PaginationState } from "@lib/types";
@@ -11,7 +13,7 @@ import { actions } from "@domain/content";
 
 import { Article } from "@domain/content/types";
 import ArticlePreview from "@ui/components/ArticlePreview";
-import { RouteChildrenProps } from "react-router";
+
 import Pagination from "./Pagination";
 
 const Tab = (props: {
@@ -125,15 +127,16 @@ export function Feed(props: Props) {
         )}
       </FeedToggle>
 
-      {props.articles.map(article => (
-        <ArticlePreview
-          key={article.slug}
-          onFavorite={handleFavorite}
-          {...article}
-        />
-      ))}
-
-      <Pagination {...props.pagination} />
+      <div style={{ padding: "0 10px" }}>
+        {props.articles.map(article => (
+          <ArticlePreview
+            key={article.slug}
+            onFavorite={handleFavorite}
+            {...article}
+          />
+        ))}
+        <Pagination {...props.pagination} />
+      </div>
     </>
   );
 }

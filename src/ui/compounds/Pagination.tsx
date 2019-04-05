@@ -17,7 +17,7 @@ export default function Pagination(props: PaginationState) {
             className={`page-item ${props.pageIndex === pageIndex && "active"}`}
           >
             <Link to={`?${qs.stringify({ pageIndex })}`} className="page-link">
-              {pageIndex}
+              {`${pageIndex}`}
             </Link>
           </li>
         ))}
