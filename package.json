@@ -29,7 +29,7 @@
     "re-reduced": "^1.4.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-redux": "^6.0.1",
+    "react-redux": "^7.0.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-router-redux": "^4.0.8",
