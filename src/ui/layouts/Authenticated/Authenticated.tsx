@@ -17,12 +17,13 @@ import {
 
 import { capitalize } from "@helpers/string";
 
-import Dashboard from "@ui/pages/Dashboard";
-import Genres from "@ui/pages/Genres";
-import Movies from "@ui/pages/Movies";
-
 import styles from "./Authenticated.module.css";
 import { connectWithActions } from "re-reduced";
+import Splash from "@ui/components/Splash";
+
+const Dashboard = React.lazy(() => import("@ui/pages/Dashboard"));
+const Genres = React.lazy(() => import("@ui/pages/Genres"));
+const Movies = React.lazy(() => import("@ui/pages/Movies"));
 
 interface Props extends RouteComponentProps {
   breadcrumbs: BreadcrumbItem[];
@@ -70,11 +71,13 @@ function Authenticated(props: Props) {
           ))}
         </Breadcrumb>
         <div className={styles.page}>
-          <Switch>
-            <Route exact path={ROUTES.home} component={Dashboard} />
-            <Route path={ROUTES.genres} component={Genres} />
-            <Route path={ROUTES.movies} component={Movies} />
-          </Switch>
+          <React.Suspense fallback={<Splash />}>
+            <Switch>
+              <Route exact path={ROUTES.home} component={Dashboard} />
+              <Route path={ROUTES.genres} component={Genres} />
+              <Route path={ROUTES.movies} component={Movies} />
+            </Switch>
+          </React.Suspense>
         </div>
       </Layout.Content>
       <Layout.Footer className={styles.footer}>
