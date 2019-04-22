@@ -95,7 +95,7 @@
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
     "prettier": "^1.14.3",
-    "react-app-polyfill": "^0.2.2",
+    "react-app-polyfill": "^1.0.0",
     "react-dev-utils": "^7.0.4",
     "redux-devtools-extension": "^2.13.5",
     "redux-saga-test-plan": "^4.0.0-beta.2",
