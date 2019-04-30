@@ -12229,10 +12229,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-reduced@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-1.6.2.tgz#a928d241bfa9e0aa8b02793a8914287fdfb4a260"
-  integrity sha512-PxNG78725hK5K5hseN8NrQbjMjhMMETUS9F6v2oa75UZBT3ikIPpp7mZBO9QmihIjn25BT8fpDY2wbrr1Py73A==
+re-reduced@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-1.6.4.tgz#9c10c2321f430949d3d101820a879df39b6012d7"
+  integrity sha512-7xZw96cSTy7YwaitAf6ScWYCYROLg5ZH44EwL+bJ8VA7YjCRrHRbS57Oo73Ig8ANb1fZmmmD/5381kocwHvlNA==
   dependencies:
     ramda "^0.26.1"
 
