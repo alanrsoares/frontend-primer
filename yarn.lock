@@ -12229,12 +12229,13 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-reduced@^1.6.4:
-  version "1.6.4"
-  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-1.6.4.tgz#9c10c2321f430949d3d101820a879df39b6012d7"
-  integrity sha512-7xZw96cSTy7YwaitAf6ScWYCYROLg5ZH44EwL+bJ8VA7YjCRrHRbS57Oo73Ig8ANb1fZmmmD/5381kocwHvlNA==
+re-reduced@^1.6.5:
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/re-reduced/-/re-reduced-1.6.5.tgz#1772d0afe0c5bba219ec3dde5fefbb87f82827b4"
+  integrity sha512-qAFjsBF/dN0v0X4ARO8f3q+4kxc6xeDHw4oH/jldH2NroEy1Q7aLTKtSv4cAM93kUinlqfzya7yxg8HPZVcSNQ==
   dependencies:
     ramda "^0.26.1"
+    redux-react-hook "^3.3.2"
 
 react-app-polyfill@^0.2.2:
   version "0.2.2"
@@ -12711,6 +12712,11 @@ redux-react-hook@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/redux-react-hook/-/redux-react-hook-3.3.1.tgz#3fc91c0def8a49b873c92879843b3f76c8ae7cf4"
   integrity sha512-a5RHGYT2ZV8Zo1ATP2ubxQGm0fPwn62loSieTeCL7PRgGfdTi8jR0S1K+1/1b4P6RSnEXvs5qC9IVlh2clPbxg==
+
+redux-react-hook@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/redux-react-hook/-/redux-react-hook-3.3.2.tgz#1cdad45009dfa264f46c2a9959d86ce1401df725"
+  integrity sha512-WdKoDA8FF25c9Tzy5iflM0wEbhilNrcXlAMg6OMgoAaH/bF20+A1H8y4c3B7F7oQGRFpAcBmiBiU//ZHd0AfOw==
 
 redux-saga-test-plan@^4.0.0-beta.2:
   version "4.0.0-beta.2"
