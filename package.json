@@ -110,7 +110,7 @@
     "tslint-react": "^4.0.0",
     "typescript": "^3.3.3",
     "url-loader": "1.1.2",
-    "webpack": "4.30.0",
+    "webpack": "4.32.1",
     "webpack-dev-server": "^3.1.11",
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "4.2.0",
