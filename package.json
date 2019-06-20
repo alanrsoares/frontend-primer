@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "antd": "^3.16.3",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "ramda": "^0.26.1",
     "re-reduced": "^1.6.7",
     "react": "^16.8.6",
