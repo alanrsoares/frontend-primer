@@ -77,7 +77,7 @@
     "eslint-plugin-react": "7.13.0",
     "file-loader": "3.0.1",
     "fork-ts-checker-webpack-plugin-alt": "0.4.14",
-    "fs-extra": "8.0.0",
+    "fs-extra": "8.1.0",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "husky": "^2.3.0",
