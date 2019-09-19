@@ -57,7 +57,7 @@
     "babel-jest": "^24.1.0",
     "babel-loader": "~8.0.5",
     "babel-plugin-module-resolver": "^3.2.0",
-    "babel-plugin-named-asset-import": "^0.3.1",
+    "babel-plugin-named-asset-import": "^0.3.4",
     "babel-preset-react-app": "^8.0.0",
     "bfj": "6.1.1",
     "buble": "0.19.6",
