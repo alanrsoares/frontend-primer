@@ -69,7 +69,7 @@
     "dotenv": "8.0.0",
     "dotenv-expand": "4.2.0",
     "enzyme": "^3.7.0",
-    "eslint": "5.16.0",
+    "eslint": "6.5.0",
     "eslint-config-react-app": "^4.0.0",
     "eslint-loader": "2.1.2",
     "eslint-plugin-import": "2.17.3",
