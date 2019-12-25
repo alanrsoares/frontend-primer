@@ -102,7 +102,7 @@
     "replace-in-file": "^4.0.0",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
-    "style-loader": "0.23.1",
+    "style-loader": "1.1.2",
     "terser-webpack-plugin": "1.2.4",
     "tslint": "^5.12.1",
     "tslint-config-prettier": "^1.18.0",
