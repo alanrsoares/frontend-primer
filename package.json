@@ -80,7 +80,7 @@
     "fs-extra": "8.0.0",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
-    "husky": "^2.3.0",
+    "husky": "^4.0.2",
     "identity-obj-proxy": "3.0.0",
     "jest": "^24.8.0",
     "jest-pnp-resolver": "^1.2.0",
