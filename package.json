@@ -25,7 +25,7 @@
   "dependencies": {
     "antd": "^3.16.3",
     "axios": "^0.19.0",
-    "ramda": "^0.26.1",
+    "ramda": "^0.27.0",
     "re-reduced": "^2.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
